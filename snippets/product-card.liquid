@@ -16,6 +16,11 @@ assign image_height = image_width | divided_by: product.featured_image.aspect_ra
   </div>
   <div>
     <h3>{{ product.title }}</h3>
-    <p>{{ product.price | money }}</p>
+    <p>
+      {% if product.compare_at_price > product.price %}
+        <span class="strike">{{ product.compare_at_price | money }}</span>
+      {% endif %}
+      {{ product.price | money }}
+    </p>
   </div>
 </a>
