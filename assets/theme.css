@@ -677,6 +677,9 @@ footer ul {
   align-items: flex-start;
   text-align: center;
 }
+footer p a {
+  background-color: transparent;
+}
 
 /* Breadcrumb */
 #breadcrumb {
