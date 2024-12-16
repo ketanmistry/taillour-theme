@@ -90,6 +90,11 @@ ready(function() {
             });
           }
 
+          // Update SKU
+          document.querySelectorAll('.js--variant-sku').forEach(function(el) {
+            el.innerText = variant.sku;
+          });
+
           // Disable the buy button if product is unavailable
           if (v.available === false) {
             document.querySelector("#js--addtocart").disabled = true;
