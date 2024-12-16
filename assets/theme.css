@@ -46,6 +46,9 @@ body {
 button {
   cursor: pointer;
 }
+button:disabled {
+  background-color: #777;
+}
 
 mark,
 .mark,
