@@ -5,6 +5,7 @@ var ready = (callback) => {
   else document.addEventListener("DOMContentLoaded", callback);
 };
 
+
 /*
  * HISTORY STATE
  * Check if window.history is supported
@@ -12,6 +13,7 @@ var ready = (callback) => {
 function historyState() {
   return window.history && window.history.replaceState;
 };
+
 
 /*
  * GET URL PARAMETER
@@ -32,24 +34,65 @@ function getParam(name) {
   }
 }
 
+
 /*
  * FORMAT MONEY
- * Formats the passed value as money with
- * currency symbol.
+ * Formats the passed value as money with currency symbol.
+ * Referenced from https://gist.github.com/stewartknapman/8d8733ea58d2314c373e94114472d44c
  */
-function moneyWithCurrency(value) {
-  if (value != undefined) {
-    let $string = parseFloat(value).toLocaleString("en-GB", { style: "currency", currency: window.Shopify.currency.active });
-    return $string;
-  }
-}
+var Shopify = Shopify || {};
+Shopify.money_format = "${{amount}}";
+Shopify.formatMoney = function(cents, format) {
+  if (typeof cents == 'string') { cents = cents.replace('.', ''); }
+  var value = '';
+  var placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
+  var formatString = (format || this.money_format);
 
+  function defaultOption(opt, def) {
+    return (typeof opt == 'undefined' ? def : opt);
+  }
+
+  function formatWithDelimiters(number, precision, thousands, decimal) {
+    precision = defaultOption(precision, 2);
+    thousands = defaultOption(thousands, ',');
+    decimal = defaultOption(decimal, '.');
+
+    if (isNaN(number) || number == null) { return 0; }
+
+    number = (number / 100.0).toFixed(precision);
+
+    var parts = number.split('.'),
+      dollars = parts[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1' + thousands),
+      cents = parts[1] ? (decimal + parts[1]) : '';
+
+    return dollars + cents;
+  }
+
+  switch (formatString.match(placeholderRegex)[1]) {
+    case 'amount':
+      value = formatWithDelimiters(cents, 2);
+      break;
+    case 'amount_no_decimals':
+      value = formatWithDelimiters(cents, 0);
+      break;
+    case 'amount_with_comma_separator':
+      value = formatWithDelimiters(cents, 2, '.', ',');
+      break;
+    case 'amount_no_decimals_with_comma_separator':
+      value = formatWithDelimiters(cents, 0, '.', ',');
+      break;
+  }
+
+  return formatString.replace(placeholderRegex, value);
+};
+
+
+/*
+ * OPTION SELECTOR
+ * Works the variant option dropdowns used on the
+ * product page template.
+ */
 ready(function() {
-  /*
-   * OPTION SELECTOR
-   * Works the variant option dropdowns used on the
-   * product page template.
-   */
   var variant;
   var options = [];
   options[1] = null;
@@ -73,16 +116,14 @@ ready(function() {
           variant = v;
 
           // Update variant id and prices
-          var variantPrice = (v.price / 100).toFixed(2);
           document.querySelector("input#js--variant-id").value = v.id;
           document.querySelectorAll(".js--variant-price").forEach(function(el) {
-            el.innerHTML = moneyWithCurrency(variantPrice);
+            el.innerHTML = Shopify.formatMoney(v.price);
           });
 
           if (v.compare_at_price > v.price) {
-            var variantCompareAtPrice = (v.compare_at_price / 100).toFixed(2);
             document.querySelectorAll(".js--variant-compareatprice").forEach(function(el) {
-              el.innerText = moneyWithCurrency(variantCompareAtPrice);
+              el.innerText = Shopify.formatMoney(v.compare_at_price);
             });
           } else {
             document.querySelectorAll(".js--variant-compareatprice").forEach(function(el) {
@@ -123,6 +164,7 @@ ready(function() {
     });
   });
 });
+
 
 /*
  * TOGGLE MOBILE NAV

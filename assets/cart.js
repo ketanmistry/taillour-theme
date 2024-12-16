@@ -30,7 +30,7 @@ function updateLineItemQty(el) {
                 return lineitem;
               }
             });
-            el.innerText = moneyWithCurrency((item[0].final_line_price / 100));
+            el.innerText = Shopify.formatMoney((item[0].final_line_price));
           });
         } else {
           row.remove();
@@ -38,7 +38,7 @@ function updateLineItemQty(el) {
         }
         // Update the total cart price.
         document.querySelectorAll('.js--cart-total').forEach(function(el) {
-          el.innerText = moneyWithCurrency(cart.total_price / 100);
+          el.innerText = Shopify.formatMoney(cart.total_price);
         });
         if (typeof window.spendMore === "function") {
           spendMore(cart);
@@ -99,7 +99,7 @@ function addGiftWrap(lineItemTitle, lineItemKey) {
         .then((response) => response.json())
         .then((cart) => {
           document.querySelectorAll(".js--cart-total").forEach(function(el) {
-            el.textContent = moneyWithCurrency(cart.total_price / 100);
+            el.textContent = Shopify.formatMoney(cart.total_price);
           });
           updateCartCounter(cart);
           spendMore(cart);
@@ -133,7 +133,7 @@ function removeGiftWrap(lineItemKey) {
               .then((response) => response.json())
               .then((cart) => {
                 document.querySelectorAll(".js--cart-total").forEach(function(el) {
-                  el.textContent = moneyWithCurrency(cart.total_price / 100);
+                  el.textContent = Shopify.formatMoney(cart.total_price);
                 });
                 updateCartCounter(cart);
                 spendMore(cart);

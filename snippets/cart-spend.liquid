@@ -33,12 +33,12 @@ modify this as you need.
   function spendMore(cart) {
     const block = document.querySelector('#js--spend-more');
     const triggerAmt = {{ trigger_amt | default: 0 }};
-    let balance = (triggerAmt - cart.total_price) / 100;
+    let balance = triggerAmt - cart.total_price;
     if (cart.total_price > triggerAmt) {
       block.style.display = "none";
     } else {
       block.style.display = "";
-      block.querySelector('.js--spend-more-amt').innerText = moneyWithCurrency(balance);
+      block.querySelector('.js--spend-more-amt').innerText = Shopify.formatMoney(balance);
     }
   }
   </script>
