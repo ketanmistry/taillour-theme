@@ -102,6 +102,10 @@ ready(function() {
   var variantOptions = document.querySelectorAll(".js--variant-option");
   variantOptions.forEach(function(el) {
     el.addEventListener("change", function(event) {
+      // Disable non-existent variant options.
+      checkVariants();
+
+      // Set the chosen options.
       variantOptions.forEach(function(opt) {
         if (opt.tagName.toLowerCase() == 'input' && opt.checked == true) {
           var optionName = opt.getAttribute("name");
@@ -111,6 +115,7 @@ ready(function() {
         }
       });
 
+      // Loop through the variants and get the selected one.
       variants.filter(function(v) {
         if (v.option1 == options[1] && v.option2 == options[2] && v.option3 == options[3]) {
           variant = v;
@@ -165,6 +170,65 @@ ready(function() {
   });
 });
 
+/*
+ * CHECK VARIANT EXISTS
+ * This checks if the variant actually exists - e.g you may have small, medium,
+ * and large in blue and black, but blue/medium is not a variant. Disables the
+ * related inputs.
+ */
+function checkVariants() {
+  let $this = event.target;
+  if ($this !== undefined) {
+    let availableVariants = new Set();
+    variants.filter(function(variant, k) {
+      if (variant[$this.name] == $this.value) {
+        availableVariants.add(variant);
+      }
+    });
+
+    // Loop through the array above to create an array containing available
+    // option values.
+    let optionGroups = {};
+    availableVariants.forEach(function(variant) {
+      let options = Object.entries(variant);
+      for (const [key, value] of options) {
+        if (value != null) {
+          if (optionGroups[key] == undefined) {
+            optionGroups[key] = [];
+          }
+          if (optionGroups[key].includes(value) == false) {
+            optionGroups[key].push(value);
+          }
+        }
+      }
+    });
+
+    // Then, loop through each input and check if its value is in the optionGroups
+    // array created above, ignoring the clicked option group.
+    document.querySelectorAll(".js--variant-option").forEach(function(input) {
+      if (input.name != $this.name) {
+        if (optionGroups[input.name].includes(input.value) == false) {
+          input.disabled = true;
+          input.checked = false;
+        } else {
+          input.disabled = false;
+        }
+      }
+    });
+  }
+
+  // Check a valid option is selected for each group.
+  document.querySelectorAll(".js--variant-options").forEach(function(group) {
+    let firstAvailable = null;
+    let checkedOptions = group.querySelectorAll('.js--variant-option:checked').length;
+    if (checkedOptions == 0) {
+      firstAvailable = group.querySelectorAll(".js--variant-option:not(:disabled)")[0];
+    }
+    if (firstAvailable != null) {
+      firstAvailable.checked = true;
+    }
+  });
+}
 
 /*
  * TOGGLE MOBILE NAV

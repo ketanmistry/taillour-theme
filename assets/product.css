@@ -45,6 +45,11 @@
   height: 40px;
   border-radius: 50%;
 }
+.variant-option input:disabled + label {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  background-image: repeating-linear-gradient(45deg, white, white 2px, grey 1px, grey 3px);
+}
 
 /* Product Slider */
 .product-images-component,

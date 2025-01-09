@@ -80,7 +80,7 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
                   {% for option_group in product.options_with_values %}
                     {% assign option_field = option_group.position | prepend: 'option' %}
                     <div class="form-row">
-                      <fieldset class="variant-options flex align-left wrap">
+                      <fieldset class="variant-options js--variant-options {{ option_field }} flex align-left wrap">
                         <legend>{{ option_group.name | prepend: 'Select ' }}</legend>
                         {% for value in option_group.values %}
                           {% capture option_id %}{{ option_group.name }}_{{ value }}{% endcapture %}
