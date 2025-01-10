@@ -59,20 +59,14 @@
 .product-images-slider {
   border: var(--border);
 }
-.product-images-slider:not([data-images="1"]):after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 16px;
-  background-color: white;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-}
 .product-images-track {
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.product-images-track::-webkit-scrollbar {
+  display: none;
 }
 .product-images {
   display: grid;
@@ -85,6 +79,9 @@
   scroll-snap-align: center;
   object-fit: contain;
   aspect-ratio: 1/1;
+}
+.product-image-item {
+  scroll-snap-align: center;
 }
 .product-slider-controls {
   display: flex;
