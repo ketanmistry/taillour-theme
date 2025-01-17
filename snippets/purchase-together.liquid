@@ -12,6 +12,7 @@ unless current_variant.available == false
 endunless
 %}
 
+{% unless product_list == blank %}
 <style>
 #purchase-together > div {
   flex: 1;
@@ -134,6 +135,8 @@ endunless
   </div>
 </div>
 
+<hr>
+
 <script>
 /*
 * Listen for changes to variant selector and purchased together inputs,
@@ -213,3 +216,4 @@ function purchaseTogetherCart() {
   }
 }
 </script>
+{% endunless %}
