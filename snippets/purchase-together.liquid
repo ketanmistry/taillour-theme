@@ -124,7 +124,8 @@ endunless
     </div>
     <div id="js--purchase-cart">
       <p>
-        Total Price: <strong class="js--purchase-total">{{ total | money }}</strong>
+        {{ block.settings.total_label }}
+        <strong class="js--purchase-total">{{ total | money }}</strong>
       </p>
       <button type="button"
         class="button-small"
