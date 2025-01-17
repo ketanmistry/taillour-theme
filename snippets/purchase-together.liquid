@@ -1,0 +1,128 @@
+{% liquid
+assign current_variant = product.selected_or_first_available_variant
+assign product_list = product.metafields.taillour.purchase_together
+assign count = 1
+assign image_width = block.settings.thumbnail_size | default: 150
+unless current_variant.available == false
+  assign total = current_variant.price
+endunless
+%}
+
+<style>
+.purchase-together {
+}
+.purchase-together-item {
+  flex: 1 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem
+}
+.purchase-together-item input[type="checkbox"] {
+  position: absolute;
+  right: 0.25rem;
+  top: 0.25rem;
+}
+.purchase-together-item img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  object-fit: contain;
+  border: 1px solid rgba(0,0,0,0.2);
+  padding: 2px;
+}
+.purchase-together-item a {
+  text-decoration: none;
+}
+.purchase-together-item a:hover {
+  text-decoration: underline;
+}
+</style>
+
+<h3>{{ block.settings.heading }}</h3>
+
+<div id="purchase-together" class="purchase-together flex">
+  <div class="purchase-together-item">
+    <!-- This item here, needs updating when option-selector changes. -->
+    <input type="checkbox"
+      class="js--variant-id js--purchase-item"
+      name="purchase[]"
+      value="{{ current_variant.id }}"
+      data-price="{{ current_variant.price }}"
+      {% if current_variant.available == true %}checked{% endif %}
+      {% if current_variant.available == false %}disabled{% endif %}>
+    <div>
+      <img src="{{ product.featured_image | image_url: width: image_width }}"
+        width="{{ image_width }}" height="{{ image_width }}" />
+    </div>
+    <div class="small-text">
+      <strong>This item:</strong> {{ product.title }}
+    </div>
+    <div>
+      <strong class="js--variant-price">{{ product.price | money }}</strong>
+    </div>
+  </div>
+  {% for item in product_list.value %}
+    {% assign count = count | plus: 1 %}
+    {% assign total = total | plus: item.price %}
+    <div class="purchase-together-item">
+      <input type="checkbox"
+        class="js--purchase-item"
+        name="purchase[]"
+        value="{{ item.id }}"
+        data-price="{{ item.price }}"
+        checked>
+      <div>
+        <a href="{{ item.product.url }}">
+          <img src="{{ item.product.featured_image | image_url: width: image_width }}"
+            width="{{ image_width }}" height="{{ image_width }}" />
+        </a>
+      </div>
+      <div class="small-text">
+        <a href="{{ item.product.url }}">{{ item.product.title }} - {{ item.title }}</a>
+      </div>
+      <div>
+        <strong>{{ item.price | money }}</strong>
+      </div>
+    </div>
+  {% endfor %}
+
+  <div>
+    <p>
+      Total Price: <strong class="js--purchase-total">{{ total | money }}</strong>
+    </p>
+    <button type="button" class="button-small">Add all <span class="js--purchase-count">{{ count }}</span> to cart</button>
+  </div>
+</div>
+
+<script>
+let purchaseTogether = document.getElementById('purchase-together');
+let purchaseTogetherItems = purchaseTogether.querySelectorAll('.js--purchase-item');
+purchaseTogether.querySelectorAll('.js--purchase-item').forEach(function(item){
+  item.addEventListener('change', function(el){
+    let data = checkPurchaseTogetherItems();
+    purchaseTogether.querySelectorAll('.js--purchase-total').forEach(function(el){
+      el.innerText = data.total;
+    });
+    purchaseTogether.querySelectorAll('.js--purchase-count').forEach(function(el){
+      el.innerText = data.count;
+    });
+  });
+});
+
+function checkPurchaseTogetherItems() {
+  let purchaseTogetherTotal = 0;
+  let purchaseTogetherCount = 0;
+  purchaseTogetherItems.forEach(function(el){
+    if (el.checked) {
+      purchaseTogetherTotal += el.dataset.price * 1;
+      purchaseTogetherCount += 1;
+    }
+  });
+  return {
+    total: Shopify.formatMoney(purchaseTogetherTotal),
+    count: purchaseTogetherCount
+  }
+}
+</script>

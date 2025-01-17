@@ -123,7 +123,10 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
 
               {%- when 'button' -%}
                 <div class="form-row flex middle">
-                  <input type="hidden" id="js--variant-id" name="id" value="{{ current_variant.id }}">
+                  <input type="hidden"
+                    id="js--variant-id"
+                    name="id"
+                    value="{{ current_variant.id }}">
                   {% if current_variant.available == true %}
                     <button type="submit" id="js--addtocart" class="button">
                       {{ block.settings.button_label }}
@@ -157,6 +160,9 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
                 <div class="raw-html-content">
                   {{ block.settings.html }}
                 </div>
+
+              {%- when 'product' %}
+                {% render 'purchase-together', block: block %}
 
             {%- endcase -%}
           {%- endfor -%}
@@ -269,6 +275,7 @@ function goToImage(index, container=false) {
     {
       "type": "options",
       "name": "Product options",
+      "limit": 1,
       "settings":[]
     },
     {
@@ -279,6 +286,7 @@ function goToImage(index, container=false) {
     {
       "type": "button",
       "name": "Add to cart",
+      "limit": 1,
       "settings": [
         {
           "type": "text",
@@ -335,6 +343,40 @@ function goToImage(index, container=false) {
           "id": "html",
           "label": "HTML/Liquid",
           "info": "You can add HTML, CSS and limited Liquid markup."
+        }
+      ]
+    },
+    {
+      "type": "product",
+      "name": "Purchase together",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Setting up this feature",
+          "info": "A product metafield definition with the namespace and key `taillour.purchase_together` should be created with the type `Product variant`. The metafield should allow a 'List of product variants'. [Create definition](/admin/settings/custom_data/product/metafields)."
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Frequently purchased together"
+        },
+        {
+          "type": "range",
+          "id": "limit",
+          "label": "Limit",
+          "min": 1,
+          "max": 3,
+          "step": 1,
+          "default": 2,
+          "info": "Set the number of products to display."
+        },
+        {
+          "type": "number",
+          "id": "thumbnail_size",
+          "label": "Thumbnail size",
+          "default": 150
         }
       ]
     }
