@@ -9,8 +9,6 @@ endunless
 %}
 
 <style>
-.purchase-together {
-}
 .purchase-together-item {
   flex: 1 1;
   position: relative;
@@ -37,6 +35,9 @@ endunless
 }
 .purchase-together-item a:hover {
   text-decoration: underline;
+}
+.js--purchase-item:disabled + div {
+  opacity: 0.5;
 }
 </style>
 
@@ -99,8 +100,8 @@ endunless
 <script>
 let purchaseTogether = document.getElementById('purchase-together');
 let purchaseTogetherItems = purchaseTogether.querySelectorAll('.js--purchase-item');
-purchaseTogether.querySelectorAll('.js--purchase-item').forEach(function(item){
-  item.addEventListener('change', function(el){
+document.querySelectorAll('.js--purchase-item, .js--variant-option').forEach(function(item){
+  item.addEventListener('change', function(event){
     let data = checkPurchaseTogetherItems();
     purchaseTogether.querySelectorAll('.js--purchase-total').forEach(function(el){
       el.innerText = data.total;
