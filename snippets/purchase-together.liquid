@@ -44,7 +44,7 @@ endunless
 .purchase-together-item a:hover {
   text-decoration: underline;
 }
-.js--purchase-item:disabled + div {
+.js--purchase-item:disabled + img {
   opacity: 0.5;
 }
 #js--purchase-message {
@@ -143,15 +143,18 @@ endunless
 * so the variant IDs and totals can be updated as required.
 */
 let purchaseTogether = document.getElementById('purchase-together');
-let purchaseTogetherItems = purchaseTogether.querySelectorAll('.js--purchase-item');
-document.querySelectorAll('.js--purchase-item, .js--variant-option').forEach(function(item){
-  item.addEventListener('change', function(event){
-    let data = checkPurchaseTogetherItems();
-    purchaseTogether.querySelectorAll('.js--purchase-total').forEach(function(el){
-      el.innerText = data.total;
-    });
-    purchaseTogether.querySelectorAll('.js--purchase-count').forEach(function(el){
-      el.innerText = data.count;
+
+ready(function() {
+  document.querySelectorAll('.js--purchase-item, .js--variant-option').forEach(function(item){
+    item.addEventListener('change', function(event){
+      let data = checkPurchaseTogetherItems();
+      // console.log(data);
+      purchaseTogether.querySelectorAll('.js--purchase-total').forEach(function(el){
+        el.innerText = data.total;
+      });
+      purchaseTogether.querySelectorAll('.js--purchase-count').forEach(function(el){
+        el.innerText = data.count;
+      });
     });
   });
 });
@@ -161,13 +164,12 @@ document.querySelectorAll('.js--purchase-item, .js--variant-option').forEach(fun
 * and returns the purchase together totals and count.
 */
 function checkPurchaseTogetherItems() {
+  let purchaseTogetherItems = purchaseTogether.querySelectorAll('.js--purchase-item:checked');
   let purchaseTogetherTotal = 0;
   let purchaseTogetherCount = 0;
   purchaseTogetherItems.forEach(function(el){
-    if (el.checked && el.disabled == false) {
-      purchaseTogetherTotal += el.dataset.price * 1;
-      purchaseTogetherCount += 1;
-    }
+    purchaseTogetherTotal += el.dataset.price * 1;
+    purchaseTogetherCount += 1;
   });
 
   if (purchaseTogetherCount == 0) {
