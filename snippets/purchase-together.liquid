@@ -12,7 +12,7 @@ The first item in the "purchase together" block will always be the currently
 viewed product.
 {% endcomment %}
 {% liquid
-assign current_variant = product.selected_or_first_available_variant
+# assign current_variant = product.selected_or_first_available_variant
 assign product_list = product.metafields.taillour.purchase_together
 if current_variant.available == true
   assign count = 1
@@ -128,14 +128,14 @@ endunless
       <strong>This item:</strong> {{ product.title }}
     </div>
     <div>
-      <strong class="js--variant-price">{{ product.price | money }}</strong>
+      <strong class="js--variant-price">{{ current_variant.price | money }}</strong>
     </div>
   </div>
 
   {% comment %}
   Loop through the items in the product metafield.
   {% endcomment %}
-  {% for item in product_list.value %}
+  {% for item in product_list.value limit: block.settings.limit %}
     {% if item.available == true %}
       {% assign count = count | plus: 1 %}
       {% assign total = total | plus: item.price %}

@@ -162,7 +162,10 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
                 </div>
 
               {%- when 'product' %}
-                {% render 'purchase-together', block: block %}
+                {% render 'purchase-together',
+                  block: block,
+                  current_variant: current_variant
+                %}
 
             {%- endcase -%}
           {%- endfor -%}
@@ -373,7 +376,7 @@ function goToImage(index, container=false) {
           "id": "limit",
           "label": "Limit",
           "min": 1,
-          "max": 3,
+          "max": 2,
           "step": 1,
           "default": 2,
           "info": "Set the number of products to display."
