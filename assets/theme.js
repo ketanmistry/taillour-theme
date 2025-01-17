@@ -122,6 +122,18 @@ ready(function() {
 
           // Update variant id and prices
           document.querySelector("input#js--variant-id").value = v.id;
+          // The following is used for the "purchase together" feature.
+          document.querySelectorAll('input[type="checkbox"].js--variant-id').forEach(function(el) {
+            el.value = v.id;
+            el.setAttribute('data-price', v.price);
+            if (v.available == true) {
+              el.checked = true;
+              el.disabled = false;
+            } else {
+              el.checked = false;
+              el.disabled = true;
+            }
+          });
           document.querySelectorAll(".js--variant-price").forEach(function(el) {
             el.innerHTML = Shopify.formatMoney(v.price);
           });
