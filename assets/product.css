@@ -52,6 +52,10 @@
 }
 
 /* Product Slider */
+#product-photos {
+  position: sticky;
+  top: 1rem;
+}
 .product-images-component,
 .product-images-slider {
   position: relative;
