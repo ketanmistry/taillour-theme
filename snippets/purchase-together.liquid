@@ -1,3 +1,16 @@
+{% comment %}
+SETTING UP THIS FEATURE
+-----------------------
+A product metafield definition with the namespace and key `taillour.purchase_together`
+should be created with the type of `Product variant`. The metafield should allow a
+'List of product variants'.
+
+This metafield will be available on the "edit product" page within the admin where
+variants can be assigned.
+
+The first item in the "purchase together" block will always be the currently
+viewed product.
+{% endcomment %}
 {% liquid
 assign current_variant = product.selected_or_first_available_variant
 assign product_list = product.metafields.taillour.purchase_together
