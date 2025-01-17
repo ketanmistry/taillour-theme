@@ -9,8 +9,11 @@ endunless
 %}
 
 <style>
+#purchase-together > div {
+  flex: 1;
+  flex-basis: 25%;
+}
 .purchase-together-item {
-  flex: 1 1;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -39,13 +42,29 @@ endunless
 .js--purchase-item:disabled + div {
   opacity: 0.5;
 }
+#js--purchase-message {
+  border: var(--border);
+  background: var(--cream);
+  padding: 1rem;
+  aspect-ratio: 1/1;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#js--purchase-message p {
+  line-height: 1.35rem;
+  font-size: 1rem;
+}
 </style>
 
 <h3>{{ block.settings.heading }}</h3>
 
 <div id="purchase-together" class="purchase-together flex">
   <div class="purchase-together-item">
-    <!-- This item here, needs updating when option-selector changes. -->
+    {% comment %}
+    This is the main item.
+    {% endcomment %}
     <input type="checkbox"
       class="js--variant-id js--purchase-item"
       name="purchase[]"
@@ -64,6 +83,10 @@ endunless
       <strong class="js--variant-price">{{ product.price | money }}</strong>
     </div>
   </div>
+
+  {% comment %}
+  Loop through the items in the product metafield.
+  {% endcomment %}
   {% for item in product_list.value %}
     {% assign count = count | plus: 1 %}
     {% assign total = total | plus: item.price %}
@@ -89,15 +112,29 @@ endunless
     </div>
   {% endfor %}
 
+  {% comment %}
+  Display totals and other messages.
+  {% endcomment %}
   <div>
-    <p>
-      Total Price: <strong class="js--purchase-total">{{ total | money }}</strong>
-    </p>
-    <button type="button" class="button-small">Add all <span class="js--purchase-count">{{ count }}</span> to cart</button>
+    <div id="js--purchase-message" class="center" style="display: none;">
+      <p class="nomargin">Choose items to buy together.</p>
+    </div>
+    <div id="js--purchase-cart">
+      <p>
+        Total Price: <strong class="js--purchase-total">{{ total | money }}</strong>
+      </p>
+      <button type="button" class="button-small">
+        Add all <span class="js--purchase-count">{{ count }}</span> to cart
+      </button>
+    </div>
   </div>
 </div>
 
 <script>
+/*
+* Listen for changes to variant selector and purchased together inputs,
+* so the variant IDs and totals can be updated as required.
+*/
 let purchaseTogether = document.getElementById('purchase-together');
 let purchaseTogetherItems = purchaseTogether.querySelectorAll('.js--purchase-item');
 document.querySelectorAll('.js--purchase-item, .js--variant-option').forEach(function(item){
@@ -112,6 +149,10 @@ document.querySelectorAll('.js--purchase-item, .js--variant-option').forEach(fun
   });
 });
 
+/*
+* Hides the "Choose items to buy together" messaging,
+* and returns the purchase together totals and count.
+*/
 function checkPurchaseTogetherItems() {
   let purchaseTogetherTotal = 0;
   let purchaseTogetherCount = 0;
@@ -121,6 +162,15 @@ function checkPurchaseTogetherItems() {
       purchaseTogetherCount += 1;
     }
   });
+
+  if (purchaseTogetherCount == 0) {
+    document.getElementById('js--purchase-message').style.display = "";
+    document.getElementById('js--purchase-cart').style.display = "none";
+  } else {
+    document.getElementById('js--purchase-message').style.display = "none";
+    document.getElementById('js--purchase-cart').style.display = "";
+  }
+
   return {
     total: Shopify.formatMoney(purchaseTogetherTotal),
     count: purchaseTogetherCount
