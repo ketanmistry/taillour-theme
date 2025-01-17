@@ -60,6 +60,10 @@ endunless
 .js--purchase-item:disabled + img {
   opacity: 0.5;
 }
+#js--purchase-cart p {
+  line-height: 1.35rem;
+  margin-bottom: 0.5rem;
+}
 #js--purchase-message {
   border: var(--border);
   background: var(--cream);
@@ -73,6 +77,21 @@ endunless
 #js--purchase-message p {
   line-height: 1.35rem;
   font-size: 1rem;
+}
+@media (max-width:500px) {
+  #purchase-together {
+    flex-wrap: wrap;
+  }
+  #js--purchase-cart {
+    text-align: center;
+  }
+  #purchase-together > div:last-child {
+    flex-basis: 100%;
+    background-color: #f7f7f7;
+    border: 1px solid #f1f1f1;
+    border-radius: 5px;
+    padding: 0.5rem 0.5rem 1rem 0.5rem;
+  }
 }
 </style>
 
@@ -136,7 +155,7 @@ endunless
       <p class="nomargin">Choose items to buy together.</p>
     </div>
     <div id="js--purchase-cart">
-      <p>
+      <p class="nomargin">
         {{ block.settings.total_label }}
         <strong class="js--purchase-total">{{ total | money }}</strong>
       </p>
