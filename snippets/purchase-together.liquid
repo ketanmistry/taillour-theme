@@ -1,7 +1,11 @@
 {% liquid
 assign current_variant = product.selected_or_first_available_variant
 assign product_list = product.metafields.taillour.purchase_together
-assign count = 1
+if current_variant.available == true
+  assign count = 1
+else
+  assign count = 0
+endif
 assign image_width = block.settings.thumbnail_size | default: 150
 unless current_variant.available == false
   assign total = current_variant.price
@@ -72,10 +76,8 @@ endunless
       data-price="{{ current_variant.price }}"
       {% if current_variant.available == true %}checked{% endif %}
       {% if current_variant.available == false %}disabled{% endif %}>
-    <div>
-      <img src="{{ product.featured_image | image_url: width: image_width }}"
-        width="{{ image_width }}" height="{{ image_width }}" />
-    </div>
+    <img src="{{ product.featured_image | image_url: width: image_width }}"
+      width="{{ image_width }}" height="{{ image_width }}" />
     <div class="small-text">
       <strong>This item:</strong> {{ product.title }}
     </div>
@@ -88,28 +90,28 @@ endunless
   Loop through the items in the product metafield.
   {% endcomment %}
   {% for item in product_list.value %}
-    {% assign count = count | plus: 1 %}
-    {% assign total = total | plus: item.price %}
-    <div class="purchase-together-item">
-      <input type="checkbox"
-        class="js--purchase-item"
-        name="purchase[]"
-        value="{{ item.id }}"
-        data-price="{{ item.price }}"
-        checked>
-      <div>
-        <a href="{{ item.product.url }}">
+    {% if item.available == true %}
+      {% assign count = count | plus: 1 %}
+      {% assign total = total | plus: item.price %}
+      <div class="purchase-together-item">
+        <input type="checkbox"
+          class="js--purchase-item"
+          name="purchase[]"
+          value="{{ item.id }}"
+          data-price="{{ item.price }}"
+          checked>
+        <a href="{{ item.product.url }}" style="display:block;width:100%;">
           <img src="{{ item.product.featured_image | image_url: width: image_width }}"
             width="{{ image_width }}" height="{{ image_width }}" />
         </a>
+        <div class="small-text">
+          <a href="{{ item.product.url }}">{{ item.product.title }} - {{ item.title }}</a>
+        </div>
+        <div>
+          <strong>{{ item.price | money }}</strong>
+        </div>
       </div>
-      <div class="small-text">
-        <a href="{{ item.product.url }}">{{ item.product.title }} - {{ item.title }}</a>
-      </div>
-      <div>
-        <strong>{{ item.price | money }}</strong>
-      </div>
-    </div>
+    {% endif %}
   {% endfor %}
 
   {% comment %}
@@ -123,7 +125,9 @@ endunless
       <p>
         Total Price: <strong class="js--purchase-total">{{ total | money }}</strong>
       </p>
-      <button type="button" class="button-small">
+      <button type="button"
+        class="button-small"
+        onclick="purchaseTogetherCart();">
         Add all <span class="js--purchase-count">{{ count }}</span> to cart
       </button>
     </div>
@@ -157,7 +161,7 @@ function checkPurchaseTogetherItems() {
   let purchaseTogetherTotal = 0;
   let purchaseTogetherCount = 0;
   purchaseTogetherItems.forEach(function(el){
-    if (el.checked) {
+    if (el.checked && el.disabled == false) {
       purchaseTogetherTotal += el.dataset.price * 1;
       purchaseTogetherCount += 1;
     }
@@ -174,6 +178,38 @@ function checkPurchaseTogetherItems() {
   return {
     total: Shopify.formatMoney(purchaseTogetherTotal),
     count: purchaseTogetherCount
+  }
+}
+
+/*
+* Add selected items to cart.
+*/
+function purchaseTogetherCart() {
+  let products = purchaseTogether.querySelectorAll('.js--purchase-item:checked:not(:disabled)');
+  let items = [];
+
+  if (products.length > 0) {
+    products.forEach(function(el){
+      items.push({
+        quantity: 1,
+        id: el.value
+      })
+    });
+
+    // Add items to the cart
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        items: items
+      })
+    }).then(response => response.json())
+    .then(data => {
+        window.location.href = "/cart";
+    });
+
   }
 }
 </script>
