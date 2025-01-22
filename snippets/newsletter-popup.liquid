@@ -58,6 +58,11 @@
     <h3 data-title="{{ settings.newsletter_heading }}">{{ settings.newsletter_heading }}</h3>
     <p>{{ settings.newsletter_text }}</p>
     {% form 'customer' %}
+      {% if form.posted_successfully? %}
+        <div class="rte">
+          <p><strong>Thanks for signing up!</strong></p>
+        </div>
+      {% endif %}
       <div class="form-row">
         <label for="email">Email</label>
         <input type="email" name="contact[email]" placeholder="Enter email address" required>

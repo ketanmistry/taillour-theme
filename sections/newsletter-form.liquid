@@ -15,6 +15,11 @@
     </div>
 
     {% form 'customer', class: 'form newsletter-signup-form center' %}
+      {% if form.posted_successfully? %}
+        <div class="rte">
+          <p><strong>Thanks for signing up!</strong></p>
+        </div>
+      {% endif %}
       <div class="form-row">
         <label class="hide">Email</label>
         <input type="email" name="contact[email]" placeholder="Enter email address" required>

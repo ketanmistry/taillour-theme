@@ -16,6 +16,18 @@
       </div>
 
       {% form 'customer', class: 'form contact-form center align-left' %}
+        {% if form.posted_successfully? %}
+          <div class="rte">
+            <p>
+              <strong>Thanks for your enquiry!</strong>
+            </p>
+          </div>
+        {% else %}
+          <div class="rte">
+            {{ form.errors | default_errors }}
+          </div>
+        {% endif %}
+
         {%- for block in section.blocks -%}
 
           {% capture label %}
