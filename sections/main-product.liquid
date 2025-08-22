@@ -44,7 +44,6 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
     </section>
 
     <section id="product-details">
-      <h1 data-title="{{ product.title }}">{{ product.title }}</h1>
 
       {% comment %}
       Variant selector.
@@ -55,6 +54,11 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
             {% case block.type %}
               {%- when '@app' -%}
                 {% render block %}
+
+              {%- when 'title' -%}
+                <h1 data-title="{{- block.settings.title -}}">
+                  {{- block.settings.title -}}
+                </h1>
 
               {%- when "sku" -%}
                 <p class="small-text">
@@ -271,6 +275,19 @@ function goToImage(index, container=false) {
   "blocks": [
     {
       "type":"@app"
+    },
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Text",
+          "default": "{{ product.title }}"
+        }
+      ]
     },
     {
       "type": "sku",

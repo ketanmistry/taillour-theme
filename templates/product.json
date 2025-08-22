@@ -12,6 +12,12 @@
     "product": {
       "type": "main-product",
       "blocks": {
+        "title_kGVXCN": {
+          "type": "title",
+          "settings": {
+            "title": "{{ product.title }}"
+          }
+        },
         "rule_PabNze": {
           "type": "rule",
           "settings": {}
@@ -85,6 +91,7 @@
         }
       },
       "block_order": [
+        "title_kGVXCN",
         "rule_PabNze",
         "sku_waYyYi",
         "text_VgqAwb",
