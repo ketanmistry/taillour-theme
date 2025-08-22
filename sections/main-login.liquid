@@ -6,7 +6,7 @@ See https://shopify.dev/docs/storefronts/themes/architecture/templates/customers
     <h1 data-title="Login">Login</h1>
 
     <p>Log in to your account to see your order updates and manage your account
-      profile. Don't have an account? <a href="/account/register">Create an account</a>.</p>
+      profile. Don't have an account? <a href="{{ routes.account_register_url }}">Create an account</a>.</p>
 
     <div id="js--login-form">
       {% form 'customer_login' %}
