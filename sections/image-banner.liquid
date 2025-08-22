@@ -1,45 +1,29 @@
-{% stylesheet %}
-.image-banner-section {
-  position: relative;
+{% style %}
+#{{ section.id }} .image-banner-asset {
+  height: {{ section.settings.desktop_height | append: "vw" }};
 }
-.image-banner-section > *,
-.image-banner-asset {
-  padding: 0;
-  height: 400px;
+#{{ section.id }} .image-banner-asset img {
+  object-fit: {{ section.settings.object_fit }};
+  object-position:{{ section.settings.object_position }};
 }
-.image-banner-section img,
-.image-banner-section svg {
-  width: 100%;
-  height: 100%;
+@media screen and (max-width: 768px) {
+  #{{ section.id }} .image-banner-asset {
+    height: {{ section.settings.mobile_height | append: "vw" }};
+  }
 }
-.image-banner-content {
-  max-width: 600px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  margin: 2.5rem;
-  padding: 0 1rem 1rem 1rem;
-  z-index: 5;
-  background-color: rgba(255,255,255,0.5);
-  border-radius: 5px;
-}
-{% endstylesheet %}
+{% endstyle %}
 
-<div style="background-color:{{ section.settings.background }};">
+<div id="{{ section.id }}" style="background-color:{{ section.settings.background }};">
   <!-- image -->
   <div class="image-banner-asset">
-    {% if section.settings.image == blank %}
+    {%- if section.settings.image == blank -%}
       {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder' }}
-    {% else %}
-      {% assign image = section.settings.image %}
-      <img src="{{image | image_url: width: image.width }}"
-      width="{{ image.width }}" height="{{ image.height }}"
+    {%- else -%}
+      {%- assign image = section.settings.image -%}
+      <img src="{{ image | image_url: width: image.width }}"
+      width="{{ image.width }}"
+      height="{{ image.height }}"
       alt="{{ image.alt }}"
-      style="object-fit:{{ section.settings.object_fit }}; object-position:{{ section.settings.object_position }};"
       loading="lazy">
     {% endif %}
   </div>
@@ -47,27 +31,29 @@
   <!-- content -->
   <div class="section">
     <div class="image-banner-content">
-      {%- for block in section.blocks -%}
-        {%- case block.type -%}
-          {%- when 'heading' -%}
-            <{{- block.settings.size }} data-title="{{ block.settings.text }}">{{ block.settings.text }}</{{- block.settings.size -}}>
-          {%- when 'text' -%}
-            <p>{{ block.settings.text }}</p>
-          {% when 'buttons' %}
-            <div>
-              {% if block.settings.button1_enable %}
-                <a class="button" href="{{ block.settings.button1_link | default: '#' }}">
-                  {{ block.settings.button1_label }}
-                </a>
-              {% endif %}
-              {% if block.settings.button2_enable %}
-                <a class="button" href="{{ block.settings.button2_link | default: '#' }}">
-                  {{ block.settings.button2_label }}
-                </a>
-              {% endif %}
-            </div>
-        {% endcase %}
-      {%- endfor -%}
+      <div class="rte">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'heading' -%}
+              <{{- block.settings.size }} data-title="{{ block.settings.text }}">{{ block.settings.text }}</{{- block.settings.size -}}>
+            {%- when 'text' -%}
+              <p>{{ block.settings.text }}</p>
+            {%- when 'buttons' -%}
+              <div>
+                {%- if block.settings.button1_enable -%}
+                  <a class="button" href="{{ block.settings.button1_link | default: '#' }}">
+                    {{ block.settings.button1_label }}
+                  </a>
+                {%- endif -%}
+                {% if block.settings.button2_enable %}
+                  <a class="button" href="{{ block.settings.button2_link | default: '#' }}">
+                    {{ block.settings.button2_label }}
+                  </a>
+                {%- endif -%}
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
     </div>
   </div>
 </div>
@@ -147,6 +133,28 @@
         }
       ],
       "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "label": "Height (desktop)",
+      "min": 25,
+      "max": 100,
+      "step": 1,
+      "default": 33,
+      "unit": "vw",
+      "info": "Height of the section in relation to the browser width."
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "label": "Height (mobile)",
+      "min": 50,
+      "max": 100,
+      "step": 1,
+      "default": 100,
+      "unit": "vw",
+      "info": "Height of the section in relation to the device width."
     }
   ],
   "blocks": [

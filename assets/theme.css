@@ -596,7 +596,7 @@ table:before {
   aspect-ratio: 1/1;
 }
 
-/* Header */
+/* Header & nav */
 header {
   display: grid;
   grid-template-columns: .25fr 0.5fr .25fr;
@@ -643,6 +643,7 @@ header nav li.active a {
   text-decoration: underline;
 }
 
+/* Blockquotes */
 blockquote {
   position: relative;
   padding-left: 4rem;
@@ -791,4 +792,31 @@ article img {
   text-decoration-thickness: 2px;
   margin: 0.5rem;
   padding: 0.5rem;
+}
+
+/* Section: Image banner (hero) */
+.image-banner-section {
+  position: relative;
+}
+.image-banner-section img,
+.image-banner-section svg {
+  width: 100%;
+  height: 100%;
+}
+.image-banner-content {
+  max-width: 600px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 2.5rem;
+  z-index: 1;
+  .rte {
+    padding: 0 1rem 1rem 1rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+  }
 }
