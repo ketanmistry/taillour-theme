@@ -24,6 +24,12 @@
   <script src="{{ 'theme.js' | asset_url }}"></script>
   <script src="{{ 'predictive-search.js' | asset_url }}" defer></script>
 
+  {%- comment -%}
+  Swiper JS used for the "image-carousel" section.
+  {%- endcomment -%}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
   {% render 'schemas' %}
   {% render 'social-meta-tags' %}
   {{ content_for_header }}
