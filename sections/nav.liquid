@@ -4,15 +4,28 @@
     <div data-device="mobile" class="flex align-right">
       <button type="button" onclick="toggleNav();">&times;</button>
     </div>
-    <ul>
-      {% for link in linklists[menu_handle].links %}
-        <li>
-          <a href="{{ link.url }}">
-            {{ link.title }}
-          </a>
+    <ul class="nav-parent-list">
+      {%- for parent_link in linklists[menu_handle].links -%}
+        <li class="nav-parent-list-item">
+          {%- if parent_link.links.size > 0 -%}
+            <details class="nav-parent-list-dropdown">
+              <summary>
+                {{- parent_link.title -}}
+              </summary>
+              <ul class="submenu">
+                {%- for child_link in parent_link.links -%}
+                  <li>
+                    <a href="{{- child_link.url -}}">{{- child_link.title -}}</a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </details>
+          {%- else -%}
+            <a href="{{- parent_link.url -}}">{{- parent_link.title -}}</a>
+          {%- endif -%}
         </li>
-      {% endfor %}
-      <li data-device="mobile">
+      {%- endfor -%}
+      <li class="nav-parent-list-item" data-device="mobile">
         <a href="{{ routes.account_url }}">Account</a>
       </li>
     </ul>

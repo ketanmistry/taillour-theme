@@ -43,7 +43,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: var(--font-size);
 }
-button {
+button,
+summary {
   cursor: pointer;
 }
 button:disabled {
@@ -427,7 +428,7 @@ hr.solid {
 }
 
 /* Accordian sections */
-details {
+main details {
   position: relative;
   border-top: var(--border);
   border-left: var(--border);
@@ -435,26 +436,21 @@ details {
   margin-bottom: 1.5rem;
   background-color: white;
 }
-
-details[open] {
+main details[open] {
   border-bottom: var(--border);
 }
-
-details summary::-webkit-details-marker {
+main details summary::-webkit-details-marker {
   display: none;
 }
-
-summary {
+main summary {
   position: relative;
   padding: 16px;
   border-bottom: var(--border);
   font-size: 1.2rem;
   font-weight: var(--bold);
   padding-left: 42px;
-  cursor: pointer;
 }
-
-summary:before {
+main summary:before {
   content: "\25BA";
   margin-right: 8px;
   position: absolute;
@@ -462,10 +458,10 @@ summary:before {
   top: calc(50% - 9px);
   font-size: 1rem;
 }
-details[open] summary:before {
+main details[open] summary:before {
   transform: rotate(90deg);
 }
-details summary em {
+main details summary em {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -478,8 +474,7 @@ details summary em {
   border-left: var(--border);
   font-weight: var(--regular);
 }
-
-details > div {
+main details > div {
   margin: 16px;
 }
 
@@ -563,7 +558,7 @@ details > div {
 .article-card:hover:before,
 .box:before,
 .pill:before,
-details:before,
+main details:before,
 table:before {
   content: "";
   background-image: var(--shading);
@@ -596,7 +591,7 @@ table:before {
   aspect-ratio: 1/1;
 }
 
-/* Header & nav */
+/* Header */
 header {
   display: grid;
   grid-template-columns: .25fr 0.5fr .25fr;
@@ -611,36 +606,81 @@ header #logo {
 header form {
   flex: 1 auto;
 }
+
+/* Nav */
 nav {
   font-size: 1rem;
   font-weight: var(--bold);
 }
-nav ul {
-  display: flex;
-  align-items: center;
-}
-nav li {
-  padding: 12px 16px;
-  border-right: var(--border);
-  display: flex;
-  align-items: center;
-}
-header nav li:last-child {
-  border-right: 0;
-  display: flex;
-  width: 100%;
-  justify-content: flex-end;
-}
-header nav li:last-child div {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-header nav a {
+nav a {
   text-decoration: none;
 }
-header nav li.active a {
-  text-decoration: underline;
+nav ul.nav-parent-list {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+nav li.nav-parent-list-item > a,
+nav li.nav-parent-list-item summary {
+  padding: 12px 1rem;
+  font-weight: var(--bold);
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  text-decoration: underline
+}
+nav li.nav-parent-list-item summary {
+  padding-right: 0.5rem;
+}
+nav li.nav-parent-list-item summary:after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0'%3F%3E%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='none' height='256' width='256'/%3E%3Cpolyline fill='none' points='208 96 128 176 48 96' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-left: 0.25rem;
+}
+nav li.nav-parent-list-item > a:hover,
+nav li.nav-parent-list-item summary:hover,
+nav li.nav-parent-list-item details[open] summary {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+nav details {
+  position: relative;
+}
+nav details[open] .submenu {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.15);
+  position: absolute;
+  background-color: var(--white);
+  top: calc(100% - 0.25rem);
+  left: 0;
+  min-width: 250px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: left;
+  border: var(--border);
+  li:hover a {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  li {
+    width: 100%;
+    text-transform: none;
+    font-size: 1rem;
+    background-color: var(--white);
+  }
+  a {
+    display: block;
+    text-decoration: none;
+    margin: 0;
+    padding: 0.5rem 0.75rem;
+    font-weight: var(--regular);
+    color: var(--black);
+  }
 }
 
 /* Blockquotes */
