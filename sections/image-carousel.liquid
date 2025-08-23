@@ -1,0 +1,239 @@
+{%- style -%}
+#{{ section.id }} {
+  background-color: {{ section.settings.background }};
+  height: {{ section.settings.desktop_height | append: "vw" }};
+}
+#{{ section.id }} img {
+  object-fit:{{ section.settings.object_fit }};
+  object-position:{{ section.settings.object_position }};
+}
+@media screen and (max-width: 768px) {
+  #{{ section.id }} {
+    height: {{ section.settings.mobile_height | append: "vw" }};
+  }
+}
+{%-endstyle -%}
+
+<div id="{{ section.id }}" class="swiper">
+  <div class="image-carousel-content swiper-wrapper">
+    {%- for block in section.blocks -%}
+      <div class="swiper-slide" data-swiper-autoplay="{{- block.settings.delay | times: 1000 -}}">
+        {%- if block.settings.image == blank -%}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder' }}
+        {%- else -%}
+          {%- liquid
+          assign image = block.settings.image
+          assign image_width = 2000
+          assign image_height = image_width | divided_by: image.aspect_ratio | ceil
+          -%}
+          <img src="{{image | image_url: width: image_width }}"
+            width="{{ image_width }}"
+            height="{{ image_height }}"
+            alt="{{ image.alt }}"
+          loading="lazy">
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+
+  {%- if section.settings.show_pagination == true -%}
+    <div class="swiper-pagination"></div>
+  {%- endif -%}
+
+  {%- if section.settings.show_buttons == true -%}
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  {%- endif -%}
+</div>
+
+<script>
+const swiper = new Swiper('{{ section.id | prepend: "#" }}', {
+  // Optional parameters
+  loop: {{ section.settings.loop }},
+  autoplay: {{ section.settings.autoplay }},
+
+  // If we need pagination
+  pagination: {
+    el: '.swiper-pagination',
+  },
+
+  // Navigation arrows
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  breakpoints: {
+    "768": {
+      slidesPerView: {{ section.settings.slides_per_view }}
+    }
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Image Carousel (Full)",
+  "tag": "section",
+  "class": "image-carousel-section",
+  "disabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image Settings",
+      "info": "A full-width image carousel."
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "label": "Height (desktop)",
+      "min": 25,
+      "max": 100,
+      "step": 1,
+      "default": 33,
+      "info": "Height of the section in relation to the browser width."
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "label": "Height (mobile)",
+      "min": 25,
+      "max": 100,
+      "step": 1,
+      "default": 33,
+      "info": "Height of the section in relation to the device width."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background Colour",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "object_fit",
+      "label": "Fit",
+      "options": [
+        {
+          "value": "contain",
+          "label": "Contain"
+        },
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "fill",
+          "label": "Fill"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "object_position",
+      "label": "Position",
+      "options": [
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Carousel Settings"
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view",
+      "label": "Slides per view",
+      "info": "Number of slides to show per view on desktop.",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Loop",
+      "default": true,
+      "info": "Enable continuous loop mode."
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination",
+      "label": "Show pagination",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_buttons",
+      "label": "Show prev/next buttons",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "delay",
+          "label": "Delay",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "unit": "s",
+          "default": 3
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Carousel (Full)",
+      "blocks": [
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

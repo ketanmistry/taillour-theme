@@ -22,12 +22,12 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
           <div class="product-images-slider" data-images="{{ product.images.size }}">
             <div class="product-images-track">
               <div class="product-images" style="grid-template-columns: repeat({{ product.images.size }}, minmax(100%, 1fr));">
-                {% assign image_width = 1024 %}
-                {% if product.images.size == 0 %}
-                  {{ 'collection-4' | placeholder_svg_tag: 'placeholder' }}
-                {% endif %}
-                {% for image in product.images %}
-                  {% assign image_height = image_width | divided_by: image.aspect_ratio | ceil %}
+                {%- assign image_width = 1024 -%}
+                {%- if product.images.size == 0 -%}
+                  {{- 'collection-4' | placeholder_svg_tag: 'placeholder' -}}
+                {%- endif -%}
+                {%- for image in product.images -%}
+                  {%- assign image_height = image_width | divided_by: image.aspect_ratio | ceil -%}
                   <div class="product-image-item" data-imageid="{{ image.id }}">
                     <img src="{{ image.src | image_url: width: image_width }}"
                       width="{{ image_width }}"
@@ -35,7 +35,7 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
                       alt="{{ image.alt }}"
                       loading="lazy">
                   </div>
-                {% endfor %}
+                {%- endfor -%}
               </div>
             </div>
           </div>
@@ -44,14 +44,6 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
     </section>
 
     <section id="product-details">
-      <h1 data-title="{{ product.title }}">{{ product.title }}</h1>
-
-      <p>
-        Product Code:
-        <span class="js--variant-sku">{{ current_variant.sku }}</span>
-      </p>
-
-      <hr>
 
       {% comment %}
       Variant selector.
@@ -62,6 +54,17 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
             {% case block.type %}
               {%- when '@app' -%}
                 {% render block %}
+
+              {%- when 'title' -%}
+                <h1 data-title="{{- block.settings.title -}}">
+                  {{- block.settings.title -}}
+                </h1>
+
+              {%- when "sku" -%}
+                <p class="small-text">
+                  {{ block.settings.label }}
+                  <span class="js--variant-sku">{{ current_variant.sku }}</span>
+                </p>
 
               {%- when 'prices' -%}
                 <p class="large-text">
@@ -137,11 +140,9 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
                 </div>
 
               {%- when 'text' -%}
-                {% unless block.settings.content == blank or block.settings.content == '<p></p>' %}
-                  <div class="rte" style="margin-top:2rem;">
-                    {{ block.settings.content }}
-                  </div>
-                {% endunless %}
+                <div class="rte">
+                  {{ block.settings.content }}
+                </div>
 
               {%- when 'rule' -%}
                 <hr>
@@ -269,11 +270,37 @@ function goToImage(index, container=false) {
 
 {% schema %}
 {
-  "name": "Product Page",
+  "name": "Product Details",
   "settings": [],
   "blocks": [
     {
       "type":"@app"
+    },
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Text",
+          "default": "{{ product.title }}"
+        }
+      ]
+    },
+    {
+      "type": "sku",
+      "name": "SKU",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "SKU:"
+        }
+      ]
     },
     {
       "type": "options",

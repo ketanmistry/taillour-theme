@@ -1,4 +1,4 @@
-{% unless request.path == "/cart" or request.path == "/challenge" %}
+{% unless request.path == routes.cart_url or request.path == "/challenge" %}
   <style>
   #custom_signup label {
     display: none;

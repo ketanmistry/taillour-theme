@@ -96,22 +96,45 @@ nav ul {
   justify-content: flex-start;
   align-items: stretch;
   gap: 0;
-  margin: 0 1rem;
 }
 nav li {
-  padding: 0.925rem;
+  width: 100%;
   display: block;
   border-right: 0;
   border-bottom: 1px dashed var(--white);
-}
-nav li a {
-  text-decoration: none;
+  background-color: transparent;
 }
 nav button {
   color: inherit;
   background-color: inherit;
   font-size: 2rem;
   padding: 0.25rem 1rem;
+}
+
+nav ul.nav-parent-list {
+  gap: 0;
+}
+nav .nav-parent-list-item:last-child {
+  border-bottom: 0;
+}
+nav li.nav-parent-list-item summary {
+  justify-content: space-between;
+}
+nav details[open] .submenu {
+  box-shadow: none;
+  position: static;
+  margin: 0.5rem;
+  background-color: transparent;
+  border: 0;
+  min-width: unset;
+  li {
+    background-color: transparent;
+    border: 0;
+  }
+  a {
+    color: var(--white);
+    padding: 0.5rem;
+  }
 }
 
 /* Footer */
@@ -134,7 +157,7 @@ h2 {
   margin-bottom: 28px;
 }
 
-details {
+main details {
   margin-bottom: 14px;
 }
 

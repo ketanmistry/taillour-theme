@@ -12,10 +12,26 @@
     "product": {
       "type": "main-product",
       "blocks": {
+        "title_kGVXCN": {
+          "type": "title",
+          "settings": {
+            "title": "{{ product.title }}"
+          }
+        },
+        "rule_PabNze": {
+          "type": "rule",
+          "settings": {}
+        },
+        "sku_waYyYi": {
+          "type": "sku",
+          "settings": {
+            "label": "SKU:"
+          }
+        },
         "text_VgqAwb": {
           "type": "text",
           "settings": {
-            "content": "<p>{{ product.description }}</p>"
+            "content": "{{ product.description }}"
           }
         },
         "options_je9wUj": {
@@ -75,6 +91,9 @@
         }
       },
       "block_order": [
+        "title_kGVXCN",
+        "rule_PabNze",
+        "sku_waYyYi",
         "text_VgqAwb",
         "options_je9wUj",
         "prices_zbB86G",

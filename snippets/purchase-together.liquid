@@ -256,7 +256,7 @@ function purchaseTogetherCart() {
       })
     }).then(response => response.json())
     .then(data => {
-        window.location.href = "/cart";
+        window.location.href = "{{ routes.cart_url }}";
     });
 
   }
