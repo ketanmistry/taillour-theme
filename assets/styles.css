@@ -379,7 +379,14 @@ button + button,
 .button-small {
   padding: 0.5rem;
 }
-
+.button svg.icon {
+  display: inline-block;
+  vertical-align: text-bottom;
+  margin-right: 0.25rem;
+}
+.button:hover svg.icon path {
+  fill: var(--dark-purple);
+}
 
 /* Typography */
 h1 {
@@ -419,7 +426,7 @@ main li:last-child {
   margin-bottom: 0;
 }
 main img,
-main svg {
+main svg:not([class]) {
   border-radius: var(--border-radius);
   border: 1px solid #ebebeb;
 }
