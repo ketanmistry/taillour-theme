@@ -336,12 +336,16 @@ main button,
   font-size: var(--font-size);
   font-weight: 900;
   cursor: pointer;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
   text-decoration: none;
   line-height: 1;
   background-color: var(--purple);
   color: var(--white);
-  padding: 1.25rem;
+  padding: 0 1.25rem;
+  height: 60px;
   position: relative;
   border-radius: var(--border-radius);
 }
@@ -382,7 +386,6 @@ button + button,
 .button svg.icon {
   display: inline-block;
   vertical-align: text-bottom;
-  margin-right: 0.25rem;
 }
 .button:hover svg.icon path {
   fill: var(--dark-purple);
@@ -399,7 +402,7 @@ h1 {
   letter-spacing: -0.25rem;
 }
 h2 {
-  font-size: 3rem;
+  font-size: 2.25rem;
   font-weight: 800;
   color: var(--purple);
   margin: 0 auto 1.5rem auto;
@@ -456,12 +459,12 @@ hr {
   list-style: auto;
 }
 .rte p a:not([class]) {
-  text-decoration-color: var(--red);
-  text-decoration-style: solid;
-  text-underline-position: 4px;
+  color: var(--red);
+  text-decoration: none;
 }
 .rte p a:not([class]):hover {
   color: var(--red);
+  text-decoration: underline;
 }
 .rte h1,
 .rte h2,
