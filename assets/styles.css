@@ -71,7 +71,7 @@ html {
 }
 
 body {
-  background: var(--white);
+  background-color: #f9f9fb;
   font-family: var(--font-stack);
   font-weight: var(--regular);
   color: var(--black);
@@ -431,7 +431,7 @@ main li:last-child {
 main img,
 main svg:not([class]) {
   border-radius: var(--border-radius);
-  border: 1px solid #ebebeb;
+  border: 1px solid #ddd;
 }
 
 hr {
@@ -498,11 +498,11 @@ summary:after {
   transform-origin: center;
 }
 details[open] {
-  background-color: var(--light-purple);
+  background-color: var(--white);
   padding: 0 1rem 1rem 1rem;
 }
 details:hover {
-  background-color: var(--light-purple);
+  background-color: var(--white);
 }
 details[open] summary:after {
   transform: scaleY(-1);
