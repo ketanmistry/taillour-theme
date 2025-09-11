@@ -659,10 +659,6 @@ nav details[open] .submenu {
   left: 0;
   min-width: 250px;
   z-index: 50;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  justify-content: left;
   border: var(--border);
   li:hover a {
     background-color: rgba(0, 0, 0, 0.05);
