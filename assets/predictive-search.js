@@ -5,9 +5,12 @@ class PredictiveSearch extends HTMLElement {
     this.input = this.querySelector('input[type="search"]');
     this.predictiveSearchResults = this.querySelector('#predictive-search');
 
-    this.input.addEventListener('input', this.debounce((event) => {
-      this.onChange(event);
-    }, 300).bind(this));
+    this.input.addEventListener(
+      'input',
+      this.debounce((event) => {
+        this.onChange(event);
+      }, 300).bind(this),
+    );
     this.addEventListener('focusout', this.onFocusOut.bind(this));
   }
 
@@ -38,7 +41,9 @@ class PredictiveSearch extends HTMLElement {
         return response.text();
       })
       .then((text) => {
-        const resultsMarkup = new DOMParser().parseFromString(text, 'text/html').querySelector('#shopify-section-predictive-search').innerHTML;
+        const resultsMarkup = new DOMParser()
+          .parseFromString(text, 'text/html')
+          .querySelector('#shopify-section-predictive-search').innerHTML;
         this.predictiveSearchResults.innerHTML = resultsMarkup;
         this.open();
       })
@@ -67,7 +72,7 @@ class PredictiveSearch extends HTMLElement {
   onFocusOut() {
     setTimeout(() => {
       if (!this.contains(document.activeElement)) this.close();
-    });
+    }, 600);
   }
 }
 
