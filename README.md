@@ -75,4 +75,4 @@ Download the [latest release](https://github.com/ketanmistry/taillour-theme/rele
 
 I'm Ketan, a British [Ecommerce Consultant](https://iamketan.design) living in Queensland, Australia.
 
-I built Taillour to make things easier for myself when building stores for my clients,  and now made it available to everyone. If you've found it helpful, please do let me know (or [buy me a coffee](https://buymeacoffee.com/ketanmistry) to show your support 🙂).
+I built Taillour to make things easier for myself when building stores for my clients,  and now made it available to everyone. If you've found it helpful, please do let me know (or [buy me a coffee](https://buymeacoffee.com/ketanmistry) to show it was useful 🙂).
