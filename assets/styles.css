@@ -915,3 +915,11 @@ article pre > code {
   align-items: center;
   justify-content: center;
 }
+
+/* Gradient */
+.gradient {
+  background-image:
+    radial-gradient(ellipse farthest-corner at center right, rgba(139, 58, 203, 0.1) 0%, rgba(151, 60, 194, 0) 50%),
+    radial-gradient(ellipse farthest-corner at center left, rgba(255, 82, 99, 0.1) 0%, rgba(255, 82, 99, 0) 75%),
+    radial-gradient(ellipse at center, rgba(255, 236, 118, 0.2) 0%, rgba(255, 236, 118, 0) 50%)
+}
