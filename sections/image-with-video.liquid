@@ -1,14 +1,11 @@
-{% stylesheet %}
+{%- style -%}
 .video-text-left .video-text-asset {
   order: -1;
 }
-{% endstylesheet %}
-
-<style>
 {{ section.id | prepend: '#' }}.section-wrap:before {
   background-color:{{ section.settings.background | default: '#ffffff' }}
 }
-</style>
+{%- endstyle -%}
 
 <div id="{{ section.id }}" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
   <div class="section">

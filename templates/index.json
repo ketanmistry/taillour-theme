@@ -45,7 +45,9 @@
       "settings": {
         "background": "#f5f5f5",
         "object_fit": "cover",
-        "object_position": "bottom"
+        "object_position": "bottom",
+        "desktop_height": 33,
+        "mobile_height": 100
       }
     },
     "image_with_text_pjRwPQ": {
@@ -177,9 +179,13 @@
           "type": "column",
           "settings": {
             "show_image": true,
+            "object_fit": "cover",
+            "object_position": "center",
+            "aspect_ratio": "4/3",
             "text": "Columns Section",
             "size": "h3",
             "content": "<p>This section allows you to add 1 to 4 columns of text, each can have an optional image, heading and button.</p><p>The layout adjusts accordingly, but you can refactor as required depending on your project.</p>",
+            "show_button": true,
             "button_label": "Button label",
             "button_link": "#"
           }
@@ -188,9 +194,13 @@
           "type": "column",
           "settings": {
             "show_image": true,
+            "object_fit": "cover",
+            "object_position": "center",
+            "aspect_ratio": "4/3",
             "text": "Customisable",
             "size": "h3",
             "content": "<p>Like all the sections of the Taillour theme, you have complete control over everything. There's no nested components or complicated javascript - just basic HTML/CSS and Liquid is all you need.</p>",
+            "show_button": true,
             "button_label": "",
             "button_link": ""
           }
@@ -199,9 +209,13 @@
           "type": "column",
           "settings": {
             "show_image": true,
+            "object_fit": "cover",
+            "object_position": "center",
+            "aspect_ratio": "4/3",
             "text": "Headline",
             "size": "h3",
             "content": "<p>Molestiae et repudiandae et voluptatem temporibus deleniti nemo dolor et. Aut et ipsa ab quas tempora eum voluptas nihil cumque. Totam nemo nobis quia et dolores. Officia in vitae exercitationem dolor iste ut possimus. </p>",
+            "show_button": true,
             "button_label": "",
             "button_link": ""
           }
@@ -324,14 +338,31 @@
         "color": ""
       }
     },
-    "articles_grid_XrKUxx": {
-      "type": "articles-grid",
+    "raw_html_with_text_XjAjHG": {
+      "type": "raw-html-with-text",
+      "blocks": {
+        "heading_rcNraU": {
+          "type": "heading",
+          "settings": {
+            "text": "Custom Liquid with Text Section",
+            "size": "h2"
+          }
+        },
+        "text_8JAgq6": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A custom liquid with text section – great for embedding a Google map with showroom address/contact details. The text section can placed on the left or right.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_rcNraU",
+        "text_8JAgq6"
+      ],
+      "name": "Custom Liquid & Text",
       "settings": {
-        "text": "Latest Articles Section",
-        "size": "h2",
-        "blog": "main",
-        "limit": 3,
-        "articles_per_row": 3,
+        "html": "<iframe width=\"100%\" height=\"440px\" frameborder=\"0\" style=\"border:0\" src=\"https://www.google.com/maps/embed/v1/place?key=AIzaSyB2NIWI3Tv9iDPrlnowr_0ZqZWoAQydKJU&q=Cairns%20Esplanade%20Lagoon%2C%20Esplanade%2C%20Cairns%20City%20QLD%2C%20Australia&maptype=roadmap\" allowfullscreen></iframe>",
+        "html_position": "right",
         "background": "#f5f5f5",
         "color": ""
       }
@@ -348,6 +379,6 @@
     "multicolumn_VbBRUF",
     "newsletter_form_JJALbH",
     "contact_form_EAWmhp",
-    "articles_grid_XrKUxx"
+    "raw_html_with_text_XjAjHG"
   ]
 }

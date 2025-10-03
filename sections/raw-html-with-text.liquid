@@ -1,7 +1,5 @@
-{%- assign image_width = 1024 -%}
-
 {%- style -%}
-.image-text-left .image-text-asset {
+.html-text-left .html-text-asset {
   order: -1;
 }
 {{ section.id | prepend: '#' }}.section-wrap:before {
@@ -9,11 +7,11 @@
 }
 {%- endstyle -%}
 
-<div id="{{ section.id }}" class="section-wrap"
-  style="color:{{ section.settings.color | default:'inherit' }};">
+<div id="{{ section.id }}" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
   <div class="section">
-    <div class="grid-2 middle image-text-{{ section.settings.image_position }}">
-      <div class="image-text-content">
+    <div class="grid-2 middle html-text-{{ section.settings.html_position }}">
+      <!-- content -->
+      <div class="html-text-content">
         {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when 'heading' -%}
@@ -31,23 +29,9 @@
           {% endcase %}
         {%- endfor -%}
       </div>
-
-      <div class="image-text-asset">
+      <div class="html-text-asset">
         <div>
-          {% if section.settings.image == blank %}
-            {{ 'collection-4' | placeholder_svg_tag: "placeholder" }}
-          {% else %}
-            {% capture image_sizes %}
-            width:100%; height:100%; object-fit: {{ section.settings.object_fit }}; object-position: {{ section.settings.object_position }}; aspect-ratio: {{ section.settings.aspect_ratio }}
-            {% endcapture %}
-            {% assign image = section.settings.image %}
-            <img src="{{ image | image_url: width: image_width }}"
-              width="{{ image_width }}"
-              height="{{ image_width | divided_by: image.aspect_ratio | ceil }}"
-              alt="{{ image.alt }}"
-              style="{{- image_sizes -}}"
-              loading="lazy">
-          {% endif %}
+          {{ section.settings.html }}
         </div>
       </div>
     </div>
@@ -56,106 +40,27 @@
 
 {% schema %}
 {
-  "name": "Image & Text",
+  "name": "Custom Liquid & Text",
   "tag": "section",
-  "class": "image-text-section",
+  "class": "html-text-section",
   "disabled_on": {
     "groups": ["header"]
   },
   "settings": [
     {
       "type": "header",
-      "content": "Image Settings"
+      "content": "Section Settings"
     },
     {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image"
-    },
-    {
-      "type": "select",
-      "id": "object_fit",
-      "label": "Fit",
-      "options": [
-        {
-          "value": "contain",
-          "label": "Contain"
-        },
-        {
-          "value": "cover",
-          "label": "Cover"
-        },
-        {
-          "value": "fill",
-          "label": "Fill"
-        },
-        {
-          "value": "none",
-          "label": "None"
-        }
-      ],
-      "default": "contain"
+      "type": "liquid",
+      "id": "html",
+      "label": "HTML/Liquid",
+      "info": "You can add HTML, CSS and limited Liquid markup."
     },
     {
       "type": "select",
-      "id": "object_position",
-      "label": "Position",
-      "options": [
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "top",
-          "label": "Top"
-        },
-        {
-          "value": "bottom",
-          "label": "Bottom"
-        },
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
-      ],
-      "default": "center"
-    },
-    {
-      "type": "select",
-      "id": "aspect_ratio",
-      "label": "Aspect Ratio",
-      "options": [
-        {
-          "value": "1/1",
-          "label": "1:1 (Square)"
-        },
-        {
-          "value": "2/3",
-          "label": "2:3 (Portrait)"
-        },
-        {
-          "value": "4/5",
-          "label": "4:5 (Portrait)"
-        },
-        {
-          "value": "4/3",
-          "label": "4:3 (Landscape)"
-        },
-        {
-          "value": "16/9",
-          "label": "16:9 (Landscape)"
-        }
-      ],
-      "default": "1/1"
-    },
-    {
-      "type": "select",
-      "id": "image_position",
-      "label": "Image Position",
+      "id": "html_position",
+      "label": "HTML Position",
       "options": [
         {
           "value": "left",
@@ -167,10 +72,6 @@
         }
       ],
       "default": "right"
-    },
-    {
-      "type": "header",
-      "content": "Section Settings"
     },
     {
       "type": "color",
@@ -238,7 +139,7 @@
           "type": "text",
           "id": "button_label",
           "default": "Button label",
-          "label": "Button Label"
+          "label": "Button Label "
         },
         {
           "type": "url",
@@ -250,7 +151,7 @@
   ],
   "presets": [
     {
-      "name": "Image & Text",
+      "name": "Custom Liquid & Text",
       "blocks": [
         {
           "type": "heading"
