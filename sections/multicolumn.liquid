@@ -57,15 +57,15 @@ assign columns = section.blocks.size
           </div>
         {% endunless %}
 
-        {% unless block.settings.button_label == blank %}
+        {% if block.settings.show_button == true %}
           <div>
             <p>
               <a class="button" href="{{ block.settings.button_link | default: '#' }}">
-                {{ block.settings.button_label }}
+                {{ block.settings.button_label | default: "Button Label" }}
               </a>
             </p>
           </div>
-        {% endunless %}
+        {% endif %}
       </div>
     {% endfor %}
   </div>
@@ -166,13 +166,20 @@ assign columns = section.blocks.size
           "info": "Leave blank to hide."
         },
         {
+          "type": "checkbox",
+          "id": "show_button",
+          "label": "Show button",
+          "default": true
+        },
+        {
+          "visible_if": "{{ block.settings.show_button == true }}",
           "type": "text",
           "id": "button_label",
           "default": "Button label",
-          "label": "Button Label",
-          "info": "Leave blank to hide."
+          "label": "Button Label"
         },
         {
+          "visible_if": "{{ block.settings.show_button == true }}",
           "type": "url",
           "id": "button_link",
           "label": "Button Link"
