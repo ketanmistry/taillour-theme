@@ -3,28 +3,18 @@ assign image_width = 600
 assign columns = section.blocks.size
 %}
 
-{% stylesheet %}
+{% style %}
 .column-section {
   display: grid;
   gap: 4rem;
 }
-.column-section img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  aspect-ratio: 4/3;
-}
-{% endstylesheet %}
-
-<style>
 {{ section.id | prepend: '#' }}.section-wrap:before {
   background-color:{{ section.settings.background | default: '#ffffff' }}
 }
 {{ section.id | prepend: '#' }} .column-section {
-  grid-template-columns: repeat({{columns}}, 1fr);
+  grid-template-columns: repeat({{ columns }}, 1fr);
 }
-</style>
+{% endstyle %}
 
 <div id="{{ section.id }}" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
   <div class="section column-section">
@@ -35,11 +25,15 @@ assign columns = section.blocks.size
           {% if block.settings.image == blank %}
             {{ 'collection-1' | placeholder_svg_tag: "placeholder" }}
           {% else %}
+            {%- capture image_sizes -%}
+            width:100%; height:100%; object-fit: {{ block.settings.object_fit }}; object-position: {{ block.settings.object_position }}; aspect-ratio: {{ block.settings.aspect_ratio }};
+            {%- endcapture -%}
             <div>
               <img src="{{ block.settings.image | image_url: width: image_width }}"
                 width="{{ image_width }}"
                 height="{{ image_height }}"
-                alt="{{ block.settings.image.alt }}"
+                style="{{- image_sizes | strip -}}"
+                alt="{{- block.settings.image.alt -}}"
                 loading="lazy">
             </div>
           {% endif %}
@@ -47,7 +41,7 @@ assign columns = section.blocks.size
 
         {% unless block.settings.text == blank %}
           <{{- block.settings.size }} data-title="{{ block.settings.text }}">
-            {{ block.settings.text }}
+            {{- block.settings.text -}}
           </{{- block.settings.size -}}>
         {% endunless %}
 
@@ -130,6 +124,89 @@ assign columns = section.blocks.size
           "id": "show_image",
           "label": "Show image",
           "default": true
+        },
+        {
+          "visible_if": "{{ block.settings.show_image == true }}",
+          "type": "select",
+          "id": "object_fit",
+          "label": "Fit",
+          "options": [
+            {
+              "value": "contain",
+              "label": "Contain"
+            },
+            {
+              "value": "cover",
+              "label": "Cover"
+            },
+            {
+              "value": "fill",
+              "label": "Fill"
+            },
+            {
+              "value": "none",
+              "label": "None"
+            }
+          ],
+          "default": "cover"
+        },
+        {
+          "visible_if": "{{ block.settings.show_image == true }}",
+          "type": "select",
+          "id": "object_position",
+          "label": "Position",
+          "options": [
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "top",
+              "label": "Top"
+            },
+            {
+              "value": "bottom",
+              "label": "Bottom"
+            },
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "visible_if": "{{ block.settings.show_image == true }}",
+          "type": "select",
+          "id": "aspect_ratio",
+          "label": "Aspect Ratio",
+          "options": [
+            {
+              "value": "1/1",
+              "label": "1:1 (Square)"
+            },
+            {
+              "value": "2/3",
+              "label": "2:3 (Portrait)"
+            },
+            {
+              "value": "4/5",
+              "label": "4:5 (Portrait)"
+            },
+            {
+              "value": "4/3",
+              "label": "4:3 (Landscape)"
+            },
+            {
+              "value": "16/9",
+              "label": "16:9 (Landscape)"
+            }
+          ],
+          "default": "4/3"
         },
         {
           "type": "inline_richtext",
