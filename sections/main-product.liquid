@@ -49,7 +49,7 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
       Variant selector.
       {% endcomment %}
       <div>
-        <form action="{{ routes.cart_add_url }}" method="post">
+        {% form "product", product %}
           {%- for block in section.blocks -%}
             {% case block.type %}
               {%- when '@app' -%}
@@ -170,7 +170,7 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
 
             {%- endcase -%}
           {%- endfor -%}
-        </form>
+        {% endform %}
       </div>
 
     </section>
