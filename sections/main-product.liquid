@@ -49,11 +49,20 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
       Variant selector.
       {% endcomment %}
       <div>
-        <form action="{{ routes.cart_add_url }}" method="post">
+        {% form "product", product %}
           {%- for block in section.blocks -%}
             {% case block.type %}
               {%- when '@app' -%}
                 {% render block %}
+
+              {%- when "cart" -%}
+                <div id="product-cart">
+                  {%- render 'product-cart',
+                    form: form,
+                    block: block,
+                    current_variant: current_variant
+                  -%}
+                </div>
 
               {%- when 'title' -%}
                 <h1 data-title="{{- block.settings.title -}}">
@@ -65,79 +74,6 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
                   {{ block.settings.label }}
                   <span class="js--variant-sku">{{ current_variant.sku }}</span>
                 </p>
-
-              {%- when 'prices' -%}
-                <p class="large-text">
-                  <strike class="js--variant-compareatprice">
-                    {%- if current_variant.compare_at_price > current_variant.price -%}
-                      {{- current_variant.compare_at_price | money -}}
-                    {%- endif -%}
-                  </strike>
-                  <strong class="js--variant-price">
-                    {{ current_variant.price | money }}
-                  </strong>
-                </p>
-
-              {%- when 'options' %}
-                {% unless product.has_only_default_variant %}
-                  {% for option_group in product.options_with_values %}
-                    {% assign option_field = option_group.position | prepend: 'option' %}
-                    <div class="form-row">
-                      <fieldset class="variant-options js--variant-options {{ option_field }} flex align-left wrap">
-                        <legend>{{ option_group.name | prepend: 'Select ' }}</legend>
-                        {% for value in option_group.values %}
-                          {% capture option_id %}{{ option_group.name }}_{{ value }}{% endcapture %}
-                          {% assign this_variant = product.variants | where: option_field, value | first %}
-                          <div class="variant-option">
-                            <input type="radio"
-                              id="{{ option_id | handleize }}"
-                              class="js--variant-option"
-                              name="{{ option_group.position | prepend: 'option'}}"
-                              value="{{ value }}"
-                              {% if current_variant[option_field] == value %}checked{% endif %}>
-                              <label for="{{ option_id | handleize }}">
-                                {% unless this_variant.featured_image == blank %}
-                                  {% unless variant_images_list contains this_variant.featured_image.id %}
-                                    <img src="{{ this_variant.featured_image | image_url: width: 75, height: 75 }}"
-                                    width="50"
-                                    height="50"
-                                    data-index="{{- this_variant.featured_image.id -}}"
-                                    loading="lazy">
-                                    {% endunless %}
-                                {% endunless %}
-                                {{- value -}}
-                              </label>
-                          </div>
-                          {%- comment -%}
-                          Only display the variant image for the first occurrence.
-                          {%- endcomment -%}
-                          {%- capture variant_images_list -%}
-                            {{- variant_images_list -}}
-                            {%- unless variant_images_list contains this_variant.featured_image.id -%}
-                              {%- unless variant_images_list == blank -%},{%- endunless -%}
-                              {{- this_variant.featured_image.id -}}
-                            {%- endunless -%}
-                          {%- endcapture -%}
-                        {% endfor %}
-                      </fieldset>
-                    </div>
-                  {% endfor %}
-                {% endunless %}
-
-              {%- when 'button' -%}
-                <div class="form-row flex middle">
-                  <input type="hidden"
-                    id="js--variant-id"
-                    name="id"
-                    value="{{ current_variant.id }}">
-                  {% if current_variant.available == true %}
-                    <button type="submit" id="js--addtocart" class="button">
-                      {{ block.settings.button_label }}
-                    </button>
-                  {% else %}
-                    <button type="submit" id="js--addtocart" class="button" disabled>Unavailable</button>
-                  {% endif %}
-                </div>
 
               {%- when 'text' -%}
                 <div class="rte">
@@ -170,7 +106,7 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
 
             {%- endcase -%}
           {%- endfor -%}
-        </form>
+        {% endform %}
       </div>
 
     </section>
@@ -303,19 +239,8 @@ function goToImage(index, container=false) {
       ]
     },
     {
-      "type": "options",
-      "name": "Product options",
-      "limit": 1,
-      "settings":[]
-    },
-    {
-      "type": "prices",
-      "name": "Prices",
-      "settings":[]
-    },
-    {
-      "type": "button",
-      "name": "Add to cart",
+      "type": "cart",
+      "name": "Cart",
       "limit": 1,
       "settings": [
         {
@@ -323,6 +248,18 @@ function goToImage(index, container=false) {
           "id": "button_label",
           "label": "Button Label",
           "default": "Add to cart"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_quantity",
+          "label": "Show quantity field",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_accelerated_checkout_buttons",
+          "label": "Show accelerated checkout buttons",
+          "default": true
         }
       ]
     },

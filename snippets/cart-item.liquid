@@ -80,14 +80,29 @@ END GIFT WRAP
   </div>
   <div>
     <div class="flex align-left middle">
-      <input type="number"
-        name="updates[]"
-        value="{{ item.quantity }}"
-        min="0"
-        class="js--cart-item-qty"
-        data-key="{{ item.key }}"
-        data-id="{{ item.id }}"
-        oninput="updateLineItemQty(this);">
+
+      <div class="input-stepper">
+        <button type="button"
+          class="input-stepper_decrease"
+          onclick="qtyStepperHandler({{ item.id | prepend: 'item_' }});">
+          <span>−</span>
+        </button>
+        <input id="item_{{ item.id }}"
+          type="number"
+          name="updates[]"
+          value="{{ item.quantity }}"
+          min="0"
+          max="20"
+          class="input-stepper_number quantity__input js--cart-item-qty"
+          data-key="{{ item.key }}"
+          data-id="{{ item.id }}"
+          oninput="updateLineItemQty(this);">
+        <button type="button"
+          class="input-stepper_increase"
+          onclick="qtyStepperHandler({{ item.id | prepend: 'item_' }});">
+          <span>+</span>
+        </button>
+      </div>
       <button type="button"
         class="button-small"
         value="0"

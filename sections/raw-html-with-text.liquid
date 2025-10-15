@@ -9,6 +9,18 @@
 
 <div id="{{ section.id }}" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
   <div class="section">
+    {% if section.settings.show_heading == true %}
+      <{{ section.settings.size }} data-title="{{ section.settings.text }}">
+        {{ section.settings.text }}
+      </{{ section.settings.size }}>
+    {% endif %}
+
+    {%- if section.settings.show_description == true -%}
+      <div class="rte">
+        {{ section.settings.description }}
+      </div>
+    {%- endif -%}
+
     <div class="grid-2 middle html-text-{{ section.settings.html_position }}">
       <!-- content -->
       <div class="html-text-content">
@@ -50,6 +62,53 @@
     {
       "type": "header",
       "content": "Section Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show heading",
+      "default": false
+    },
+    {
+      "visible_if": "{{ section.settings.show_heading == true }}",
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Heading",
+      "default": "Headline",
+    },
+    {
+      "visible_if": "{{ section.settings.show_heading == true }}",
+      "type": "select",
+      "id": "size",
+      "label": "Heading Size",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": false
+    },
+    {
+      "visible_if": "{{ section.settings.show_description == true }}",
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>"
     },
     {
       "type": "liquid",

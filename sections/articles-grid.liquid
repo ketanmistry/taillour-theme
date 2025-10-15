@@ -1,19 +1,25 @@
-<style>
+{%- style -%}
 {{ section.id | prepend: '#' }}.section-wrap:before {
   background-color:{{ section.settings.background | default: '#ffffff' }}
 }
 {{ section.id | prepend: '#' }} .articles-grid {
   grid-template-columns: repeat({{ section.settings.articles_per_row }}, 1fr);
 }
-</style>
+{%- endstyle -%}
 
 <div id="{{ section.id }}" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
   <div class="section">
-    {% unless section.settings.text == blank %}
+    {%- if section.settings.show_heading == true -%}
       <{{ section.settings.size }} data-title="{{ section.settings.text }}">
         {{ section.settings.text }}
       </{{ section.settings.size }}>
-    {% endunless %}
+    {%- endif -%}
+
+    {%- if section.settings.show_description == true -%}
+      <div class="rte">
+        {{ section.settings.description }}
+      </div>
+    {%- endif -%}
 
     {% assign blog_handle = section.settings.blog | default: "news" %}
 
@@ -42,12 +48,24 @@
   ],
   "settings": [
     {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show heading",
+      "default": true
+    },
+    {
+      "visible_if": "{{ section.settings.show_heading == true }}",
       "type": "inline_richtext",
       "id": "text",
       "label": "Heading",
       "default": "Headline",
     },
     {
+      "visible_if": "{{ section.settings.show_heading == true }}",
       "type": "select",
       "id": "size",
       "label": "Heading Size",
@@ -66,6 +84,19 @@
         }
       ],
       "default": "h2"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": false
+    },
+    {
+      "visible_if": "{{ section.settings.show_description == true }}",
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>"
     },
     {
       "type": "blog",
@@ -91,10 +122,6 @@
       "max": 4,
       "step": 1,
       "default": 3
-    },
-    {
-      "type": "header",
-      "content": "Section Settings"
     },
     {
       "type": "color",

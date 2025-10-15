@@ -15,6 +15,18 @@ is yours! :)
   --bold: 900;
   --border: 2px solid var(--black);
   --shading: repeating-linear-gradient(45deg, white, white 2px, black 1px, black 3px);
+
+  --section-wrap-padding: 2rem 0;
+  --default-gap: 1rem;
+  --column-section-gap: 4rem;
+  --grid-2-gap: 6.25rem;
+  --grid-3-gap: 1.5rem;
+  --products-grid-gap: 2rem;
+  --collections-grid-gap: 2rem;
+  --articles-grid-gap: 2rem;
+
+  --shopify-accelerated-checkout-button-block-size: 44px;
+  --shopify-accelerated-checkout-button-border-radius: 5px;
 }
 
 * {
@@ -37,11 +49,11 @@ html {
 body {
   background: var(--white);
   font-family: var(--font-stack);
+  font-size: var(--font-size);
   font-weight: var(--regular);
   color: var(--black);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: var(--font-size);
 }
 button,
 summary {
@@ -88,7 +100,7 @@ footer img {
 }
 
 .section-wrap {
-  padding: 2rem 0;
+  padding: var(--section-wrap-padding);
   position: relative;
 }
 .section-wrap.unpadded {
@@ -213,7 +225,7 @@ form .errors {
 }
 input[type="text"],
 input[type="search"],
-input[type="number"],
+input[type="number"]:not([class]),
 input[type="email"],
 input[type="tel"],
 input[type="password"],
@@ -268,13 +280,55 @@ input[type="radio"]:checked {
 fieldset {
   border-bottom: 1px dashed rgba(0, 0, 0, 0.15);
 }
-fieldset legend {
+fieldset legend,
+.form-legend {
   display: block;
   margin-bottom: 1rem;
   font-family: var(--font-stack);
   font-size: 1.25rem;
   font-weight: var(--bold);
   color: var(--black);
+}
+
+/* Number stepper */
+.input-stepper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  height: 46px;
+  background-color: var(--white);
+  border-radius: 5px;
+  border: var(--border);
+
+  input[type="number"] {
+    width: 50px;
+    text-align: center;
+    -moz-appearance: textfield;
+    background-color: transparent;
+    font-family: var(--font-stack);
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 100%;
+    font-size: 1.5rem;
+    font-family: var(--font-stack);
+    color: var(--black);
+    background-color: transparent;
+  }
 }
 
 /* Table */
@@ -300,7 +354,7 @@ table tbody tr:nth-child(even) td {
 }
 
 /* Buttons */
-main button,
+main button:not([class*="input-stepper"]):not([data-index]),
 .button {
   font-family: var(--font-stack);
   font-size: 1rem;
@@ -320,7 +374,7 @@ main button.button-white,
 .button.button-white {
   box-shadow: inset 0 0 0 2px var(--white);
 }
-main button:hover,
+main button:not([class*="input-stepper"]):hover,
 .button:hover,
 main button.button-white,
 .button.button-white {
@@ -329,7 +383,7 @@ main button.button-white,
   box-shadow: inset 0 0 0 2px var(--black);
   font-weight: 600;
 }
-main button:before,
+main button:not([class*="input-stepper"]):not([data-index]):before,
 .button:before {
   content: "";
   background-image: var(--shading);
@@ -348,6 +402,24 @@ button + button,
 }
 .button-small {
   padding: 8px;
+}
+.button-stretch {
+  width: 100%;
+}
+
+/* Shopify dynamic checkout buttons */
+main#main-content .shopify-payment-button__button--unbranded {
+  font-family: var(--font-stack);
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: var(--black);
+  text-transform: uppercase;
+}
+main#main-content .shopify-payment-button__button--unbranded:hover {
+  background-color: var(--white);
+  color: var(--black);
+  box-shadow: inset 0 0 0 2px var(--black);
+  font-weight: 600;
 }
 
 /* Typography */
@@ -484,12 +556,12 @@ main details > div {
   display: grid;
 }
 .grid-2 {
-  grid-template-columns: repeat(auto-fill, minmax(calc(50% - 100px), 1fr));
-  grid-gap: 100px;
+  grid-template-columns: repeat(auto-fill, minmax(calc(50% - var(--grid-2-gap)), 1fr));
+  grid-gap: var(--grid-2-gap);
 }
 .grid-3 {
-  grid-template-columns: repeat(auto-fill, minmax(calc(33.33% - 24px), 1fr));
-  grid-gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(calc(33.33% - var(--grid-3-gap)), 1fr));
+  grid-gap: var(--grid-3-gap);
 }
 
 /* Flex */
@@ -497,7 +569,7 @@ main details > div {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 1rem;
+  gap: var(--default-gap);
 }
 .flex.middle,
 .grid-2.middle,
@@ -519,14 +591,14 @@ main details > div {
 .collections-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
+  gap: var(--products-grid-gap);
   margin-top: 1.5rem;
   margin-bottom: 2rem;
 }
 .articles-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: var(--articles-grid-gap);
   margin-top: 1.5rem;
   margin-bottom: 2rem;
 }

@@ -3,20 +3,20 @@
 # to work correctly.
 assign image_width = 400
 %}
-<style>
+{% style %}
 #recently-viewed.section-wrap:before {
   background-color:{{ section.settings.background | default: '#ffffff' }}
 }
 #recently-viewed .products-grid {
   grid-template-columns: repeat({{ section.settings.products_per_row }}, 1fr);
 }
-</style>
+{% endstyle %}
 
 <section id="recently-viewed" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
   <div class="section">
-    <{{ section.settings.size }} data-title="{{ section.settings.heading }}">
-      {{ section.settings.heading }}
-    </{{ section.settings.size }}>
+    <{{- section.settings.size }} data-title="{{ section.settings.heading }}">
+      {{- section.settings.heading -}}
+    </{{ section.settings.size -}}>
     <div id="js--recently_viewed" class="products-grid"></div>
   </div>
 </section>
@@ -137,6 +137,10 @@ ready(function() {
   ],
   "settings": [
     {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
       "type": "inline_richtext",
       "id": "heading",
       "label": "Text",
@@ -181,10 +185,6 @@ ready(function() {
       "max": 4,
       "step": 1,
       "default": 4
-    },
-    {
-      "type": "header",
-      "content": "Section Settings"
     },
     {
       "type": "color",

@@ -1,8 +1,8 @@
-<style>
+{% style %}
 {{ section.id | prepend: '#' }}.section-wrap:before {
   background-color:{{ section.settings.background | default: '#ffffff' }}
 }
-</style>
+{% endstyle %}
 
 <div id="{{ section.id }}" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
   <div class="section">
@@ -10,6 +10,11 @@
       <{{- section.settings.size }} data-title="{{ section.settings.heading }}">
         {{ section.settings.heading }}
       </{{- section.settings.size -}}>
+      {%- if section.settings.show_description == true -%}
+        <div class="rte">
+          {{ section.settings.description }}
+        </div>
+      {%- endif -%}
     </div>
   </div>
   <div class="section">
@@ -88,6 +93,19 @@
         }
       ],
       "default": "h2"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": false
+    },
+    {
+      "visible_if": "{{ section.settings.show_description == true }}",
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>"
     }
   ],
   "blocks": [

@@ -11,12 +11,20 @@ assign menu_handle = 'main-menu'
       {% liquid
       assign item_data = item
       if item.type == "collection_link"
-        assign item_data = collections[item.handle]
+        assign item_data = collections[item.object.handle]
+      elsif item.type == "product_link"
+        assign item_data = item.object
       endif
       %}
       {% capture collection_cards %}
         {{ collection_cards }}
-        {% render 'collection-card', collection: item_data %}
+        {%- liquid
+        unless item_data == blank
+          unless item.object.handle == handle
+            render 'collection-card', collection: item_data
+          endunless
+        endunless
+        -%}
       {% endcapture %}
     {% endfor %}
   {% endif %}

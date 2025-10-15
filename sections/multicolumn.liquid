@@ -6,7 +6,7 @@ assign columns = section.blocks.size
 {% style %}
 .column-section {
   display: grid;
-  gap: 4rem;
+  gap: var(--column-section-gap);
 }
 {{ section.id | prepend: '#' }}.section-wrap:before {
   background-color:{{ section.settings.background | default: '#ffffff' }}
@@ -17,7 +17,23 @@ assign columns = section.blocks.size
 {% endstyle %}
 
 <div id="{{ section.id }}" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
-  <div class="section column-section">
+  {%- if section.settings.show_heading == true or section.settings.show_description == true -%}
+    <div class="section">
+      {%- if section.settings.show_heading == true -%}
+        <{{ section.settings.size }} data-title="{{ section.settings.text }}">
+          {{ section.settings.text }}
+        </{{ section.settings.size }}>
+      {%- endif -%}
+
+      {%- if section.settings.show_description == true -%}
+        <div class="rte">
+          {{ section.settings.description }}
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <div class="section column-section{% if section.settings.swipe_on_mobile == true %} scrolly{% endif %}">
     {% for block in section.blocks %}
       {% assign image_height = image_width | divided_by: block.settings.image.aspect_ratio | ceil %}
       <div>
@@ -97,6 +113,53 @@ assign columns = section.blocks.size
       "content": "Section Settings"
     },
     {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show heading",
+      "default": false
+    },
+    {
+      "visible_if": "{{ section.settings.show_heading == true }}",
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Heading",
+      "default": "Headline",
+    },
+    {
+      "visible_if": "{{ section.settings.show_heading == true }}",
+      "type": "select",
+      "id": "size",
+      "label": "Heading Size",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": false
+    },
+    {
+      "visible_if": "{{ section.settings.show_description == true }}",
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>"
+    },
+    {
       "type": "color",
       "id": "background",
       "label": "Background",
@@ -106,6 +169,13 @@ assign columns = section.blocks.size
       "type": "color",
       "id": "color",
       "label": "Text Colour"
+    },
+    {
+      "type": "checkbox",
+      "id": "swipe_on_mobile",
+      "label": "Swipe on mobile",
+      "info": "Makes the columns left to right swipeable on mobile",
+      "default": false
     }
   ],
   "blocks": [
