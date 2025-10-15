@@ -1,16 +1,19 @@
-<style>
+{% style %}
 {{ section.id | prepend: '#' }}.section-wrap:before {
   background-color:{{ section.settings.background | default: '#ffffff' }}
 }
-</style>
+#{{ section.id }} .products-grid {
+  grid-template-columns: repeat({{ section.settings.products_per_row }}, 1fr);
+}
+{% endstyle %}
 
 <div id="{{ section.id }}" class="section-wrap">
   <div class="section">
     <div class="product-recommendations" data-product-id="{{ product.id }}" data-limit="{{ section.settings.limit }}">
       {%- if recommendations.products_count > 0 -%}
-        <{{ section.settings.size }} data-title="{{ section.settings.heading }}">
-          {{ section.settings.heading }}
-        </{{ section.settings.size }}>
+        <{{- section.settings.size }} data-title="{{ section.settings.heading }}">
+          {{- section.settings.heading -}}
+        </{{ section.settings.size -}}>
         <div class="products-grid">
           {% liquid
           for item in recommendations.products
@@ -77,6 +80,10 @@ loadProductRecommendationsIntoSection();
   ],
   "settings": [
     {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
       "type": "inline_richtext",
       "id": "heading",
       "label": "Text",
@@ -113,8 +120,14 @@ loadProductRecommendationsIntoSection();
       "default": 4
     },
     {
-      "type": "header",
-      "content": "Section Settings"
+      "type": "range",
+      "id": "products_per_row",
+      "label": "Products Per Row",
+      "info": "Number of products per row.",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 4
     },
     {
       "type": "color",
