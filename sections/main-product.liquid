@@ -125,19 +125,24 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
                 {% endunless %}
 
               {%- when 'button' -%}
-                <div class="form-row flex middle">
+                <div class="form-row">
                   <input type="hidden"
                     id="js--variant-id"
                     name="id"
                     value="{{ current_variant.id }}">
                   {% if current_variant.available == true %}
-                    <button type="submit" id="js--addtocart" class="button">
+                    <button type="submit" id="js--addtocart" class="button button-stretch">
                       {{ block.settings.button_label }}
                     </button>
                   {% else %}
                     <button type="submit" id="js--addtocart" class="button" disabled>Unavailable</button>
                   {% endif %}
                 </div>
+                {%- if block.settings.show_accelerated_checkout_buttons == true -%}
+                  <div class="form-row dynamic_checkout_buttons">
+                    {{ form | payment_button }}
+                  </div>
+                {%- endif -%}
 
               {%- when 'text' -%}
                 <div class="rte">
@@ -323,6 +328,12 @@ function goToImage(index, container=false) {
           "id": "button_label",
           "label": "Button Label",
           "default": "Add to cart"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_accelerated_checkout_buttons",
+          "label": "Show accelerated checkout buttons",
+          "default": true
         }
       ]
     },
