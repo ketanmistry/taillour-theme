@@ -17,12 +17,19 @@ assign columns = section.blocks.size
 {% endstyle %}
 
 <div id="{{ section.id }}" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
-
-  {%- if section.settings.show_heading == true -%}
+  {%- if section.settings.show_heading == true or section.settings.show_description == true -%}
     <div class="section">
-      <{{ section.settings.size }} data-title="{{ section.settings.text }}">
-        {{ section.settings.text }}
-      </{{ section.settings.size }}>
+      {%- if section.settings.show_heading == true -%}
+        <{{ section.settings.size }} data-title="{{ section.settings.text }}">
+          {{ section.settings.text }}
+        </{{ section.settings.size }}>
+      {%- endif -%}
+
+      {%- if section.settings.show_description == true -%}
+        <div class="rte">
+          {{ section.settings.description }}
+        </div>
+      {%- endif -%}
     </div>
   {%- endif -%}
 
@@ -138,6 +145,19 @@ assign columns = section.blocks.size
         }
       ],
       "default": "h2"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": false
+    },
+    {
+      "visible_if": "{{ section.settings.show_description == true }}",
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>"
     },
     {
       "type": "color",

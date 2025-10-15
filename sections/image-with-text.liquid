@@ -18,6 +18,12 @@
       </{{ section.settings.size }}>
     {%- endif -%}
 
+    {%- if section.settings.show_description == true -%}
+      <div class="rte">
+        {{ section.settings.description }}
+      </div>
+    {%- endif -%}
+
     <div class="grid-2 middle image-text-{{ section.settings.image_position }}">
       <div class="image-text-content">
         {%- for block in section.blocks -%}
@@ -106,6 +112,19 @@
         }
       ],
       "default": "h2"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": false
+    },
+    {
+      "visible_if": "{{ section.settings.show_description == true }}",
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>"
     },
     {
       "type": "color",
