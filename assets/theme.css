@@ -16,6 +16,9 @@ is yours! :)
   --border: 2px solid var(--black);
   --shading: repeating-linear-gradient(45deg, white, white 2px, black 1px, black 3px);
 
+  --default-gap: 1rem;
+  --column-section-gap: 4rem;
+
   --shopify-accelerated-checkout-button-block-size: 44px;
   --shopify-accelerated-checkout-button-border-radius: 5px;
 }

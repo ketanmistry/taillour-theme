@@ -6,7 +6,7 @@ assign columns = section.blocks.size
 {% style %}
 .column-section {
   display: grid;
-  gap: 4rem;
+  gap: var(--column-section-gap);
 }
 {{ section.id | prepend: '#' }}.section-wrap:before {
   background-color:{{ section.settings.background | default: '#ffffff' }}
@@ -17,7 +17,7 @@ assign columns = section.blocks.size
 {% endstyle %}
 
 <div id="{{ section.id }}" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
-  <div class="section column-section">
+  <div class="section column-section{% if section.settings.swipe_on_mobile == true %} scrolly{% endif %}">
     {% for block in section.blocks %}
       {% assign image_height = image_width | divided_by: block.settings.image.aspect_ratio | ceil %}
       <div>
@@ -106,6 +106,13 @@ assign columns = section.blocks.size
       "type": "color",
       "id": "color",
       "label": "Text Colour"
+    },
+    {
+      "type": "checkbox",
+      "id": "swipe_on_mobile",
+      "label": "Swipe on mobile",
+      "info": "Makes the columns left to right swipeable on mobile",
+      "default": false
     }
   ],
   "blocks": [
