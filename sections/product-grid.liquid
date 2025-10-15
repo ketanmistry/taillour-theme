@@ -9,11 +9,11 @@
 
 <div id="{{ section.id }}" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
   <div class="section">
-    {% unless section.settings.text == blank %}
+    {% if section.settings.show_heading == true %}
       <{{ section.settings.size }} data-title="{{ section.settings.text }}">
         {{ section.settings.text }}
       </{{ section.settings.size }}>
-    {% endunless %}
+    {% endif %}
 
     {% assign collection_handle = section.settings.collection | default: "home" %}
 
@@ -42,12 +42,24 @@
   ],
   "settings": [
     {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show heading",
+      "default": true
+    },
+    {
+      "visible_if": "{{ section.settings.show_heading == true }}",
       "type": "inline_richtext",
       "id": "text",
       "label": "Heading",
       "default": "Headline",
     },
     {
+      "visible_if": "{{ section.settings.show_heading == true }}",
       "type": "select",
       "id": "size",
       "label": "Heading Size",
@@ -91,10 +103,6 @@
       "max": 4,
       "step": 1,
       "default": 4
-    },
-    {
-      "type": "header",
-      "content": "Section Settings"
     },
     {
       "type": "color",

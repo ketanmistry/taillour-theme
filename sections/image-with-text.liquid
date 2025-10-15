@@ -12,6 +12,12 @@
 <div id="{{ section.id }}" class="section-wrap"
   style="color:{{ section.settings.color | default:'inherit' }};">
   <div class="section">
+    {%- if section.settings.show_heading == true -%}
+      <{{ section.settings.size }} data-title="{{ section.settings.text }}">
+        {{ section.settings.text }}
+      </{{ section.settings.size }}>
+    {%- endif -%}
+
     <div class="grid-2 middle image-text-{{ section.settings.image_position }}">
       <div class="image-text-content">
         {%- for block in section.blocks -%}
@@ -63,6 +69,55 @@
     "groups": ["header"]
   },
   "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show heading",
+      "default": false
+    },
+    {
+      "visible_if": "{{ section.settings.show_heading == true }}",
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Heading",
+      "default": "Headline",
+    },
+    {
+      "visible_if": "{{ section.settings.show_heading == true }}",
+      "type": "select",
+      "id": "size",
+      "label": "Heading Size",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text Colour"
+    },
     {
       "type": "header",
       "content": "Image Settings"
@@ -167,21 +222,6 @@
         }
       ],
       "default": "right"
-    },
-    {
-      "type": "header",
-      "content": "Section Settings"
-    },
-    {
-      "type": "color",
-      "id": "background",
-      "label": "Background",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "color",
-      "label": "Text Colour"
     }
   ],
   "blocks": [
