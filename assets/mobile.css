@@ -5,6 +5,11 @@ improve it...the choice is yours! :)
 */
 :root {
   --column-section-gap: 2rem;
+  --grid-2-gap: 1rem;
+  --grid-3-gap: 1rem;
+  --products-grid-gap: 1rem;
+  --collections-grid-gap: 1rem;
+  --articles-grid-gap: 1rem;
 }
 
 body [data-device="desktop"] {
@@ -26,7 +31,7 @@ input[type="search"] {
 main#main-content .products-grid,
 main#main-content .collections-grid {
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  gap: var(--products-grid-gap);
 }
 
 main#main-content .column-section,
@@ -44,7 +49,6 @@ main#main-content #product {
 .grid-2,
 .grid-3 {
   grid-template-columns: repeat(1, 1fr);
-  grid-gap: 50px;
 }
 
 /* Header */

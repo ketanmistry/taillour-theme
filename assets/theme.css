@@ -16,8 +16,14 @@ is yours! :)
   --border: 2px solid var(--black);
   --shading: repeating-linear-gradient(45deg, white, white 2px, black 1px, black 3px);
 
+  --section-wrap-padding: 2rem 0;
   --default-gap: 1rem;
   --column-section-gap: 4rem;
+  --grid-2-gap: 6.25rem;
+  --grid-3-gap: 1.5rem;
+  --products-grid-gap: 2rem;
+  --collections-grid-gap: 2rem;
+  --articles-grid-gap: 2rem;
 
   --shopify-accelerated-checkout-button-block-size: 44px;
   --shopify-accelerated-checkout-button-border-radius: 5px;
@@ -43,11 +49,11 @@ html {
 body {
   background: var(--white);
   font-family: var(--font-stack);
+  font-size: var(--font-size);
   font-weight: var(--regular);
   color: var(--black);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: var(--font-size);
 }
 button,
 summary {
@@ -94,7 +100,7 @@ footer img {
 }
 
 .section-wrap {
-  padding: 2rem 0;
+  padding: var(--section-wrap-padding);
   position: relative;
 }
 .section-wrap.unpadded {
@@ -550,12 +556,12 @@ main details > div {
   display: grid;
 }
 .grid-2 {
-  grid-template-columns: repeat(auto-fill, minmax(calc(50% - 100px), 1fr));
-  grid-gap: 100px;
+  grid-template-columns: repeat(auto-fill, minmax(calc(50% - var(--grid-2-gap)), 1fr));
+  grid-gap: var(--grid-2-gap);
 }
 .grid-3 {
-  grid-template-columns: repeat(auto-fill, minmax(calc(33.33% - 24px), 1fr));
-  grid-gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(calc(33.33% - var(--grid-3-gap)), 1fr));
+  grid-gap: var(--grid-3-gap);
 }
 
 /* Flex */
@@ -563,7 +569,7 @@ main details > div {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 1rem;
+  gap: var(--default-gap);
 }
 .flex.middle,
 .grid-2.middle,
@@ -585,14 +591,14 @@ main details > div {
 .collections-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
+  gap: var(--products-grid-gap);
   margin-top: 1.5rem;
   margin-bottom: 2rem;
 }
 .articles-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: var(--articles-grid-gap);
   margin-top: 1.5rem;
   margin-bottom: 2rem;
 }
