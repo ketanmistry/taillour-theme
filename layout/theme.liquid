@@ -46,7 +46,7 @@
   {% sections 'header-group' %}
 
   {% liquid
-  unless template == "index"
+  unless template == "index" or template == "cart" or template == "blog"
     render 'breadcrumb'
   endunless
   %}
