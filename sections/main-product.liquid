@@ -125,6 +125,29 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
                 {% endunless %}
 
               {%- when 'button' -%}
+                {%- if block.settings.show_quantity == true -%}
+                  <div class="form-row">
+                    <div class="flex middle">
+                      <span class="form-legend nomargin">Quantity</span>
+                      <div>
+                        <div class="input-stepper">
+                          <button type="button" class="input-stepper_decrease">
+                            <span>−</span>
+                          </button>
+                          <input type="number"
+                            class="input-stepper_number quantity__input"
+                            name="quantity"
+                            value="1"
+                            min="1"
+                            max="20">
+                          <button type="button" class="input-stepper_increase">
+                            <span>+</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {%- endif -%}
                 <div class="form-row">
                   <input type="hidden"
                     id="js--variant-id"
@@ -328,6 +351,12 @@ function goToImage(index, container=false) {
           "id": "button_label",
           "label": "Button Label",
           "default": "Add to cart"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_quantity",
+          "label": "Show quantity field",
+          "default": true
         },
         {
           "type": "checkbox",

@@ -216,7 +216,7 @@ form .errors {
 }
 input[type="text"],
 input[type="search"],
-input[type="number"],
+input[type="number"]:not([class]),
 input[type="email"],
 input[type="tel"],
 input[type="password"],
@@ -271,13 +271,55 @@ input[type="radio"]:checked {
 fieldset {
   border-bottom: 1px dashed rgba(0, 0, 0, 0.15);
 }
-fieldset legend {
+fieldset legend,
+.form-legend {
   display: block;
   margin-bottom: 1rem;
   font-family: var(--font-stack);
   font-size: 1.25rem;
   font-weight: var(--bold);
   color: var(--black);
+}
+
+/* Number stepper */
+.input-stepper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  height: 46px;
+  background-color: var(--white);
+  border-radius: 5px;
+  border: var(--border);
+
+  input[type="number"] {
+    width: 50px;
+    text-align: center;
+    -moz-appearance: textfield;
+    background-color: transparent;
+    font-family: var(--font-stack);
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 100%;
+    font-size: 1.5rem;
+    font-family: var(--font-stack);
+    color: var(--black);
+    background-color: transparent;
+  }
 }
 
 /* Table */
@@ -303,7 +345,7 @@ table tbody tr:nth-child(even) td {
 }
 
 /* Buttons */
-main button,
+main button:not([class*="input-stepper"]),
 .button {
   font-family: var(--font-stack);
   font-size: 1rem;
@@ -323,7 +365,7 @@ main button.button-white,
 .button.button-white {
   box-shadow: inset 0 0 0 2px var(--white);
 }
-main button:hover,
+main button:not([class*="input-stepper"]):hover,
 .button:hover,
 main button.button-white,
 .button.button-white {
@@ -332,7 +374,7 @@ main button.button-white,
   box-shadow: inset 0 0 0 2px var(--black);
   font-weight: 600;
 }
-main button:before,
+main button:not([class*="input-stepper"]):before,
 .button:before {
   content: "";
   background-image: var(--shading);
