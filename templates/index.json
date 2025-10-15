@@ -80,12 +80,17 @@
         "buttons_hEXxe6"
       ],
       "settings": {
+        "show_heading": false,
+        "text": "Headline",
+        "size": "h2",
+        "show_description": false,
+        "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
+        "background": "#ffffff",
+        "color": "",
         "object_fit": "cover",
         "object_position": "center",
         "aspect_ratio": "1/1",
-        "image_position": "right",
-        "background": "#ffffff",
-        "color": ""
+        "image_position": "right"
       }
     },
     "text_GjxAeE": {
@@ -130,21 +135,29 @@
         "buttons_jzKH3h"
       ],
       "settings": {
+        "show_heading": false,
+        "text": "Headline",
+        "size": "h2",
+        "show_description": false,
+        "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
+        "background": "#f5f5f5",
+        "color": "",
         "video": "",
         "object_fit": "contain",
         "object_position": "center",
         "aspect_ratio": "4/3",
         "video_width": 1020,
-        "video_position": "left",
-        "background": "#f5f5f5",
-        "color": ""
+        "video_position": "left"
       }
     },
     "product_grid_9e9FqV": {
       "type": "product-grid",
       "settings": {
+        "show_heading": true,
         "text": "Products Section",
         "size": "h2",
+        "show_description": false,
+        "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
         "collection": "frontpage",
         "limit": 8,
         "products_per_row": 4,
@@ -162,8 +175,11 @@
     "collection_grid_7w6HWG": {
       "type": "collection-grid",
       "settings": {
+        "show_heading": true,
         "text": "Collections Section",
         "size": "h2",
+        "show_description": false,
+        "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
         "collections": [
           "frontpage"
         ],
@@ -227,8 +243,14 @@
         "column_kbECRk"
       ],
       "settings": {
+        "show_heading": false,
+        "text": "Headline",
+        "size": "h2",
+        "show_description": false,
+        "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
         "background": "#ffffff",
-        "color": ""
+        "color": "",
+        "swipe_on_mobile": true
       }
     },
     "newsletter_form_JJALbH": {
@@ -361,6 +383,11 @@
       ],
       "name": "Custom Liquid & Text",
       "settings": {
+        "show_heading": false,
+        "text": "Headline",
+        "size": "h2",
+        "show_description": false,
+        "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
         "html": "<iframe width=\"100%\" height=\"440px\" frameborder=\"0\" style=\"border:0\" src=\"https://www.google.com/maps/embed/v1/place?key=AIzaSyB2NIWI3Tv9iDPrlnowr_0ZqZWoAQydKJU&q=Cairns%20Esplanade%20Lagoon%2C%20Esplanade%2C%20Cairns%20City%20QLD%2C%20Australia&maptype=roadmap\" allowfullscreen></iframe>",
         "html_position": "right",
         "background": "#f5f5f5",
