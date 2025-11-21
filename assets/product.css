@@ -3,6 +3,8 @@
   gap: 5rem;
   grid-template-columns: calc(50% - 2.5rem) auto;
 }
+
+/* !! Variant Options */
 .variant-options {
   margin-bottom: 1.5rem;
   padding-bottom: 1.5rem;
@@ -57,7 +59,7 @@
   background-image: repeating-linear-gradient(45deg, white, white 2px, grey 1px, grey 3px);
 }
 
-/* Product Slider */
+/* !! Product Slider */
 #product-photos {
   position: sticky;
   top: 1rem;
