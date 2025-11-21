@@ -106,7 +106,7 @@
       }
     },
     "image_with_video_NCkDCh": {
-      "type": "image-with-video",
+      "type": "video-with-text",
       "blocks": {
         "heading_JbRWKC": {
           "type": "heading",
