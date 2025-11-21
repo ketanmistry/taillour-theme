@@ -24,8 +24,7 @@
     <div class="collections-grid">
       {% liquid
       for item in section.settings.collections
-        assign collection = collections[item.handle]
-        render 'collection-card', collection: collection
+        render 'collection-card', collection: item
       endfor
       %}
     </div>
