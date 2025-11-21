@@ -903,17 +903,17 @@ article img {
 }
 
 /* Section: Image banner (hero) */
-.image-banner-section {
+.promotions-section {
   position: relative;
 }
-.image-banner-section img,
-.image-banner-section svg,
+.promotions-section img,
+.promotions-section svg,
 .image-carousel-section img,
 .image-carousel-section svg {
   width: 100%;
   height: 100%;
 }
-.image-banner-content {
+.promotion-content {
   max-width: 600px;
   position: absolute;
   top: 0;
