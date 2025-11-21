@@ -10,7 +10,7 @@
 {
   "sections": {
     "image_banner_6NDtLC": {
-      "type": "image-banner",
+      "type": "promotions",
       "blocks": {
         "heading_gnR7KK": {
           "type": "heading",
@@ -106,7 +106,7 @@
       }
     },
     "image_with_video_NCkDCh": {
-      "type": "image-with-video",
+      "type": "video-with-text",
       "blocks": {
         "heading_JbRWKC": {
           "type": "heading",

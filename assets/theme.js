@@ -35,6 +35,8 @@ function getParam(name) {
 ready(function () {
   handleNumberStepper();
   handleVariantSelector();
+  handleCloseDropdownMenus();
+  handleNavToggles();
 });
 
 /*
@@ -286,6 +288,42 @@ function handleNumberStepper() {
           }
         }
       });
+    });
+  });
+}
+
+/*
+ * CLOSE NAV DROPDOWNS
+ * Closes nav menus on escape key press. This is primarly
+ * for keyboard users/accessibility.
+ */
+function handleCloseDropdownMenus() {
+  const nav = document.querySelector('#header-nav');
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      nav.querySelectorAll('details[open]').forEach((detail) => {
+        detail.removeAttribute('open');
+      });
+    }
+  });
+}
+
+/*
+ * NAV TOGGLES
+ * Handles the nav toggles, so only one menu is open at a  time.
+ */
+function handleNavToggles() {
+  const nav = document.getElementById('header-nav');
+  let details = nav.querySelectorAll('details');
+  details.forEach(function (detail) {
+    detail.addEventListener('toggle', function (event) {
+      if (detail.open) {
+        details.forEach((otherDetail) => {
+          if (otherDetail !== detail && otherDetail.open) {
+            otherDetail.open = false;
+          }
+        });
+      }
     });
   });
 }

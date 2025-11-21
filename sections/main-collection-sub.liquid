@@ -10,9 +10,7 @@ assign menu_handle = 'main-menu'
     {% for item in category.links %}
       {% liquid
       assign item_data = item
-      if item.type == "collection_link"
-        assign item_data = collections[item.object.handle]
-      elsif item.type == "product_link"
+      if item.type == "collection_link" or item.type == "product_link"
         assign item_data = item.object
       endif
       %}

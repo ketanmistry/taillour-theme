@@ -20,7 +20,7 @@ assign columns = section.blocks.size
   {%- if section.settings.show_heading == true or section.settings.show_description == true -%}
     <div class="section">
       {%- if section.settings.show_heading == true -%}
-        <{{ section.settings.size }} data-title="{{ section.settings.text }}">
+        <{{ section.settings.size }}>
           {{ section.settings.text }}
         </{{ section.settings.size }}>
       {%- endif -%}
@@ -56,7 +56,7 @@ assign columns = section.blocks.size
         {% endif %}
 
         {% unless block.settings.text == blank %}
-          <{{- block.settings.size }} data-title="{{ block.settings.text }}">
+          <{{- block.settings.size }}>
             {{- block.settings.text -}}
           </{{- block.settings.size -}}>
         {% endunless %}

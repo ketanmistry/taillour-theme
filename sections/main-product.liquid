@@ -65,7 +65,7 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
                 </div>
 
               {%- when 'title' -%}
-                <h1 data-title="{{- block.settings.title -}}">
+                <h1>
                   {{- block.settings.title -}}
                 </h1>
 

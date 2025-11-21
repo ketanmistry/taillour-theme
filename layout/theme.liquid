@@ -17,6 +17,10 @@
   <meta name="description" content="{{ page_description | escape }}">
   {% endif %}
 
+  {%- if request.path contains "/pages/thank-you" -%}
+  <meta name="robots" content="noindex">
+  {%- endif -%}
+
   <link rel="canonical" href="{{ canonical_url }}">
 
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">

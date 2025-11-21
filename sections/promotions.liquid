@@ -1,13 +1,13 @@
 {% style %}
-#{{ section.id }} .image-banner-asset {
+#{{ section.id }} .promotion-asset {
   height: {{ section.settings.desktop_height | append: "vw" }};
 }
-#{{ section.id }} .image-banner-asset img {
+#{{ section.id }} .promotion-asset img {
   object-fit: {{ section.settings.object_fit }};
   object-position:{{ section.settings.object_position }};
 }
 @media screen and (max-width: 768px) {
-  #{{ section.id }} .image-banner-asset {
+  #{{ section.id }} .promotion-asset {
     height: {{ section.settings.mobile_height | append: "vw" }};
   }
 }
@@ -15,7 +15,7 @@
 
 <div id="{{ section.id }}" style="background-color:{{ section.settings.background }};">
   <!-- image -->
-  <div class="image-banner-asset">
+  <div class="promotion-asset">
     {%- if section.settings.image == blank -%}
       {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder' }}
     {%- else -%}
@@ -30,12 +30,12 @@
 
   <!-- content -->
   <div class="section">
-    <div class="image-banner-content">
+    <div class="promotion-content">
       <div class="rte">
         {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when 'heading' -%}
-              <{{- block.settings.size }} data-title="{{ block.settings.text }}">{{ block.settings.text }}</{{- block.settings.size -}}>
+              <{{- block.settings.size }}>{{ block.settings.text }}</{{- block.settings.size -}}>
             {%- when 'text' -%}
               <p>{{ block.settings.text }}</p>
             {%- when 'buttons' -%}
@@ -60,9 +60,9 @@
 
 {% schema %}
 {
-  "name": "Image Banner",
+  "name": "Promotions",
   "tag": "section",
-  "class": "image-banner-section",
+  "class": "promotions-section",
   "disabled_on": {
     "groups": ["header"]
   },
@@ -248,7 +248,7 @@
   ],
   "presets": [
     {
-      "name": "Image Banner",
+      "name": "Promotions",
       "blocks": [
         {
           "type": "heading"

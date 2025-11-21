@@ -15,7 +15,7 @@ assign image_height = image_width | divided_by: article.image.aspect_ratio | cei
     {% endif %}
   </div>
   <div>
-    <h2 data-title="{{ article.title }}">{{ article.title }}</h2>
+    <h2>{{ article.title }}</h2>
     <div class="rte">
       <p>
         {{ article.excerpt_or_content | strip_html }}

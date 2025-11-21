@@ -7,16 +7,26 @@
 <div id="{{ section.id }}" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
   <div class="section">
     <div class="center">
-      <{{- section.settings.size }} data-title="{{ section.settings.heading }}">
-        {{ section.settings.heading }}
-      </{{- section.settings.size -}}>
+      {%- if section.settings.show_heading == true -%}
+        <{{- section.settings.size }}>
+          {{ section.settings.heading }}
+        </{{- section.settings.size -}}>
+      {%- endif -%}
 
-      <div class="rte">
-        {{ section.settings.text }}
-      </div>
+      {%- if section.settings.show_description == true -%}
+        <div class="rte">
+          {{ section.settings.text }}
+        </div>
+      {%- endif -%}
 
       {% form 'contact', class: 'form contact-form center align-left' %}
         {% if form.posted_successfully? %}
+          {% comment %}
+          Redirect to thank you page when "?contact_posted=true" exists in the url.
+          {% endcomment %}
+          <script>
+          window.location.href = "{{ section.settings.thank_you_page | default: '/pages/thank-you' }}";
+          </script>
           <div class="rte">
             <p>
               <strong>Thanks for your enquiry!</strong>
@@ -31,7 +41,9 @@
         {%- for block in section.blocks -%}
 
           {% capture label %}
-          <label for="{{ block.settings.name | handleize | prepend: 'contact_' }}">
+
+          <label for="{%- if block.type == "email" -%}contact_email{%- else -%}{{ block.settings.name | handleize | prepend: 'contact_' }}{%- endif -%}"
+            {% if block.settings.required == true or block.type == "email" %}class="required"{%- endif -%}>
             {{ block.settings.title }}
           </label>
           {% endcapture %}
@@ -63,7 +75,7 @@
                 <div class="form-row">
                   {{ label }}
                   <input type="email"
-                    id="{{ block.settings.name | handleize | prepend: 'contact_' }}"
+                    id="contact_email"
                     name="contact[email]"
                     placeholder="{{ block.settings.placeholder }}"
                     {% unless block.settings.maxlength == blank %}maxlength="{{ block.settings.maxlength }}"{% endunless %}
@@ -83,6 +95,11 @@
                     {{ block.settings.title }}
                   </label>
                 </div>
+
+              {%- when "hidden" -%}
+                <input type="hidden"
+                  name="contact[{{ block.settings.title }}]"
+                  value="{{ block.settings.value }}">
 
             {%- endcase -%}
         {% endfor %}
@@ -269,6 +286,25 @@
       ]
     },
     {
+      "type": "hidden",
+      "name": "Hidden Field",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Input Name",
+          "default": "Name",
+          "info": "This is the name of the field."
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value",
+          "info": "This is the fixed value of the field."
+        }
+      ]
+    },
+    {
       "type": "paragraph",
       "name": "Paragraph",
       "settings": [
@@ -283,12 +319,24 @@
   ],
   "settings": [
     {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show heading",
+      "default": true
+    },
+    {
+      "visible_if": "{{ section.settings.show_heading == true }}",
       "type": "inline_richtext",
       "id": "heading",
       "label": "Text",
       "default": "Contact us",
     },
     {
+      "visible_if": "{{ section.settings.show_heading == true }}",
       "type": "select",
       "id": "size",
       "label": "Size",
@@ -309,6 +357,13 @@
       "default": "h2"
     },
     {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": true
+    },
+    {
+      "visible_if": "{{ section.settings.show_description == true }}",
       "type": "richtext",
       "id": "text",
       "label": "Text",
@@ -321,10 +376,6 @@
       "default": "Submit"
     },
     {
-      "type": "header",
-      "content": "Section Settings"
-    },
-    {
       "type": "color",
       "id": "background",
       "label": "Background",
@@ -334,6 +385,12 @@
       "type": "color",
       "id": "color",
       "label": "Text Colour"
+    },
+    {
+      "type": "url",
+      "id": "thank_you_page",
+      "label": "Thank you page",
+      "info": "Set thank you page – defaults to /pages/thank-you if not set. Don't forget to update theme.liquid with noindex, or robots.txt if using different thank you page."
     }
   ]
 }
