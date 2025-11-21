@@ -9,7 +9,10 @@
           <li role="option">
             <a href="{{ product.url }}">
               {{ product | image_url: width: 50 | image_tag }}
-              <span>{{ product.title }}</span>
+              <div>
+                <strong>{{ product.title }}</strong><br>
+                <span>{{ product.price | money}}</span>
+              </div>
             </a>
           </li>
         {%- endfor -%}
