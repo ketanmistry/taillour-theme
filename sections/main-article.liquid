@@ -23,7 +23,7 @@ assign image_height = image_width | divided_by: article.image.aspect_ratio | cei
 
 <section id="{{ section.id }}" class="section-wrap">
   <div class="section">
-    <h1 data-title="{{ article.title }}">{{ article.title }}</h1>
+    <h1>{{ article.title }}</h1>
     <p class="small-text">
       Published on {{ article.published_at | date: '%b %d, %Y' }}
       by {{ article.user.name }}
@@ -58,7 +58,7 @@ assign image_height = image_width | divided_by: article.image.aspect_ratio | cei
     {% endcapture %}
     <div id="comments" class="section">
       <hr>
-      <h2 data-title="{{ comments_heading }}">{{ comments_heading }}</h2>
+      <h2>{{ comments_heading }}</h2>
 
       {% if article.comments.size == 0 %}
         <p>No comments yet.</p>
@@ -84,7 +84,7 @@ assign image_height = image_width | divided_by: article.image.aspect_ratio | cei
 
       <hr>
 
-      <h2 data-title="Have your say...">Have your say...</h2>
+      <h2>Have your say...</h2>
       {% form 'new_comment', article %}
         {{ form.errors | default_errors }}
         <div class="form-row">

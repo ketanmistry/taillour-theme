@@ -7,7 +7,7 @@
 <div id="{{ section.id }}" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
   <div class="section">
     <div class="center">
-      <{{- section.settings.size }} data-title="{{ section.settings.heading }}">
+      <{{- section.settings.size }}>
         {{ section.settings.heading }}
       </{{- section.settings.size -}}>
       {%- if section.settings.show_description == true -%}

@@ -55,7 +55,7 @@
     <button class="custom_signup-closeicon button button-white" type="button" onclick="dismissPopup();">
       &times;
     </button>
-    <h3 data-title="{{ settings.newsletter_heading }}">{{ settings.newsletter_heading }}</h3>
+    <h3>{{ settings.newsletter_heading }}</h3>
     <p>{{ settings.newsletter_text }}</p>
     {% form 'customer' %}
       {% if form.posted_successfully? %}

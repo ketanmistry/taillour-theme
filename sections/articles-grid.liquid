@@ -10,7 +10,7 @@
 <div id="{{ section.id }}" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
   <div class="section">
     {%- if section.settings.show_heading == true -%}
-      <{{ section.settings.size }} data-title="{{ section.settings.text }}">
+      <{{ section.settings.size }}>
         {{ section.settings.text }}
       </{{ section.settings.size }}>
     {%- endif -%}
