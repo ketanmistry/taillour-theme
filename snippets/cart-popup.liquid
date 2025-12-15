@@ -20,7 +20,7 @@
 }
 .cart-popup-summary_item {
   display: grid;
-  grid-template-columns: {{ section.settings.thumbnail_size | append: 'px' }} 1fr 100px;
+  grid-template-columns: {{ section.settings.thumbnail_size | append: 'px' }} 1fr 50px 100px;
   align-items: center;
   gap: 0 0.5rem;
   text-decoration: none;
@@ -40,9 +40,34 @@
 #cart-popup-summary_info {
   padding: 0.5rem;
 }
+.cart-popup-summary_qty {
+  font-family: var(--font-stack);
+  font-size: 16px;
+  width: 50px;
+  background-color: var(--white);
+  border: 1px solid var(--black);
+  padding: 0.25rem;
+}
+.cart-popup-summary_remove {
+  background-color: transparent;
+  font-family: var(--font-stack);
+  font-size: 20px;
+  color: var(--black);
+  margin-left: 0.25rem;
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  &:hover {
+    background-color: var(--black);
+    color: var(--white);
+  }
+}
 {% endstyle %}
 
-<details id="js--cart-popup">
+<details id="js--cart-popup" open>
   <summary>Cart (<span class="js--cart-counter">{{ cart.item_count }}</span>)</summary>
   <div id="cart-popup-summary"></div>
 </details>
@@ -64,8 +89,6 @@ function ajaxAddToCart() {
       event.preventDefault();
       let variantId = parentForm.querySelector('input[name="id"]').value;
       let quantity = parentForm.querySelector('input[name="quantity"]').value;
-      // console.log({variantId, quantity});
-
       let productData = {
         'items':[
           {
@@ -98,6 +121,31 @@ function ajaxAddToCart() {
 }
 
 /*
+ * Update line item quantities. Also operates the removal of a line item.
+ */
+function updateCartLineItem(el) {
+  let key = el.dataset.key;
+  let quantity = el.value;
+  if (quantity !== '' && quantity >= 0) {
+    let data = {
+      id: key,
+      quantity: quantity,
+    };
+    fetch('/cart/change.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(response => response.json())
+      .then(cart => {
+        renderCartSummary();
+      });
+  }
+}
+
+/*
  * Refresh the cart summary.
  */
 function renderCartSummary() {
@@ -106,23 +154,45 @@ function renderCartSummary() {
   return fetch(window.Shopify.routes.root + 'cart.js')
     .then(response => response.json())
     .then(cart => {
-      console.log(cart);
-      document.querySelectorAll('.js--cart-counter').forEach(el=>{
+      // Update any cart counters.
+      document.querySelectorAll('.js--cart-counter').forEach(el => {
         el.innerText = cart.item_count;
       });
+      // The cart items.
       cart.items.forEach(function(item){
         template += `
-          <a href="${item.url}" class="cart-popup-summary_item">
+          <div href="${item.url}" class="cart-popup-summary_item">
             <div class="cart-popup-summary_image">
               <img src="${item.image}"
                    width="{{ section.settings.thumbnail_size }}"
                    height="{{ section.settings.thumbnail_size }}"
                    alt="${item.title}">
             </div>
-            <div class="cart-popup-summary_title">${item.quantity} x ${item.title}</div>
-            <div class="cart-popup-summary_price"><strong>${Shopify.formatMoney(item.line_price)}</strong></div>
-          </a>`;
+            <div class="cart-popup-summary_title">
+              ${item.quantity} x ${item.title}
+            </div>
+            <div>
+              <input type="number"
+                class="cart-popup-summary_qty"
+                name="qty"
+                value="${item.quantity}"
+                data-id="${item.id}"
+                data-key="${item.key}"
+                oninput="updateCartLineItem(this);">
+            </div>
+            <div class="cart-popup-summary_price">
+              <strong>${Shopify.formatMoney(item.line_price)}</strong>
+              <button type="button"
+                class="cart-popup-summary_remove"
+                data-key="${item.key}"
+                value="0"
+                onclick="updateCartLineItem(this);">
+                <span>&times;</span>
+              </button>
+            </div>
+          </div>`;
       });
+      // View cart button.
       template += `
         {% if section.settings.show_additional_info == true %}
           <div id="cart-popup-summary_info" class="small-text">
