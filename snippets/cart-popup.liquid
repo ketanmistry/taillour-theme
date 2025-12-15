@@ -1,0 +1,71 @@
+{% style %}
+#cart-popup {
+  position: relative;
+  summary {
+    text-decoration: underline;
+  }
+}
+#cart-popup-summary {
+  position: absolute;
+  right: 0;
+  width: 400px;
+  margin-top: 1rem;
+  background-color: var(--white);
+  border: var(--border);
+  z-index: 10;
+  padding: 0 0 0.5rem 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+.cart-popup-summary_item {
+  display: grid;
+  grid-template-columns: {{ section.settings.thumbnail_size | append: 'px' }} 1fr 100px;
+  align-items: center;
+  gap: 0 0.5rem;
+  text-decoration: none;
+  padding: 0.75rem 0.5rem;
+  font-size: 1rem;
+}
+.cart-popup-summary_item + .cart-popup-summary_item {
+  border-top: 2px dashed var(--black);
+}
+.cart-popup-summary_item:hover {
+  background-color: var(--cream);
+}
+.cart-popup-summary_price {
+  text-align: right;
+}
+#cart-popup-summary_button,
+#cart-popup-summary_info {
+  padding: 0.5rem;
+}
+{% endstyle %}
+
+<details id="cart-popup" open>
+  <summary>Cart (<span class="js--cart-counter">{{ cart.item_count }}</span>)</summary>
+  <div id="cart-popup-summary">
+    {% for item in cart.items %}
+      <a href="{{ item.url }}" class="cart-popup-summary_item">
+        <div class="cart-popup-summary_image">
+          <img src="{{ item.image | image_url: width: section.settings.thumbnail_size, height: section.settings.thumbnail_size }}"
+               width="{{ section.settings.thumbnail_size }}"
+               height="{{ section.settings.thumbnail_size }}"
+               alt="{{ item.title }}">
+        </div>
+        <div class="cart-popup-summary_title">{{ item.quantity }} x {{ item.title }}</div>
+        <div class="cart-popup-summary_price"><strong>{{ item.line_price |  money }}</strong></div>
+      </a>
+    {% endfor %}
+    {% if section.settings.show_additional_info == true %}
+      <div id="cart-popup-summary_info" class="small-text">
+        {{ section.settings.additional_info }}
+      </div>
+    {% endif %}
+    <div id="cart-popup-summary_button">
+      <a class="button button-stretch" href="{{ routes.cart_url }}">
+        {{ cart.total_price | money }} – {{ section.settings.button_label }}
+      </a>
+    </div>
+  </div>
+</details>

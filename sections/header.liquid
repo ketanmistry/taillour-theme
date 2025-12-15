@@ -21,7 +21,16 @@
     <div>
       <ul class="flex">
         <li data-device="desktop"><a href="{{ routes.account_url }}">Account</a></li>
-        <li><a href="{{ routes.cart_url }}">Cart (<span class="js--cart-counter">{{ cart.item_count }}</span>)</a></li>
+        <li>
+          {% if section.settings.enable_cart_popup == true %}
+            {% render 'cart-popup', section:section %}
+          {% else %}
+            <a href="{{ routes.cart_url }}">
+              Cart
+              (<span class="js--cart-counter">{{ cart.item_count }}</span>)
+            </a>
+          {% endif %}
+        </li>
       </ul>
     </div>
   </div>
@@ -30,3 +39,45 @@
 <div data-device="mobile">
   {% render 'search-form', id: 'header-search-mobile' %}
 </div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_cart_popup",
+      "label": "Enable cart popup",
+      "info": "Displays cart summary when clicking the cart button",
+      "default": true
+    },
+    {
+      "visible_if": "{{ section.settings.enable_cart_popup == true }}",
+      "type": "number",
+      "id": "thumbnail_size",
+      "label": "Thumbnail size",
+      "default": 50
+    },
+    {
+      "visible_if": "{{ section.settings.enable_cart_popup == true }}",
+      "type": "checkbox",
+      "id": "show_additional_info",
+      "label": "Show additional information",
+      "default": false,
+    },
+    {
+      "visible_if": "{{ section.settings.show_additional_info == true and section.settings.enable_cart_popup == true }}",
+      "type": "richtext",
+      "id": "additional_info",
+      "label": "Additional information"
+    },
+    {
+      "visible_if": "{{ section.settings.enable_cart_popup == true }}",
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "View Cart",
+    }
+  ]
+}
+{% endschema %}
