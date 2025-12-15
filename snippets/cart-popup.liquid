@@ -18,6 +18,17 @@
   display: flex;
   flex-direction: column;
 }
+#cart-popup-summary_heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-size);
+  button {
+    font-size: 24px;
+    color: var(--black);
+    background-color: transparent;
+  }
+}
 .cart-popup-summary_item-group {
   border-bottom: var(--border);
   height: calc(100vh / 3);
@@ -47,10 +58,7 @@
 .cart-popup-summary_price {
   text-align: right;
 }
-#cart-popup-summary_notification,
-#cart-popup-summary_buttons,
-#cart-popup-summary_info,
-#cart-popup-summary_total {
+.cart-popup-summary_section {
   padding: 0.5rem;
 }
 .cart-popup-summary_qty {
@@ -199,10 +207,21 @@ function renderCartSummary(showNotification=false) {
         el.innerText = cart.item_count;
       });
 
+      // Close popup button.
+      template += `
+        <div id="cart-popup-summary_heading" class="cart-popup-summary_section">
+          <strong>{{ section.settings.cp_heading }}</strong>
+          <div>
+            <button type="button"
+              onclick="document.getElementById('js--cart-popup').open=false;"
+              >&times;</button>
+          </div>
+        </div>`;
+
       // Show notification.
       if (showNotification === true) {
         template += `
-          <div id="cart-popup-summary_notification">
+          <div id="cart-popup-summary_notification" class="cart-popup-summary_section">
             <svg height="20" width="20" viewBox="0 0 128 128"  xmlns="http://www.w3.org/2000/svg"><path d="m64 128c-35.289 0-64-28.711-64-64s28.711-64 64-64 64 28.711 64 64-28.711 64-64 64zm0-120c-30.879 0-56 25.121-56 56s25.121 56 56 56 56-25.121 56-56-25.121-56-56-56zm-9.172 78.828 40-40c1.563-1.563 1.563-4.094 0-5.656s-4.094-1.563-5.656 0l-37.172 37.172-13.172-13.172c-1.563-1.563-4.094-1.563-5.656 0s-1.563 4.094 0 5.656l16 16c.781.781 1.805 1.172 2.828 1.172s2.047-.391 2.828-1.172z" fill="#ffffff"></path></svg>
             <span>{{ section.settings.cp_notification }}</span>
           </div>`;
@@ -252,7 +271,7 @@ function renderCartSummary(showNotification=false) {
       // View cart button.
       template += `
         {% if section.settings.cp_show_cart_total == true %}
-        <div id="cart-popup-summary_total">
+        <div id="cart-popup-summary_total" class="cart-popup-summary_section">
           <div>
             <strong>Total (${cart.item_count} items)</strong>
             <br><small>Excludes delivery</small>
@@ -261,11 +280,11 @@ function renderCartSummary(showNotification=false) {
         </div>
         {% endif %}
         {% if section.settings.cp_show_additional_info == true %}
-          <div id="cart-popup-summary_info" class="small-text">
+          <div id="cart-popup-summary_info" class="small-text cart-popup-summary_section">
             {{ section.settings.cp_additional_info }}
           </div>
         {% endif %}
-        <div id="cart-popup-summary_buttons">
+        <div id="cart-popup-summary_buttons" class="cart-popup-summary_section">
           <a class="button button-white" href="{{ routes.cart_url }}">
             {{ section.settings.cp_button_label }}
           </a>

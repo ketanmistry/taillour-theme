@@ -57,6 +57,13 @@
     },
     {
       "visible_if": "{{ section.settings.enable_cart_popup == true }}",
+      "type": "text",
+      "id": "cp_heading",
+      "label": "Heading",
+      "default": "Your cart summary"
+    },
+    {
+      "visible_if": "{{ section.settings.enable_cart_popup == true }}",
       "type": "checkbox",
       "id": "cp_show_cart_items",
       "label": "Show list of items",
