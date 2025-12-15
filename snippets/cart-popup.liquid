@@ -44,37 +44,18 @@
 
 <details id="js--cart-popup">
   <summary>Cart (<span class="js--cart-counter">{{ cart.item_count }}</span>)</summary>
-  <div id="cart-popup-summary">
-    {% for item in cart.items %}
-      <a href="{{ item.url }}" class="cart-popup-summary_item">
-        <div class="cart-popup-summary_image">
-          <img src="{{ item.image | image_url: width: section.settings.thumbnail_size, height: section.settings.thumbnail_size }}"
-               width="{{ section.settings.thumbnail_size }}"
-               height="{{ section.settings.thumbnail_size }}"
-               alt="{{ item.title }}">
-        </div>
-        <div class="cart-popup-summary_title">{{ item.quantity }} x {{ item.title }}</div>
-        <div class="cart-popup-summary_price"><strong>{{ item.line_price |  money }}</strong></div>
-      </a>
-    {% endfor %}
-    {% if section.settings.show_additional_info == true %}
-      <div id="cart-popup-summary_info" class="small-text">
-        {{ section.settings.additional_info }}
-      </div>
-    {% endif %}
-    <div id="cart-popup-summary_button">
-      <a class="button button-stretch" href="{{ routes.cart_url }}">
-        <span id="js--cart-popup-summary_total">{{ cart.total_price | money }}</span>
-        – {{ section.settings.button_label }}
-      </a>
-    </div>
-  </div>
+  <div id="cart-popup-summary"></div>
 </details>
 
 <script>
 ready(() => {
+  renderCartSummary();
   ajaxAddToCart();
 });
+
+/*
+ * Add item to cart and display the cart summary popup.
+ */
 function ajaxAddToCart() {
   const cartPopup = document.getElementById('js--cart-popup');
   document.querySelectorAll('#js--addtocart').forEach(function(btn){
@@ -104,7 +85,7 @@ function ajaxAddToCart() {
         return response.json();
       })
       .then(cart => {
-        refreshCartSummary().then(function(){
+        renderCartSummary().then(function(){
           cartPopup.open = true;
           setTimeout(
             function(){cartPopup.open = false;},
@@ -119,7 +100,7 @@ function ajaxAddToCart() {
 /*
  * Refresh the cart summary.
  */
-function refreshCartSummary() {
+function renderCartSummary() {
   const summary = document.getElementById('cart-popup-summary');
   let template = "";
   return fetch(window.Shopify.routes.root + 'cart.js')
