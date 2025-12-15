@@ -47,6 +47,7 @@
 .cart-popup-summary_price {
   text-align: right;
 }
+#cart-popup-summary_notification,
 #cart-popup-summary_buttons,
 #cart-popup-summary_info,
 #cart-popup-summary_total {
@@ -87,6 +88,16 @@
     margin-left: 0;
     flex: 1;
   }
+}
+#cart-popup-summary_notification {
+  background-color: var(--black);
+  color: var(--white);
+  font-weight: var(--bold);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
 }
 {% endstyle %}
 
@@ -131,10 +142,15 @@ function ajaxAddToCart() {
         return response.json();
       })
       .then(cart => {
-        renderCartSummary().then(function(){
+        renderCartSummary(true).then(function(){
           cartPopup.open = true;
           setTimeout(
-            function(){cartPopup.open = false;},
+            function(){
+              cartPopup.open = false;
+              if (cartPopup.querySelector('#cart-popup-summary_notification')) {
+                cartPopup.querySelector('#cart-popup-summary_notification').remove();
+              }
+            },
             {{ section.settings.duration |  times: 1000 }}
           );
         });
@@ -170,8 +186,9 @@ function updateCartLineItem(el) {
 
 /*
  * Refresh the cart summary.
+ * @param showNotification - Show "item added to your cart" message.
  */
-function renderCartSummary() {
+function renderCartSummary(showNotification=false) {
   const summary = document.getElementById('cart-popup-summary');
   let template = "";
   return fetch(window.Shopify.routes.root + 'cart.js')
@@ -181,6 +198,15 @@ function renderCartSummary() {
       document.querySelectorAll('.js--cart-counter').forEach(el => {
         el.innerText = cart.item_count;
       });
+
+      // Show notification.
+      if (showNotification === true) {
+        template += `
+          <div id="cart-popup-summary_notification">
+            <svg height="20" width="20" viewBox="0 0 128 128"  xmlns="http://www.w3.org/2000/svg"><path d="m64 128c-35.289 0-64-28.711-64-64s28.711-64 64-64 64 28.711 64 64-28.711 64-64 64zm0-120c-30.879 0-56 25.121-56 56s25.121 56 56 56 56-25.121 56-56-25.121-56-56-56zm-9.172 78.828 40-40c1.563-1.563 1.563-4.094 0-5.656s-4.094-1.563-5.656 0l-37.172 37.172-13.172-13.172c-1.563-1.563-4.094-1.563-5.656 0s-1.563 4.094 0 5.656l16 16c.781.781 1.805 1.172 2.828 1.172s2.047-.391 2.828-1.172z" fill="#ffffff"></path></svg>
+            <span>{{ section.settings.cp_notification }}</span>
+          </div>`;
+      }
 
       // The cart items.
       {% if section.settings.show_cart_items == true %}
