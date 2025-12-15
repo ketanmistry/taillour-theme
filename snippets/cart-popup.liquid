@@ -89,7 +89,7 @@ function ajaxAddToCart() {
           cartPopup.open = true;
           setTimeout(
             function(){cartPopup.open = false;},
-            6000
+            {{ section.settings.duration |  times: 1000 }}
           );
         });
       });

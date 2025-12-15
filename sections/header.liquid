@@ -77,6 +77,18 @@
       "id": "button_label",
       "label": "Button label",
       "default": "View Cart",
+    },
+    {
+      "visible_if": "{{ section.settings.enable_cart_popup == true }}",
+      "type": "range",
+      "id": "duration",
+      "label": "Duration",
+      "info": "Number of seconds the popup should stay open after adding an item to the cart.",
+      "min": 6,
+      "max": 20,
+      "unit": "s",
+      "step": 1,
+      "default": 8
     }
   ]
 }
