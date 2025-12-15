@@ -18,6 +18,12 @@
   display: flex;
   flex-direction: column;
 }
+.cart-popup-summary_item-group {
+  border-bottom: var(--border);
+  height: calc(100vh / 3);
+  max-height: max-content;
+  overflow-y: auto;
+}
 .cart-popup-summary_item {
   display: grid;
   grid-template-columns: {{ section.settings.thumbnail_size | append: 'px' }} 1fr 50px 100px;
@@ -178,41 +184,43 @@ function renderCartSummary() {
 
       // The cart items.
       {% if section.settings.show_cart_items == true %}
-      cart.items.forEach(function(item){
-        template += `
-          <div class="cart-popup-summary_item">
-            <div class="cart-popup-summary_image">
-              <a href="${item.url}">
-                <img src="${item.image}"
-                  width="{{ section.settings.thumbnail_size }}"
-                  height="{{ section.settings.thumbnail_size }}"
-                  alt="${item.title}">
-              </a>
-            </div>
-            <div class="cart-popup-summary_title">
-              <a href="${item.url}">${item.quantity} x ${item.title}</a>
-            </div>
-            <div>
-              <input type="number"
-                class="cart-popup-summary_qty"
-                name="qty"
-                value="${item.quantity}"
-                data-id="${item.id}"
-                data-key="${item.key}"
-                oninput="updateCartLineItem(this);">
-            </div>
-            <div class="cart-popup-summary_price">
-              <strong>${Shopify.formatMoney(item.line_price)}</strong>
-              <button type="button"
-                class="cart-popup-summary_remove"
-                data-key="${item.key}"
-                value="0"
-                onclick="updateCartLineItem(this);">
-                <span>&times;</span>
-              </button>
-            </div>
-          </div>`;
-      });
+      template += `<div class="cart-popup-summary_item-group">`;
+        cart.items.forEach(function(item){
+          template += `
+            <div class="cart-popup-summary_item">
+              <div class="cart-popup-summary_image">
+                <a href="${item.url}">
+                  <img src="${item.image}"
+                    width="{{ section.settings.thumbnail_size }}"
+                    height="{{ section.settings.thumbnail_size }}"
+                    alt="${item.title}">
+                </a>
+              </div>
+              <div class="cart-popup-summary_title">
+                <a href="${item.url}">${item.quantity} x ${item.title}</a>
+              </div>
+              <div>
+                <input type="number"
+                  class="cart-popup-summary_qty"
+                  name="qty"
+                  value="${item.quantity}"
+                  data-id="${item.id}"
+                  data-key="${item.key}"
+                  oninput="updateCartLineItem(this);">
+              </div>
+              <div class="cart-popup-summary_price">
+                <strong>${Shopify.formatMoney(item.line_price)}</strong>
+                <button type="button"
+                  class="cart-popup-summary_remove"
+                  data-key="${item.key}"
+                  value="0"
+                  onclick="updateCartLineItem(this);">
+                  <span>&times;</span>
+                </button>
+              </div>
+            </div>`;
+        });
+      template += `</div>`;
       {% endif %}
 
       // View cart button.
