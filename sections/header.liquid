@@ -22,7 +22,7 @@
       <ul class="flex">
         <li data-device="desktop"><a href="{{ routes.account_url }}">Account</a></li>
         <li>
-          {% if section.settings.enable_cart_popup == true %}
+          {% if section.settings.enable_cart_popup == true and request.path != "/cart" %}
             {% render 'cart-popup', section:section %}
           {% else %}
             <a href="{{ routes.cart_url }}">
@@ -56,12 +56,14 @@
       "default": true
     },
     {
+      "visible_if": "{{ section.settings.enable_cart_popup == true }}",
       "type": "checkbox",
       "id": "show_cart_items",
       "label": "Show list of items",
       "default": true
     },
     {
+      "visible_if": "{{ section.settings.enable_cart_popup == true }}",
       "type": "checkbox",
       "id": "show_cart_total",
       "label": "Show cart total",
