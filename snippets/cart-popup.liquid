@@ -175,7 +175,9 @@ function renderCartSummary() {
       document.querySelectorAll('.js--cart-counter').forEach(el => {
         el.innerText = cart.item_count;
       });
+
       // The cart items.
+      {% if section.settings.show_cart_items == true %}
       cart.items.forEach(function(item){
         template += `
           <div class="cart-popup-summary_item">
@@ -211,15 +213,19 @@ function renderCartSummary() {
             </div>
           </div>`;
       });
+      {% endif %}
+
       // View cart button.
       template += `
+        {% if section.settings.show_cart_total == true %}
         <div id="cart-popup-summary_total">
           <div>
-            <strong>Total</strong>
+            <strong>Total (${cart.item_count} items)</strong>
             <br><small>Excludes delivery</small>
           </div>
           <div><strong>${Shopify.formatMoney(cart.total_price)}</strong></div>
         </div>
+        {% endif %}
         {% if section.settings.show_additional_info == true %}
           <div id="cart-popup-summary_info" class="small-text">
             {{ section.settings.additional_info }}
