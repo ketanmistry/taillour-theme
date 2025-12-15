@@ -23,7 +23,6 @@
   grid-template-columns: {{ section.settings.thumbnail_size | append: 'px' }} 1fr 50px 100px;
   align-items: center;
   gap: 0 0.5rem;
-  text-decoration: none;
   padding: 0.75rem 0.5rem;
   font-size: 1rem;
 }
@@ -33,11 +32,18 @@
 .cart-popup-summary_item:hover {
   background-color: var(--cream);
 }
+.cart-popup-summary_item a {
+  text-decoration: none;
+}
+.cart-popup-summary_item a:hover {
+  text-decoration: underline;
+}
 .cart-popup-summary_price {
   text-align: right;
 }
-#cart-popup-summary_button,
-#cart-popup-summary_info {
+#cart-popup-summary_buttons,
+#cart-popup-summary_info,
+#cart-popup-summary_total {
   padding: 0.5rem;
 }
 .cart-popup-summary_qty {
@@ -49,13 +55,12 @@
   padding: 0.25rem;
 }
 .cart-popup-summary_remove {
-  background-color: transparent;
+  background-color: rgba(0,0,0,0.1);
   font-family: var(--font-stack);
   font-size: 20px;
   color: var(--black);
-  margin-left: 0.25rem;
   display: inline-flex;
-  width: 24px;
+  width: 21px;
   height: 24px;
   align-items: center;
   justify-content: center;
@@ -65,9 +70,21 @@
     color: var(--white);
   }
 }
+#cart-popup-summary_total {
+  display: flex;
+  justify-content: space-between;
+}
+#cart-popup-summary_buttons {
+  display: flex;
+  gap: 1rem;
+  .button {
+    margin-left: 0;
+    flex: 1;
+  }
+}
 {% endstyle %}
 
-<details id="js--cart-popup" open>
+<details id="js--cart-popup">
   <summary>Cart (<span class="js--cart-counter">{{ cart.item_count }}</span>)</summary>
   <div id="cart-popup-summary"></div>
 </details>
@@ -161,15 +178,17 @@ function renderCartSummary() {
       // The cart items.
       cart.items.forEach(function(item){
         template += `
-          <div href="${item.url}" class="cart-popup-summary_item">
+          <div class="cart-popup-summary_item">
             <div class="cart-popup-summary_image">
-              <img src="${item.image}"
-                   width="{{ section.settings.thumbnail_size }}"
-                   height="{{ section.settings.thumbnail_size }}"
-                   alt="${item.title}">
+              <a href="${item.url}">
+                <img src="${item.image}"
+                  width="{{ section.settings.thumbnail_size }}"
+                  height="{{ section.settings.thumbnail_size }}"
+                  alt="${item.title}">
+              </a>
             </div>
             <div class="cart-popup-summary_title">
-              ${item.quantity} x ${item.title}
+              <a href="${item.url}">${item.quantity} x ${item.title}</a>
             </div>
             <div>
               <input type="number"
@@ -194,16 +213,23 @@ function renderCartSummary() {
       });
       // View cart button.
       template += `
+        <div id="cart-popup-summary_total">
+          <div>
+            <strong>Total</strong>
+            <br><small>Excludes delivery</small>
+          </div>
+          <div><strong>${Shopify.formatMoney(cart.total_price)}</strong></div>
+        </div>
         {% if section.settings.show_additional_info == true %}
           <div id="cart-popup-summary_info" class="small-text">
             {{ section.settings.additional_info }}
           </div>
         {% endif %}
-        <div id="cart-popup-summary_button">
-          <a class="button button-stretch" href="{{ routes.cart_url }}">
-            <span id="js--cart-popup-summary_total">${Shopify.formatMoney(cart.total_price)}</span>
-            – {{ section.settings.button_label }}
+        <div id="cart-popup-summary_buttons">
+          <a class="button button-white" href="{{ routes.cart_url }}">
+            {{ section.settings.button_label }}
           </a>
+          <a class="button" href="/checkout">{{ section.settings.checkout_label }}</a>
         </div>`;
       summary.innerHTML = template;
     });

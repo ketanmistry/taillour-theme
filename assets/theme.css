@@ -359,6 +359,7 @@ main button:not([class*="input-stepper"]):not([data-index]),
   cursor: pointer;
   display: inline-block;
   text-decoration: none;
+  text-align: center;
   line-height: 1;
   background-color: var(--black);
   color: var(--white);

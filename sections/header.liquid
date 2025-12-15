@@ -53,6 +53,18 @@
     },
     {
       "visible_if": "{{ section.settings.enable_cart_popup == true }}",
+      "type": "range",
+      "id": "duration",
+      "label": "Duration",
+      "info": "Number of seconds the popup should stay open after adding an item to the cart.",
+      "min": 6,
+      "max": 20,
+      "unit": "s",
+      "step": 1,
+      "default": 8
+    },
+    {
+      "visible_if": "{{ section.settings.enable_cart_popup == true }}",
       "type": "number",
       "id": "thumbnail_size",
       "label": "Thumbnail size",
@@ -75,20 +87,15 @@
       "visible_if": "{{ section.settings.enable_cart_popup == true }}",
       "type": "text",
       "id": "button_label",
-      "label": "Button label",
+      "label": "Cart button label",
       "default": "View Cart",
     },
     {
       "visible_if": "{{ section.settings.enable_cart_popup == true }}",
-      "type": "range",
-      "id": "duration",
-      "label": "Duration",
-      "info": "Number of seconds the popup should stay open after adding an item to the cart.",
-      "min": 6,
-      "max": 20,
-      "unit": "s",
-      "step": 1,
-      "default": 8
+      "type": "text",
+      "id": "checkout_label",
+      "label": "Checkout button label",
+      "default": "Checkout now",
     }
   ]
 }
