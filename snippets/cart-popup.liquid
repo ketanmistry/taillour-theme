@@ -118,6 +118,7 @@
 ready(() => {
   renderCartSummary();
   ajaxAddToCart();
+  handleCloseCartSummary();
 });
 
 /*
@@ -292,5 +293,25 @@ function renderCartSummary(showNotification=false) {
         </div>`;
       summary.innerHTML = template;
     });
+}
+
+/*
+ * Close cart summary on escape keypress or clicking outside of it.
+ */
+function handleCloseCartSummary() {
+  const cartSummary = document.querySelector('#js--cart-popup');
+  // Close on escape.
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      cartSummary.open = false;
+    }
+  });
+  // Close on click outside.
+  document.addEventListener('click', function(event){
+    let me = event.target;
+    if (!me.closest('#js--cart-popup')) {
+      cartSummary.open = false;
+    }
+  });
 }
 </script>
