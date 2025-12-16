@@ -655,7 +655,7 @@ table:before {
 /* !! Header */
 header {
   display: grid;
-  grid-template-columns: .25fr 1fr .25fr;
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
   padding: 0 1rem;
 }

@@ -30,10 +30,12 @@
   }
 }
 .cart-popup-summary_item-group {
-  border-bottom: var(--border);
   height: calc(100vh / 3);
   max-height: max-content;
   overflow-y: auto;
+}
+.cart-popup-summary_actions {
+  border-top: var(--border);
 }
 .cart-popup-summary_item {
   display: grid;
@@ -106,6 +108,29 @@
   align-items: center;
   justify-content: center;
   gap: 0.25rem;
+}
+
+@media screen and (max-width:500px) {
+  #cart-popup-summary {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin-top: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+  .cart-popup-summary_item-group {
+    height: unset;
+    max-height: unset;
+  }
+  .cart-popup-summary_actions {
+    position: sticky;
+    bottom: 0;
+    width: calc(100vw - 0.25rem);
+    padding-bottom: 0.5rem;
+    background-color: var(--white);
+  }
 }
 {% endstyle %}
 
@@ -293,25 +318,27 @@ function renderCartSummary(showNotification=false) {
 
       // View cart button.
       template += `
-        {% if section.settings.cp_show_cart_total == true %}
-        <div id="cart-popup-summary_total" class="cart-popup-summary_section">
-          <div>
-            <strong>Total (${cart.item_count} items)</strong>
-            <br><small>Excludes delivery</small>
+        <div class="cart-popup-summary_actions">
+          {% if section.settings.cp_show_cart_total == true %}
+          <div id="cart-popup-summary_total" class="cart-popup-summary_section">
+            <div>
+              <strong>Total (${cart.item_count} items)</strong>
+              <br><small>Excludes delivery</small>
+            </div>
+            <div><strong>${Shopify.formatMoney(cart.total_price)}</strong></div>
           </div>
-          <div><strong>${Shopify.formatMoney(cart.total_price)}</strong></div>
-        </div>
-        {% endif %}
-        {% if section.settings.cp_show_additional_info == true %}
-          <div id="cart-popup-summary_info" class="small-text cart-popup-summary_section">
-            {{ section.settings.cp_additional_info }}
+          {% endif %}
+          {% if section.settings.cp_show_additional_info == true %}
+            <div id="cart-popup-summary_info" class="small-text cart-popup-summary_section">
+              {{ section.settings.cp_additional_info }}
+            </div>
+          {% endif %}
+          <div id="cart-popup-summary_buttons" class="cart-popup-summary_section">
+            <a class="button button-white" href="{{ routes.cart_url }}">
+              {{ section.settings.cp_button_label }}
+            </a>
+            <a class="button" href="/checkout">{{ section.settings.cp_checkout_label }}</a>
           </div>
-        {% endif %}
-        <div id="cart-popup-summary_buttons" class="cart-popup-summary_section">
-          <a class="button button-white" href="{{ routes.cart_url }}">
-            {{ section.settings.cp_button_label }}
-          </a>
-          <a class="button" href="/checkout">{{ section.settings.cp_checkout_label }}</a>
         </div>`;
       summary.innerHTML = template;
     });
