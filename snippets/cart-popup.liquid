@@ -186,10 +186,10 @@ function updateCartLineItem(el) {
       },
       body: JSON.stringify(data),
     })
-      .then(response => response.json())
-      .then(cart => {
-        renderCartSummary();
-      });
+    .then(response => response.json())
+    .then(cart => {
+      renderCartSummary();
+    });
   }
 }
 
@@ -232,11 +232,19 @@ function renderCartSummary(showNotification=false) {
       {% if section.settings.cp_show_cart_items == true %}
       template += `<div class="cart-popup-summary_item-group">`;
         cart.items.forEach(function(item){
+          // Reduce the size of the image - we don't need fullsize for this!
+          let filepath = item.image;
+          let extIndex = filepath.lastIndexOf('.');
+          let filepathWithoutExtension = filepath.substring(0, extIndex);
+          let fileExtension = filepath.substring(extIndex);
+          let updatedImageSrc = `${filepathWithoutExtension}_{{ section.settings.cp_thumbnail_size | times: 2 }}x{{ section.settings.cp_thumbnail_size | times: 2 }}${fileExtension}`;
+
+          // Put the template together.
           template += `
             <div class="cart-popup-summary_item">
               <div class="cart-popup-summary_image">
                 <a href="${item.url}">
-                  <img src="${item.image}"
+                  <img src="${updatedImageSrc}"
                     width="{{ section.settings.cp_thumbnail_size }}"
                     height="{{ section.settings.cp_thumbnail_size }}"
                     alt="${item.title}">
