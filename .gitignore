@@ -1,3 +1,4 @@
 .idea/
 .nova/Configuration.json
 .nova/Tasks/shopify theme dev.json
+/.vscode
