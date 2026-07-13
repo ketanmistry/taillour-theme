@@ -24,7 +24,7 @@
         "type": "checkbox",
         "id": "newsletter_popup",
         "label": "Enable newsletter popup",
-        "default": true
+        "default": false
       },
       {
         "type": "range",
