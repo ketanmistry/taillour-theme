@@ -393,6 +393,7 @@ function updateCartLineItem(el) {
   let qty = el.value;
   if (qty !== "" && qty >= 0) {
     let cartItemsSection = document.querySelector("#cartDrawer-items");
+    document.getElementById("cartDrawer-content").classList.add("waiting");
 
     let data = {
       updates: { [key]: qty },
@@ -411,6 +412,7 @@ function updateCartLineItem(el) {
           document.getElementById("shopify-section-cart-drawer").outerHTML = cart.sections["cart-drawer"];
         }
         _updateCartItemCount(cart.item_count);
+        document.getElementById("cartDrawer-content").classList.remove("waiting");
         cartDrawer.showModal();
       });
   }
