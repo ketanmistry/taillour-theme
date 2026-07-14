@@ -84,11 +84,11 @@
     name="id"
     value="{{ current_variant.id }}">
   {% if current_variant.available == true %}
-    <button type="submit" id="js--addtocart" class="button button-stretch">
+    <button type="submit" data-js="addtocart" class="button button-stretch">
       {{ block.settings.button_label }}
     </button>
   {% else %}
-    <button type="submit" id="js--addtocart" class="button button-stretch" disabled>Unavailable</button>
+    <button type="submit" data-js="addtocart" class="button button-stretch" disabled>Unavailable</button>
   {% endif %}
 </div>
 

@@ -30,9 +30,5 @@
       }
     }
   },
-  "order": [
-    "announcement",
-    "header",
-    "nav"
-  ]
+  "order": ["announcement", "header", "nav"]
 }
