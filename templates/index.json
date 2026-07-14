@@ -37,7 +37,11 @@
           }
         }
       },
-      "block_order": ["heading_gnR7KK", "text_yz7Gyj", "buttons_zUiW9p"],
+      "block_order": [
+        "heading_gnR7KK",
+        "text_yz7Gyj",
+        "buttons_zUiW9p"
+      ],
       "settings": {
         "background": "#f5f5f5",
         "object_fit": "cover",
@@ -54,13 +58,15 @@
           "settings": {
             "text": "Image/Text Section",
             "size": "h2"
-          }
+          },
+          "blocks": {}
         },
         "text_amNwtU": {
           "type": "richtext",
           "settings": {
             "text": "<p>Taillour comes with a few pre-built sections to make building your clients Shopify store a little easier. This is one of them.</p>"
-          }
+          },
+          "blocks": {}
         },
         "buttons_hEXxe6": {
           "type": "buttons",
@@ -73,16 +79,35 @@
             "button2_label": "Secondary button",
             "button2_link": "#",
             "button2_style": "button-white"
-          }
+          },
+          "blocks": {}
+        },
+        "section-title": {
+          "type": "heading",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "text": "Headline",
+            "size": "h2"
+          },
+          "blocks": {}
+        },
+        "section-description": {
+          "type": "richtext",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "text": "<p>Asperiores voluptatem rerum fuga assumenda similique voluptatem sapiente qui non voluptatibus.</p>"
+          },
+          "blocks": {}
         }
       },
-      "block_order": ["heading_aRADHH", "text_amNwtU", "buttons_hEXxe6"],
+      "block_order": [
+        "heading_aRADHH",
+        "text_amNwtU",
+        "buttons_hEXxe6"
+      ],
       "settings": {
-        "show_heading": false,
-        "text": "Headline",
-        "size": "h2",
-        "show_description": false,
-        "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
         "background": "#ffffff",
         "color": "",
         "object_fit": "cover",
@@ -127,7 +152,11 @@
           }
         }
       },
-      "block_order": ["heading_JbRWKC", "text_VhigEQ", "buttons_jzKH3h"],
+      "block_order": [
+        "heading_JbRWKC",
+        "text_VhigEQ",
+        "buttons_jzKH3h"
+      ],
       "settings": {
         "show_heading": false,
         "text": "Headline",
@@ -174,7 +203,9 @@
         "size": "h2",
         "show_description": false,
         "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
-        "collections": ["frontpage"],
+        "collections": [
+          "frontpage"
+        ],
         "collections_per_row": 4,
         "background": "#ffffff",
         "color": ""
@@ -229,7 +260,11 @@
           }
         }
       },
-      "block_order": ["column_zYFacD", "column_CNfgmM", "column_kbECRk"],
+      "block_order": [
+        "column_zYFacD",
+        "column_CNfgmM",
+        "column_kbECRk"
+      ],
       "settings": {
         "show_heading": false,
         "text": "Headline",
@@ -340,12 +375,15 @@
         "checkbox_wHnRgw"
       ],
       "settings": {
+        "show_heading": true,
         "heading": "Contact Form Section",
         "size": "h2",
+        "show_description": true,
         "text": "<p>This is the contact form section where you can add whatever fields you need via the customiser.</p>",
         "button_label": "Submit",
         "background": "#ffffff",
-        "color": ""
+        "color": "",
+        "thank_you_page": ""
       }
     },
     "raw_html_with_text_XjAjHG": {
@@ -365,7 +403,10 @@
           }
         }
       },
-      "block_order": ["heading_rcNraU", "text_8JAgq6"],
+      "block_order": [
+        "heading_rcNraU",
+        "text_8JAgq6"
+      ],
       "name": "Custom Liquid & Text",
       "settings": {
         "show_heading": false,
