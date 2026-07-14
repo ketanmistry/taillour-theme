@@ -366,9 +366,7 @@ function handleAjaxAddToCart() {
         },
         body: JSON.stringify(productData),
       })
-        .then((response) => {
-          return response.json();
-        })
+        .then((response) => response.json())
         .then((cart) => {
           if (document.getElementById("shopify-section-cart-drawer")) {
             document.getElementById("shopify-section-cart-drawer").outerHTML = cart.sections["cart-drawer"];
