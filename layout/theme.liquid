@@ -25,6 +25,10 @@
 
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
   <link rel="stylesheet" href="{{ 'mobile.css' | asset_url }}" media="(max-width: 768px)">
+  {% if request.path == "/cart" -%}
+  <link rel="stylesheet" href="{{ 'cart.css' | asset_url }}">
+  <script src="{{ 'cart.js' | asset_url }}" defer></script>
+  {%- endif %}
   <script src="{{ 'theme.js' | asset_url }}"></script>
   <script src="{{ 'predictive-search.js' | asset_url }}" defer></script>
 
