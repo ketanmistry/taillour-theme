@@ -26,22 +26,7 @@
 
     <div class="grid-2 middle image-text-{{ section.settings.image_position }}">
       <div class="image-text-content">
-        {%- for block in section.blocks -%}
-          {%- case block.type -%}
-            {%- when 'heading' -%}
-              <{{- block.settings.size }}>{{ block.settings.text }}</{{- block.settings.size -}}>
-            {%- when 'text' -%}
-              <div class="rte">
-                {{ block.settings.text }}
-              </div>
-            {% when 'buttons' %}
-              <p>
-                <a class="button" href="{{ block.settings.button_link | default: '#' }}">
-                  {{ block.settings.button_label }}
-                </a>
-              </p>
-          {% endcase %}
-        {%- endfor -%}
+        {% content_for 'blocks' %}
       </div>
 
       <div class="image-text-asset">
@@ -244,68 +229,10 @@
     }
   ],
   "blocks": [
-    {
-      "type": "heading",
-      "name": "Heading",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "inline_richtext",
-          "id": "text",
-          "label": "Text",
-          "default": "Headline",
-        },
-        {
-          "type": "select",
-          "id": "size",
-          "label": "Size",
-          "options": [
-            {
-              "value": "h1",
-              "label": "H1"
-            },
-            {
-              "value": "h2",
-              "label": "H2"
-            },
-            {
-              "value": "h3",
-              "label": "H3"
-            }
-          ],
-          "default": "h2"
-        }
-      ]
-    },
-    {
-      "type": "text",
-      "name": "Text",
-      "settings": [
-        {
-          "type": "richtext",
-          "id": "text",
-          "default": "<p>Asperiores voluptatem rerum fuga assumenda similique voluptatem sapiente qui non voluptatibus.</p>",
-          "label": "Text"
-        }
-      ]
-    },
-    {
-      "type": "buttons",
-      "name": "Buttons",
-      "settings": [
-        {
-          "type": "text",
-          "id": "button_label",
-          "default": "Button label",
-          "label": "Button Label"
-        },
-        {
-          "type": "url",
-          "id": "button_link",
-          "label": "Button Link"
-        }
-      ]
-    }
+    { "type": "@app"},
+    { "type": "heading" },
+    { "type": "richtext" },
+    { "type": "buttons" }
   ],
   "presets": [
     {
@@ -315,7 +242,7 @@
           "type": "heading"
         },
         {
-          "type": "text"
+          "type": "richtext"
         },
         {
           "type": "buttons"

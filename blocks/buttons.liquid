@@ -1,0 +1,108 @@
+<p class="buttons-block button-group" {{ block.shopify_attributes }}>
+  {%- if block.settings.button1_enable -%}
+    <a class="button {{ block.settings.button1_style }}"
+      href="{{ block.settings.button1_link | default: '#' }}">
+      {{ block.settings.button1_label }}
+    </a>
+  {%- endif -%}
+  {% if block.settings.button2_enable %}
+    <a class="button {{ block.settings.button2_style }}"
+      href="{{ block.settings.button2_link | default: '#' }}">
+      {{ block.settings.button2_label }}
+    </a>
+  {%- endif -%}
+</p>
+
+{% schema %}
+{
+  "name": "Buttons",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Primary Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "button1_enable",
+      "default": true,
+      "label": "Show Button"
+    },
+    {
+      "visible_if": "{{ block.settings.button1_enable == true }}",
+      "type": "text",
+      "id": "button1_label",
+      "default": "Button label",
+      "label": "Label "
+    },
+    {
+      "visible_if": "{{ block.settings.button1_enable == true }}",
+      "type": "url",
+      "id": "button1_link",
+      "label": "Link"
+    },
+    {
+      "visible_if": "{{ block.settings.button1_enable == true }}",
+      "type": "select",
+      "id": "button1_style",
+      "label": "Style",
+      "options": [
+        {
+          "value": "",
+          "label": "Default"
+        },
+        {
+          "value": "button-white",
+          "label": "White"
+        }
+      ],
+      "default": ""
+    },
+    {
+      "type": "header",
+      "content": "Secondary Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "button2_enable",
+      "default": false,
+      "label": "Show button"
+    },
+    {
+      "visible_if": "{{ block.settings.button2_enable == true }}",
+      "type": "text",
+      "id": "button2_label",
+      "default": "Button label",
+      "label": "Label"
+    },
+    {
+      "visible_if": "{{ block.settings.button2_enable == true }}",
+      "type": "url",
+      "id": "button2_link",
+      "label": "Link"
+    },
+    {
+      "visible_if": "{{ block.settings.button2_enable == true }}",
+      "type": "select",
+      "id": "button2_style",
+      "label": "Style",
+      "options": [
+        {
+          "value": "",
+          "label": "Default"
+        },
+        {
+          "value": "button-white",
+          "label": "White"
+        }
+      ],
+      "default": "button-white"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Buttons"
+    }
+  ]
+}
+{% endschema %}
