@@ -417,11 +417,22 @@ function updateCartLineItem(el) {
 }
 
 /*
- * Update cart item count
+ * UPDATE CART ITEM COUNT
  */
 function _updateCartItemCount(count) {
   let instances = document.querySelectorAll('[data-js="cart-counter"]');
   instances.forEach((el) => {
     el.innerText = count;
+  });
+}
+
+/*
+ * CLOSE CART DRAWER ON ESCAPE KEYPRESS
+ */
+function handleCloseCartDrawer() {
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      cartDrawer.close();
+    }
   });
 }
