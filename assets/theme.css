@@ -60,6 +60,9 @@ button,
 summary {
   cursor: pointer;
 }
+button {
+  background-color: inherit;
+}
 button:disabled {
   background-color: #777;
 }
@@ -72,10 +75,12 @@ p a {
   padding-right: 0.125rem;
 }
 
-a {
+a,
+button.cart-drawer-button {
   color: inherit;
   text-decoration: underline;
   text-decoration-thickness: 2px;
+  font-size: inherit;
 }
 
 .bold {
