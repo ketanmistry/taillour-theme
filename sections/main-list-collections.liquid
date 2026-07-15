@@ -14,11 +14,9 @@
 
   <section class="section">
     <div class="collections-grid">
-      {% liquid
-      for collection in collections
-        render 'collection-card', collection: collection
-      endfor
-      %}
+      {% for collection in collections %}
+        {% content_for "block", type: "_collection_card", id: "collection-card", closest.collection: collection %}
+      {% endfor %}
     </div>
   </section>
 </div>
