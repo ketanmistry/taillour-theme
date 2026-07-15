@@ -1,0 +1,50 @@
+{%- assign for_id = block.settings.name | handleize | prepend: 'contact_' -%}
+<div class="form-row" {{ block.shopify_attributes }}>
+  <label class="flex middle align-left" for="{{ for_id }}">
+    <input type="checkbox"
+    id="{{ for_id }}"
+    name="contact[{{- block.settings.name -}}]"
+    {% if block.settings.required == true %}required{% endif %}>
+    {{ block.settings.title }}
+  </label>
+</div>
+
+{% schema %}
+  {
+    "name": "Checkbox Field",
+    "tag": null,
+    "presets": [
+      {
+        "name": "Checkbox Field"
+      }
+    ],
+    "settings": [
+      {
+        "type": "inline_richtext",
+        "id": "title",
+        "label": "Label",
+        "default": "Label",
+        "info": "Display a label for the field."
+      },
+      {
+        "type": "text",
+        "id": "name",
+        "label": "Input Name",
+        "default": "Name",
+        "info": "This is the name of the field. Spaces and special characters will be converted to underscores."
+      },
+      {
+        "type": "checkbox",
+        "id": "required",
+        "label": "Required",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "placeholder",
+        "label": "Placeholder",
+        "info": "Add additional instructions with a placeholder."
+      }
+    ]
+  }
+{% endschema %}

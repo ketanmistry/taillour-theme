@@ -1,0 +1,67 @@
+{%- assign for_id = block.settings.name | handleize | prepend: 'contact_' -%}
+<div class="form-row" {{ block.shopify_attributes }}>
+  <label id="{{ for_id }}_label" for="{{ for_id }}"
+    {% if block.settings.required == true %}class="required"{%- endif -%}>
+    {{ block.settings.title }}
+  </label>
+  <textarea name="contact[{{- block.settings.name -}}]"
+    id="{{ for_id }}"
+    aria-labelledby="{{ for_id }}_label"
+    placeholder="{{ block.settings.placeholder }}"
+    {% unless block.settings.maxlength == blank %}maxlength="{{ block.settings.maxlength }}"{% endunless %}
+    rows="{{ block.settings.rows | default: 5 }}"
+    {% if block.settings.required == true %}required{% endif %}></textarea>
+</div>
+
+{% schema %}
+  {
+    "name": "Textarea",
+    "tag": null,
+    "presets": [
+      {
+        "name": "Textarea"
+      }
+    ],
+    "settings": [
+      {
+        "type": "inline_richtext",
+        "id": "title",
+        "label": "Label",
+        "default": "Label",
+        "info": "Display a label for the field."
+      },
+      {
+        "type": "text",
+        "id": "name",
+        "label": "Input Name",
+        "default": "body",
+        "info": "This is the name of the field. Spaces and special characters will be converted to underscores. Default is 'body'."
+      },
+      {
+        "type": "number",
+        "id": "maxlength",
+        "label": "Max Length",
+        "default": 128,
+        "info": "Leave blank to have no max length."
+      },
+      {
+        "type": "number",
+        "id": "rows",
+        "label": "Rows",
+        "default": 5
+      },
+      {
+        "type": "checkbox",
+        "id": "required",
+        "label": "Required",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "placeholder",
+        "label": "Placeholder",
+        "info": "Add additional instructions with a placeholder."
+      }
+    ]
+  }
+{% endschema %}

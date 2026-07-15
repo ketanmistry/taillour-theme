@@ -1,0 +1,32 @@
+<span {{ block.shopify_attributes }}>
+  <input type="hidden"
+    name="contact[{{ block.settings.title }}]"
+    value="{{ block.settings.value }}">
+</span>
+
+{% schema %}
+  {
+    "name": "Hidden Field",
+    "tag": null,
+    "presets": [
+      {
+        "name": "Hidden Field"
+      }
+    ],
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Input Name",
+        "default": "Name",
+        "info": "This is the name of the field. Spaces and special characters will be converted to underscores."
+      },
+      {
+        "type": "text",
+        "id": "value",
+        "label": "Value",
+        "info": "This is the fixed value of the field."
+      }
+    ]
+  }
+{% endschema %}

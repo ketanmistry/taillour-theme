@@ -1,0 +1,56 @@
+{%- assign for_id = block.settings.name | handleize | prepend: 'contact_' -%}
+<div class="form-row" {{ block.shopify_attributes }}>
+  <label id="{{ for_id }}_label" for="{{ for_id }}"
+    {% if block.settings.required == true %}class="required"{%- endif -%}>
+    {{ block.settings.title }}
+  </label>
+  <input type="email"
+    id="{{ for_id }}"
+    aria-labelledby="{{ for_id }}_label"
+    name="contact[{{- block.settings.name | handleize | replace: "-", "_" -}}]"
+    placeholder="{{ block.settings.placeholder }}"
+    {% unless block.settings.maxlength == blank %}maxlength="{{ block.settings.maxlength }}"{% endunless %}
+    required>
+</div>
+
+{% schema %}
+  {
+    "name": "Email Field",
+    "tag": null,
+    "presets": [
+      {
+        "name": "Email Field"
+      }
+    ],
+    "settings": [
+      {
+        "type": "inline_richtext",
+        "id": "title",
+        "label": "Label",
+        "default": "Email",
+        "info": "Display a label for the field."
+      },
+      {
+        "type": "text",
+        "id": "name",
+        "label": "Input Name",
+        "default": "email",
+        "info": "This is the name of the field. Spaces and special characters will be converted to underscores. For Shopify forms, only 'email' is accepted."
+      },
+      {
+        "type": "number",
+        "id": "maxlength",
+        "label": "Max Length",
+        "default": 128,
+        "info": "Leave blank to have no max length."
+      },
+      {
+        "type": "text",
+        "id": "placeholder",
+        "label": "Placeholder",
+        "info": "Add additional instructions with a placeholder.",
+        "default": "e.g. steve@example.com"
+      }
+    ]
+  }
+{% endschema %}

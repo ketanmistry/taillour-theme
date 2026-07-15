@@ -571,88 +571,109 @@
     "contact_form_EAWmhp": {
       "type": "contact-form",
       "blocks": {
-        "text_LU8zqn": {
-          "type": "text",
+        "formfield_text_jNgQEX": {
+          "type": "formfield_text",
+          "name": "Text Field",
           "settings": {
-            "title": "First Name",
-            "name": "First Name",
+            "title": "Name",
+            "name": "Name",
             "maxlength": 128,
-            "required": false,
+            "required": true,
             "placeholder": ""
-          }
+          },
+          "blocks": {}
         },
-        "text_CgHJ6n": {
-          "type": "text",
-          "settings": {
-            "title": "Last Name",
-            "name": "Last Name",
-            "maxlength": 128,
-            "required": false,
-            "placeholder": ""
-          }
-        },
-        "email_JcEXPP": {
-          "type": "email",
+        "formfield_email_iP8wcC": {
+          "type": "formfield_email",
+          "name": "Email Field",
           "settings": {
             "title": "Email",
+            "name": "email",
             "maxlength": 128,
-            "placeholder": ""
-          }
+            "placeholder": "e.g. steve@example.com"
+          },
+          "blocks": {}
         },
-        "textarea_XmypF6": {
-          "type": "textarea",
+        "formfield_textarea_wxHyYr": {
+          "type": "formfield_textarea",
+          "name": "Textarea",
           "settings": {
             "title": "Message",
-            "name": "Body",
+            "name": "body",
             "maxlength": 128,
             "rows": 5,
             "required": true,
             "placeholder": ""
-          }
+          },
+          "blocks": {}
         },
-        "paragraph_3RCxUm": {
-          "type": "paragraph",
+        "richtext_RdGjdj": {
+          "type": "richtext",
+          "name": "Text",
           "settings": {
             "text": "<p><strong>How did you hear about us?<br/></strong>Tick all that apply.</p>"
-          }
+          },
+          "blocks": {}
         },
-        "checkbox_ceachf": {
-          "type": "checkbox",
+        "formfield_checkbox_nFEhk9": {
+          "type": "formfield_checkbox",
+          "name": "Checkbox Field",
           "settings": {
             "title": "Google",
             "name": "Google",
             "required": false,
             "placeholder": ""
-          }
+          },
+          "blocks": {}
         },
-        "checkbox_HGGwkP": {
-          "type": "checkbox",
+        "formfield_checkbox_6neJzE": {
+          "type": "formfield_checkbox",
+          "name": "Checkbox Field",
           "settings": {
             "title": "Facebook",
             "name": "Facebook",
             "required": false,
             "placeholder": ""
-          }
+          },
+          "blocks": {}
         },
-        "checkbox_wHnRgw": {
-          "type": "checkbox",
+        "formfield_checkbox_XM6JMt": {
+          "type": "formfield_checkbox",
+          "name": "Checkbox Field",
           "settings": {
             "title": "TV",
             "name": "TV",
             "required": false,
             "placeholder": ""
-          }
+          },
+          "blocks": {}
+        },
+        "section-heading": {
+          "type": "heading",
+          "static": true,
+          "settings": {
+            "text": "Contact Form Section",
+            "size": "h2"
+          },
+          "blocks": {}
+        },
+        "section-description": {
+          "type": "richtext",
+          "static": true,
+          "settings": {
+            "text": "<p>This is the contact form section where you can add whatever fields you need via the customiser.</p>"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "text_LU8zqn",
-        "text_CgHJ6n",
-        "email_JcEXPP",
-        "textarea_XmypF6",
-        "paragraph_3RCxUm",
-        "checkbox_ceachf",
-        "checkbox_HGGwkP",
-        "checkbox_wHnRgw"
+        "formfield_text_jNgQEX",
+        "formfield_email_iP8wcC",
+        "formfield_textarea_wxHyYr",
+        "richtext_RdGjdj",
+        "formfield_checkbox_nFEhk9",
+        "formfield_checkbox_6neJzE",
+        "formfield_checkbox_XM6JMt"
       ],
       "settings": {
         "show_heading": true,

@@ -1,0 +1,58 @@
+{%- assign for_id = block.settings.name | handleize | prepend: 'contact_' -%}
+<div class="form-row" {{ block.shopify_attributes }}>
+  <label id="{{ for_id }}_label" for="{{ for_id }}"
+    {% if block.settings.required == true %}class="required"{%- endif -%}>
+    {{- block.settings.title -}}
+  </label>
+  <select id="{{ for_id }}"
+    aria-labelledby="{{ for_id }}_label"
+    name="contact[{{- block.settings.name | handleize | replace: "-", "_" -}}]"
+    {% if block.settings.required == true %}required{% endif %}>
+    <option value="">{{- block.settings.title -}}</option>
+    <hr/>
+    {%- assign options = block.settings.options | newline_to_br | split: "<br />" -%}
+    {% for option in options %}
+      <option value="{{- option -}}">{{- option -}}</option>
+    {% endfor %}
+  </select>
+</div>
+
+{% schema %}
+{
+  "name": "Options Field",
+  "tag": null,
+  "presets": [
+    {
+      "name": "Options Field"
+    }
+  ],
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Label",
+      "default": "Preferred Contact Time",
+      "info": "Display a label for the field."
+    },
+    {
+      "type": "text",
+      "id": "name",
+      "label": "Input Name",
+      "default": "time",
+      "info": "This is the name of the field. Spaces and special characters will be converted to underscores."
+    },
+    {
+      "type": "textarea",
+      "id": "options",
+      "label": "Options",
+      "default": "Call Anytime\nCall Morning\nCall Afternoon"
+    },
+    {
+      "type": "checkbox",
+      "id": "required",
+      "label": "Required",
+      "default": false
+    }
+  ]
+}
+{% endschema %}
