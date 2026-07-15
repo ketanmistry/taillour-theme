@@ -13,11 +13,9 @@
     {% content_for 'block', type: 'richtext', id: 'section-description' %}
 
     <div class="collections-grid">
-      {% liquid
-      for item in section.settings.collections
-        render 'collection-card', collection: item
-      endfor
-      %}
+      {% for collection in section.settings.collections %}
+        {% content_for "block", type: "_collection_card", id: "collection-card", closest.collection: collection %}
+      {% endfor %}
     </div>
   </div>
 </div>

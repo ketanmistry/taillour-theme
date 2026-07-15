@@ -1,0 +1,30 @@
+<a class="collection-card" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+  {% content_for "blocks" %}
+</a>
+
+{% schema %}
+{
+  "name": "Card",
+  "tag": null,
+  "settings": [
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link",
+      "default": "{{ closest.collection.url }}"
+    }
+  ],
+  "blocks": [
+    { "type": "heading" },
+    { "type": "richtext" },
+    { "type": "image" },
+    { "type": "buttons" }
+  ],
+  "presets": [
+    {
+      "name": "Card",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
