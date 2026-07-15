@@ -274,63 +274,200 @@
     "multicolumn_VbBRUF": {
       "type": "multicolumn",
       "blocks": {
-        "column_zYFacD": {
-          "type": "column",
-          "settings": {
-            "show_image": true,
-            "object_fit": "cover",
-            "object_position": "center",
-            "aspect_ratio": "4/3",
-            "text": "Columns Section",
-            "size": "h3",
-            "content": "<p>This section allows you to add 1 to 4 columns of text, each can have an optional image, heading and button.</p><p>The layout adjusts accordingly, but you can refactor as required depending on your project.</p>",
-            "show_button": true,
-            "button_label": "Button label",
-            "button_link": "#"
-          }
+        "content_card_LCHEQg": {
+          "type": "_content_card",
+          "name": "Card",
+          "settings": {},
+          "blocks": {
+            "image_kzdhek": {
+              "type": "image",
+              "name": "Image",
+              "settings": {
+                "show_image": true,
+                "object_fit": "cover",
+                "object_position": "center",
+                "aspect_ratio": "4/3"
+              },
+              "blocks": {}
+            },
+            "heading_TjeH9i": {
+              "type": "heading",
+              "name": "Heading",
+              "settings": {
+                "text": "Columns Section",
+                "size": "h3"
+              },
+              "blocks": {}
+            },
+            "richtext_kEmxPG": {
+              "type": "richtext",
+              "name": "Text",
+              "settings": {
+                "text": "<p>This section allows you to add 1 to 4 columns of text, each can have an optional image, heading and button.</p><p>The layout adjusts accordingly, but you can refactor as required depending on your project.</p>"
+              },
+              "blocks": {}
+            },
+            "buttons_JyxT8P": {
+              "type": "buttons",
+              "name": "Buttons",
+              "settings": {
+                "button1_enable": true,
+                "button1_label": "Button label",
+                "button1_link": "",
+                "button1_style": "",
+                "button2_enable": false,
+                "button2_label": "Button label",
+                "button2_link": "",
+                "button2_style": "button-white"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_kzdhek",
+            "heading_TjeH9i",
+            "richtext_kEmxPG",
+            "buttons_JyxT8P"
+          ]
         },
-        "column_CNfgmM": {
-          "type": "column",
-          "settings": {
-            "show_image": true,
-            "object_fit": "cover",
-            "object_position": "center",
-            "aspect_ratio": "4/3",
-            "text": "Customisable",
-            "size": "h3",
-            "content": "<p>Like all the sections of the Taillour theme, you have complete control over everything. There's no nested components or complicated javascript - just basic HTML/CSS and Liquid is all you need.</p>",
-            "show_button": true,
-            "button_label": "",
-            "button_link": ""
-          }
+        "content_card_Qm6kBc": {
+          "type": "_content_card",
+          "name": "Card",
+          "settings": {},
+          "blocks": {
+            "image_JPCFiD": {
+              "type": "image",
+              "name": "Image",
+              "settings": {
+                "show_image": true,
+                "object_fit": "cover",
+                "object_position": "center",
+                "aspect_ratio": "4/3"
+              },
+              "blocks": {}
+            },
+            "heading_rWQeVw": {
+              "type": "heading",
+              "name": "Heading",
+              "settings": {
+                "text": "Customisable",
+                "size": "h3"
+              },
+              "blocks": {}
+            },
+            "richtext_zbYNXR": {
+              "type": "richtext",
+              "name": "Text",
+              "settings": {
+                "text": "<p>Like all the sections of the Taillour theme, you have complete control over everything. There's no nested components or complicated javascript - just basic HTML/CSS and Liquid is all you need.</p>"
+              },
+              "blocks": {}
+            },
+            "buttons_7h99La": {
+              "type": "buttons",
+              "name": "Buttons",
+              "settings": {
+                "button1_enable": true,
+                "button1_label": "Button label",
+                "button1_link": "",
+                "button1_style": "",
+                "button2_enable": false,
+                "button2_label": "Button label",
+                "button2_link": "",
+                "button2_style": "button-white"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_JPCFiD",
+            "heading_rWQeVw",
+            "richtext_zbYNXR",
+            "buttons_7h99La"
+          ]
         },
-        "column_kbECRk": {
-          "type": "column",
+        "content_card_h9ixbp": {
+          "type": "_content_card",
+          "name": "Card",
+          "settings": {},
+          "blocks": {
+            "image_PTQhN4": {
+              "type": "image",
+              "name": "Image",
+              "settings": {
+                "show_image": true,
+                "object_fit": "cover",
+                "object_position": "center",
+                "aspect_ratio": "4/3"
+              },
+              "blocks": {}
+            },
+            "heading_di7VMw": {
+              "type": "heading",
+              "name": "Heading",
+              "settings": {
+                "text": "Headline",
+                "size": "h3"
+              },
+              "blocks": {}
+            },
+            "richtext_7wTkyp": {
+              "type": "richtext",
+              "name": "Text",
+              "settings": {
+                "text": "<p>Molestiae et repudiandae et voluptatem temporibus deleniti nemo dolor et. Aut et ipsa ab quas tempora eum voluptas nihil cumque. Totam nemo nobis quia et dolores. Officia in vitae exercitationem dolor iste ut possimus.</p>"
+              },
+              "blocks": {}
+            },
+            "buttons_qFE6mJ": {
+              "type": "buttons",
+              "name": "Buttons",
+              "settings": {
+                "button1_enable": true,
+                "button1_label": "Button label",
+                "button1_link": "",
+                "button1_style": "",
+                "button2_enable": false,
+                "button2_label": "Button label",
+                "button2_link": "",
+                "button2_style": "button-white"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_PTQhN4",
+            "heading_di7VMw",
+            "richtext_7wTkyp",
+            "buttons_qFE6mJ"
+          ]
+        },
+        "section-heading": {
+          "type": "heading",
+          "disabled": true,
+          "static": true,
           "settings": {
-            "show_image": true,
-            "object_fit": "cover",
-            "object_position": "center",
-            "aspect_ratio": "4/3",
             "text": "Headline",
-            "size": "h3",
-            "content": "<p>Molestiae et repudiandae et voluptatem temporibus deleniti nemo dolor et. Aut et ipsa ab quas tempora eum voluptas nihil cumque. Totam nemo nobis quia et dolores. Officia in vitae exercitationem dolor iste ut possimus. </p>",
-            "show_button": true,
-            "button_label": "",
-            "button_link": ""
-          }
+            "size": "h2"
+          },
+          "blocks": {}
+        },
+        "section-description": {
+          "type": "richtext",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "text": "<p>Asperiores voluptatem rerum fuga assumenda similique voluptatem sapiente qui non voluptatibus.</p>"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "column_zYFacD",
-        "column_CNfgmM",
-        "column_kbECRk"
+        "content_card_LCHEQg",
+        "content_card_Qm6kBc",
+        "content_card_h9ixbp"
       ],
       "settings": {
-        "show_heading": false,
-        "text": "Headline",
-        "size": "h2",
-        "show_description": false,
-        "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
         "background": "#ffffff",
         "color": "",
         "swipe_on_mobile": true
