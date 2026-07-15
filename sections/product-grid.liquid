@@ -1,20 +1,19 @@
-<style>
+{% style %}
 {{ section.id | prepend: '#' }}.section-wrap:before {
   background-color:{{ section.settings.background | default: '#ffffff' }}
 }
 {{ section.id | prepend: '#' }} .products-grid {
   grid-template-columns: repeat({{ section.settings.products_per_row }}, 1fr);
 }
-</style>
+{% endstyle %}
 
 <div id="{{ section.id }}" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
   <div class="section">
     {% content_for 'block', type: 'heading', id: 'section-heading' %}
     {% content_for 'block', type: 'richtext', id: 'section-description' %}
 
-    {% assign collection_handle = section.settings.collection | default: "home" %}
-
     <div class="products-grid">
+      {%- assign collection_handle = section.settings.collection | default: "home" -%}
       {% for product in collections[collection_handle].products limit: section.settings.limit %}
         {% content_for "block", type: "_product_card", id: "product-card", closest.product: product %}
       {% endfor %}
