@@ -19,7 +19,7 @@ assign menu_handle = 'main-menu'
         {%- liquid
         unless item_data == blank
           unless item.object.handle == handle
-            render 'collection-card', collection: item_data
+            content_for "block", type: "_collection_card", id: "collection-card", closest.collection: item_data
           endunless
         endunless
         -%}
