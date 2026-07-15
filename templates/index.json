@@ -37,11 +37,7 @@
           }
         }
       },
-      "block_order": [
-        "heading_gnR7KK",
-        "text_yz7Gyj",
-        "buttons_zUiW9p"
-      ],
+      "block_order": ["heading_gnR7KK", "text_yz7Gyj", "buttons_zUiW9p"],
       "settings": {
         "background": "#f5f5f5",
         "object_fit": "cover",
@@ -51,7 +47,7 @@
       }
     },
     "image_with_text_pjRwPQ": {
-      "type": "image-with-text",
+      "type": "media-with-text",
       "blocks": {
         "heading_aRADHH": {
           "type": "heading",
@@ -102,11 +98,7 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "heading_aRADHH",
-        "text_amNwtU",
-        "buttons_hEXxe6"
-      ],
+      "block_order": ["heading_aRADHH", "text_amNwtU", "buttons_hEXxe6"],
       "settings": {
         "background": "#ffffff",
         "color": "",
@@ -131,7 +123,7 @@
       }
     },
     "image_with_text_wwgjfP": {
-      "type": "image-with-text",
+      "type": "media-with-text",
       "blocks": {
         "heading_h4Nfpw": {
           "type": "heading",
@@ -182,11 +174,7 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "heading_h4Nfpw",
-        "richtext_AtYBbc",
-        "buttons_gWaTA4"
-      ],
+      "block_order": ["heading_h4Nfpw", "richtext_AtYBbc", "buttons_gWaTA4"],
       "settings": {
         "background": "#F5F5F5",
         "color": "",
@@ -228,9 +216,7 @@
         "size": "h2",
         "show_description": false,
         "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
-        "collections": [
-          "frontpage"
-        ],
+        "collections": ["frontpage"],
         "collections_per_row": 4,
         "background": "#ffffff",
         "color": ""
@@ -285,11 +271,7 @@
           }
         }
       },
-      "block_order": [
-        "column_zYFacD",
-        "column_CNfgmM",
-        "column_kbECRk"
-      ],
+      "block_order": ["column_zYFacD", "column_CNfgmM", "column_kbECRk"],
       "settings": {
         "show_heading": false,
         "text": "Headline",
@@ -428,10 +410,7 @@
           }
         }
       },
-      "block_order": [
-        "heading_rcNraU",
-        "text_8JAgq6"
-      ],
+      "block_order": ["heading_rcNraU", "text_8JAgq6"],
       "name": "Custom Liquid & Text",
       "settings": {
         "show_heading": false,
