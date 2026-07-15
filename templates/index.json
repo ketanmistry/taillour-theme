@@ -223,6 +223,56 @@
             "text": "<p>Asperiores voluptatem rerum fuga assumenda similique voluptatem sapiente qui non voluptatibus.</p>"
           },
           "blocks": {}
+        },
+        "product-card": {
+          "type": "_product_card",
+          "static": true,
+          "settings": {
+            "link": "{{ closest.product.url }}"
+          },
+          "blocks": {
+            "image_4W9ML4": {
+              "type": "image",
+              "name": "Image",
+              "settings": {
+                "image": "{{ closest.product.featured_image }}",
+                "show_image": true,
+                "object_fit": "cover",
+                "object_position": "center",
+                "aspect_ratio": "1/1"
+              },
+              "blocks": {}
+            },
+            "heading_7mAGab": {
+              "type": "heading",
+              "name": "Heading",
+              "settings": {
+                "text": "{{ closest.product.title }}",
+                "size": "h3"
+              },
+              "blocks": {}
+            },
+            "richtext_iFn6YF": {
+              "type": "richtext",
+              "name": "Text",
+              "settings": {
+                "text": ""
+              },
+              "blocks": {}
+            },
+            "product_card_price_F9QVyX": {
+              "type": "_product_card_price",
+              "name": "Price",
+              "settings": {},
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_4W9ML4",
+            "heading_7mAGab",
+            "richtext_iFn6YF",
+            "product_card_price_F9QVyX"
+          ]
         }
       },
       "settings": {
@@ -260,6 +310,39 @@
             "text": "<p>Asperiores voluptatem rerum fuga assumenda similique voluptatem sapiente qui non voluptatibus.</p>"
           },
           "blocks": {}
+        },
+        "collection-card": {
+          "type": "_collection_card",
+          "static": true,
+          "settings": {
+            "link": "{{ closest.collection.url }}"
+          },
+          "blocks": {
+            "image_brpa34": {
+              "type": "image",
+              "name": "Image",
+              "settings": {
+                "image": "{{ closest.collection.image }}",
+                "show_image": true,
+                "object_fit": "cover",
+                "object_position": "center",
+                "aspect_ratio": "1/1"
+              },
+              "blocks": {}
+            },
+            "richtext_6y9DaF": {
+              "type": "richtext",
+              "name": "Text",
+              "settings": {
+                "text": "<h3>{{ closest.collection.title }}</h3>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_brpa34",
+            "richtext_6y9DaF"
+          ]
         }
       },
       "settings": {

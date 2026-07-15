@@ -15,11 +15,9 @@
     {% assign collection_handle = section.settings.collection | default: "home" %}
 
     <div class="products-grid">
-      {% liquid
-      for product in collections[collection_handle].products limit: section.settings.limit
-        render 'product-card', product: product
-      endfor
-      %}
+      {% for product in collections[collection_handle].products limit: section.settings.limit %}
+        {% content_for "block", type: "_product_card", id: "product-card", closest.product: product %}
+      {% endfor %}
     </div>
   </div>
 </div>
