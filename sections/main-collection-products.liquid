@@ -36,11 +36,9 @@
         <p>{{ collection.products_count }} products</p>
 
         <div class="products-grid">
-          {% liquid
-          for product in collection.products
-            render 'product-card', product: product
-          endfor
-          %}
+          {% for product in collection.products %}
+            {% content_for "block", type: "_product_card", id: "product-card", closest.product: product %}
+          {% endfor %}
         </div>
       </div>
 

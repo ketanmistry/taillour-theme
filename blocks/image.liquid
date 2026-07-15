@@ -1,3 +1,7 @@
+{%- liquid
+assign image_width = 768
+assign image_height = image_width | divided_by: product.featured_image.aspect_ratio | ceil
+-%}
 <div class="image-block" {{ block.shopify_attributes }}>
   {% if block.settings.image == blank %}
     {{ 'collection-1' | placeholder_svg_tag: "placeholder" }}
@@ -27,13 +31,6 @@
       "label": "Image"
     },
     {
-      "type": "checkbox",
-      "id": "show_image",
-      "label": "Show image",
-      "default": true
-    },
-    {
-      "visible_if": "{{ block.settings.show_image == true }}",
       "type": "select",
       "id": "object_fit",
       "label": "Fit",
@@ -58,7 +55,6 @@
       "default": "cover"
     },
     {
-      "visible_if": "{{ block.settings.show_image == true }}",
       "type": "select",
       "id": "object_position",
       "label": "Position",
@@ -87,7 +83,6 @@
       "default": "center"
     },
     {
-      "visible_if": "{{ block.settings.show_image == true }}",
       "type": "select",
       "id": "aspect_ratio",
       "label": "Aspect Ratio",
