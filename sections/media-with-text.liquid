@@ -22,61 +22,41 @@
 
       <div class="media-text-asset">
         {% case section.settings.media_type %}
-        {% when "image" %}
-          {% if section.settings.image == blank %}
-            {{ 'collection-4' | placeholder_svg_tag: "placeholder" }}
-          {% else %}
-            {% capture image_sizes %}
-            width:100%; height:100%; object-fit: {{ section.settings.object_fit }}; object-position: {{ section.settings.object_position }}; aspect-ratio: {{ section.settings.aspect_ratio }}
-            {% endcapture %}
-            {% assign image = section.settings.image %}
-            <img src="{{ image | image_url: width: image_width }}"
-              width="{{ image_width }}"
-              height="{{ image_width | divided_by: image.aspect_ratio | ceil }}"
-              alt="{{ image.alt }}"
-              style="{{- image_sizes -}}"
-              loading="lazy">
-          {% endif %}
+          {% when "image" %}
+            {% if section.settings.image == blank %}
+              {{ 'collection-4' | placeholder_svg_tag: "placeholder" }}
+            {% else %}
+              {% capture image_sizes %}
+              width:100%; height:100%; object-fit: {{ section.settings.object_fit }}; object-position: {{ section.settings.object_position }}; aspect-ratio: {{ section.settings.aspect_ratio }}
+              {% endcapture %}
+              {% assign image = section.settings.image %}
+              <img src="{{ image | image_url: width: image_width }}"
+                width="{{ image_width }}"
+                height="{{ image_width | divided_by: image.aspect_ratio | ceil }}"
+                alt="{{ image.alt }}"
+                style="{{- image_sizes -}}"
+                loading="lazy">
+            {% endif %}
 
-        {% when "video" %}
-          {% if section.settings.video == blank %}
-            {{ 'collection-4' | placeholder_svg_tag: "placeholder" }}
-          {% else %}
-            {% render "video",
-              video: section.settings.video,
-              image: section.settings.image,
-              object_fit: section.settings.object_fit,
-              object_position: section.settings.object_position,
-              aspect_ratio: section.settings.aspect_ratio
-            %}
-          {% endif %}
+          {% when "video" %}
+            {% if section.settings.video == blank %}
+              {{ 'collection-4' | placeholder_svg_tag: "placeholder" }}
+            {% else %}
+              {% render "video",
+                video: section.settings.video,
+                image: section.settings.image,
+                object_fit: section.settings.object_fit,
+                object_position: section.settings.object_position,
+                aspect_ratio: section.settings.aspect_ratio
+              %}
+            {% endif %}
 
-        {% when "code" %}
-          <div>
-            {{ section.settings.code }}
-          </div>
+          {% when "code" %}
+            <div>
+              {{ section.settings.code }}
+            </div>
 
-      {% endcase %}
-    </div>
-
-        {% comment %}
-        <div>
-          {% if section.settings.image == blank %}
-            {{ 'collection-4' | placeholder_svg_tag: "placeholder" }}
-          {% else %}
-            {% capture image_sizes %}
-            width:100%; height:100%; object-fit: {{ section.settings.object_fit }}; object-position: {{ section.settings.object_position }}; aspect-ratio: {{ section.settings.aspect_ratio }}
-            {% endcapture %}
-            {% assign image = section.settings.image %}
-            <img src="{{ image | image_url: width: image_width }}"
-              width="{{ image_width }}"
-              height="{{ image_width | divided_by: image.aspect_ratio | ceil }}"
-              alt="{{ image.alt }}"
-              style="{{- image_sizes -}}"
-              loading="lazy">
-          {% endif %}
-        </div>
-        {% endcomment %}
+        {% endcase %}
       </div>
     </div>
   </div>

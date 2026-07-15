@@ -37,7 +37,11 @@
           }
         }
       },
-      "block_order": ["heading_gnR7KK", "text_yz7Gyj", "buttons_zUiW9p"],
+      "block_order": [
+        "heading_gnR7KK",
+        "text_yz7Gyj",
+        "buttons_zUiW9p"
+      ],
       "settings": {
         "background": "#f5f5f5",
         "object_fit": "cover",
@@ -98,7 +102,11 @@
           "blocks": {}
         }
       },
-      "block_order": ["heading_aRADHH", "text_amNwtU", "buttons_hEXxe6"],
+      "block_order": [
+        "heading_aRADHH",
+        "text_amNwtU",
+        "buttons_hEXxe6"
+      ],
       "settings": {
         "background": "#ffffff",
         "color": "",
@@ -174,9 +182,13 @@
           "blocks": {}
         }
       },
-      "block_order": ["heading_h4Nfpw", "richtext_AtYBbc", "buttons_gWaTA4"],
+      "block_order": [
+        "heading_h4Nfpw",
+        "richtext_AtYBbc",
+        "buttons_gWaTA4"
+      ],
       "settings": {
-        "background": "#F5F5F5",
+        "background": "#f5f5f5",
         "color": "",
         "media_position": "left",
         "media_type": "video",
@@ -216,7 +228,9 @@
         "size": "h2",
         "show_description": false,
         "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
-        "collections": ["frontpage"],
+        "collections": [
+          "frontpage"
+        ],
         "collections_per_row": 4,
         "background": "#ffffff",
         "color": ""
@@ -271,7 +285,11 @@
           }
         }
       },
-      "block_order": ["column_zYFacD", "column_CNfgmM", "column_kbECRk"],
+      "block_order": [
+        "column_zYFacD",
+        "column_CNfgmM",
+        "column_kbECRk"
+      ],
       "settings": {
         "show_heading": false,
         "text": "Headline",
@@ -393,35 +411,58 @@
         "thank_you_page": ""
       }
     },
-    "raw_html_with_text_XjAjHG": {
-      "type": "raw-html-with-text",
+    "media_with_text_4kXxGj": {
+      "type": "media-with-text",
       "blocks": {
-        "heading_rcNraU": {
+        "heading_k4FTNB": {
           "type": "heading",
           "settings": {
             "text": "Custom Liquid with Text Section",
             "size": "h2"
-          }
+          },
+          "blocks": {}
         },
-        "text_8JAgq6": {
-          "type": "text",
+        "richtext_KWH3yw": {
+          "type": "richtext",
           "settings": {
             "text": "<p>A custom liquid with text section – great for embedding a Google map with showroom address/contact details. The text section can placed on the left or right.</p>"
-          }
+          },
+          "blocks": {}
+        },
+        "section-title": {
+          "type": "heading",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "text": "Headline",
+            "size": "h2"
+          },
+          "blocks": {}
+        },
+        "section-description": {
+          "type": "richtext",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "text": "<p>Asperiores voluptatem rerum fuga assumenda similique voluptatem sapiente qui non voluptatibus.</p>"
+          },
+          "blocks": {}
         }
       },
-      "block_order": ["heading_rcNraU", "text_8JAgq6"],
-      "name": "Custom Liquid & Text",
+      "block_order": [
+        "heading_k4FTNB",
+        "richtext_KWH3yw"
+      ],
+      "name": "Media with Text",
       "settings": {
-        "show_heading": false,
-        "text": "Headline",
-        "size": "h2",
-        "show_description": false,
-        "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
-        "html": "<iframe width=\"100%\" height=\"440px\" frameborder=\"0\" style=\"border:0\" src=\"https://www.google.com/maps/embed/v1/place?key=AIzaSyB2NIWI3Tv9iDPrlnowr_0ZqZWoAQydKJU&q=Cairns%20Esplanade%20Lagoon%2C%20Esplanade%2C%20Cairns%20City%20QLD%2C%20Australia&maptype=roadmap\" allowfullscreen></iframe>",
-        "html_position": "right",
-        "background": "#f5f5f5",
-        "color": ""
+        "background": "#F5F5F5",
+        "color": "",
+        "media_position": "right",
+        "media_type": "code",
+        "aspect_ratio": "1/1",
+        "object_fit": "contain",
+        "object_position": "center",
+        "code": "<iframe width=\"100%\" height=\"440px\" frameborder=\"0\" style=\"border:0\" src=\"https://www.google.com/maps/embed/v1/place?key=AIzaSyB2NIWI3Tv9iDPrlnowr_0ZqZWoAQydKJU&q=Cairns%20Esplanade%20Lagoon%2C%20Esplanade%2C%20Cairns%20City%20QLD%2C%20Australia&maptype=roadmap\" allowfullscreen></iframe>"
       }
     }
   },
@@ -436,6 +477,6 @@
     "multicolumn_VbBRUF",
     "newsletter_form_JJALbH",
     "contact_form_EAWmhp",
-    "raw_html_with_text_XjAjHG"
+    "media_with_text_4kXxGj"
   ]
 }
