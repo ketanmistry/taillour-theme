@@ -17,27 +17,36 @@
           "settings": {
             "text": "Hello there!",
             "size": "h1"
-          }
+          },
+          "blocks": {}
         },
         "text_yz7Gyj": {
           "type": "richtext",
           "settings": {
             "text": "<p>Welcome to the demo store for the Taillour theme. This is the hero/image banner section where you can add a heading, text, CTA and image.</p>"
-          }
+          },
+          "blocks": {}
         },
         "buttons_zUiW9p": {
           "type": "buttons",
           "settings": {
+            "button1_enable": true,
             "button1_label": "Browse Products",
             "button1_link": "shopify://collections/classics",
-            "button1_enable": true,
+            "button1_style": "",
+            "button2_enable": false,
             "button2_label": "Button label",
             "button2_link": "",
-            "button2_enable": false
-          }
+            "button2_style": "button-white"
+          },
+          "blocks": {}
         }
       },
-      "block_order": ["heading_gnR7KK", "text_yz7Gyj", "buttons_zUiW9p"],
+      "block_order": [
+        "heading_gnR7KK",
+        "text_yz7Gyj",
+        "buttons_zUiW9p"
+      ],
       "settings": {
         "background": "#f5f5f5",
         "object_fit": "cover",
@@ -98,7 +107,11 @@
           "blocks": {}
         }
       },
-      "block_order": ["heading_aRADHH", "text_amNwtU", "buttons_hEXxe6"],
+      "block_order": [
+        "heading_aRADHH",
+        "text_amNwtU",
+        "buttons_hEXxe6"
+      ],
       "settings": {
         "background": "#ffffff",
         "color": "",
@@ -174,7 +187,11 @@
           "blocks": {}
         }
       },
-      "block_order": ["heading_h4Nfpw", "richtext_AtYBbc", "buttons_gWaTA4"],
+      "block_order": [
+        "heading_h4Nfpw",
+        "richtext_AtYBbc",
+        "buttons_gWaTA4"
+      ],
       "settings": {
         "background": "#f5f5f5",
         "color": "",
@@ -188,6 +205,26 @@
     },
     "product_grid_9e9FqV": {
       "type": "product-grid",
+      "blocks": {
+        "section-heading": {
+          "type": "heading",
+          "static": true,
+          "settings": {
+            "text": "Products Section",
+            "size": "h2"
+          },
+          "blocks": {}
+        },
+        "section-description": {
+          "type": "richtext",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "text": "<p>Asperiores voluptatem rerum fuga assumenda similique voluptatem sapiente qui non voluptatibus.</p>"
+          },
+          "blocks": {}
+        }
+      },
       "settings": {
         "show_heading": true,
         "text": "Products Section",
@@ -216,7 +253,9 @@
         "size": "h2",
         "show_description": false,
         "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
-        "collections": ["frontpage"],
+        "collections": [
+          "frontpage"
+        ],
         "collections_per_row": 4,
         "background": "#ffffff",
         "color": ""
@@ -271,7 +310,11 @@
           }
         }
       },
-      "block_order": ["column_zYFacD", "column_CNfgmM", "column_kbECRk"],
+      "block_order": [
+        "column_zYFacD",
+        "column_CNfgmM",
+        "column_kbECRk"
+      ],
       "settings": {
         "show_heading": false,
         "text": "Headline",
@@ -431,10 +474,13 @@
           "blocks": {}
         }
       },
-      "block_order": ["heading_k4FTNB", "richtext_KWH3yw"],
+      "block_order": [
+        "heading_k4FTNB",
+        "richtext_KWH3yw"
+      ],
       "name": "Media with Text",
       "settings": {
-        "background": "#F5F5F5",
+        "background": "#f5f5f5",
         "color": "",
         "media_position": "right",
         "media_type": "code",
