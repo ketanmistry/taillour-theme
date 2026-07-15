@@ -20,9 +20,9 @@
           }
         },
         "text_yz7Gyj": {
-          "type": "text",
+          "type": "richtext",
           "settings": {
-            "text": "Welcome to the demo store for the Taillour theme. This is the hero/image banner section where you can add a heading, text, CTA and image."
+            "text": "<p>Welcome to the demo store for the Taillour theme. This is the hero/image banner section where you can add a heading, text, CTA and image.</p>"
           }
         },
         "buttons_zUiW9p": {
@@ -37,11 +37,7 @@
           }
         }
       },
-      "block_order": [
-        "heading_gnR7KK",
-        "text_yz7Gyj",
-        "buttons_zUiW9p"
-      ],
+      "block_order": ["heading_gnR7KK", "text_yz7Gyj", "buttons_zUiW9p"],
       "settings": {
         "background": "#f5f5f5",
         "object_fit": "cover",
@@ -102,11 +98,7 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "heading_aRADHH",
-        "text_amNwtU",
-        "buttons_hEXxe6"
-      ],
+      "block_order": ["heading_aRADHH", "text_amNwtU", "buttons_hEXxe6"],
       "settings": {
         "background": "#ffffff",
         "color": "",
@@ -182,11 +174,7 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "heading_h4Nfpw",
-        "richtext_AtYBbc",
-        "buttons_gWaTA4"
-      ],
+      "block_order": ["heading_h4Nfpw", "richtext_AtYBbc", "buttons_gWaTA4"],
       "settings": {
         "background": "#f5f5f5",
         "color": "",
@@ -228,9 +216,7 @@
         "size": "h2",
         "show_description": false,
         "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
-        "collections": [
-          "frontpage"
-        ],
+        "collections": ["frontpage"],
         "collections_per_row": 4,
         "background": "#ffffff",
         "color": ""
@@ -285,11 +271,7 @@
           }
         }
       },
-      "block_order": [
-        "column_zYFacD",
-        "column_CNfgmM",
-        "column_kbECRk"
-      ],
+      "block_order": ["column_zYFacD", "column_CNfgmM", "column_kbECRk"],
       "settings": {
         "show_heading": false,
         "text": "Headline",
@@ -449,10 +431,7 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "heading_k4FTNB",
-        "richtext_KWH3yw"
-      ],
+      "block_order": ["heading_k4FTNB", "richtext_KWH3yw"],
       "name": "Media with Text",
       "settings": {
         "background": "#F5F5F5",
