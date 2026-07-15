@@ -226,11 +226,6 @@
         }
       },
       "settings": {
-        "show_heading": true,
-        "text": "Products Section",
-        "size": "h2",
-        "show_description": false,
-        "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
         "collection": "frontpage",
         "limit": 8,
         "products_per_row": 4,
@@ -247,12 +242,27 @@
     },
     "collection_grid_7w6HWG": {
       "type": "collection-grid",
+      "blocks": {
+        "section-heading": {
+          "type": "heading",
+          "static": true,
+          "settings": {
+            "text": "Collections Section",
+            "size": "h2"
+          },
+          "blocks": {}
+        },
+        "section-description": {
+          "type": "richtext",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "text": "<p>Asperiores voluptatem rerum fuga assumenda similique voluptatem sapiente qui non voluptatibus.</p>"
+          },
+          "blocks": {}
+        }
+      },
       "settings": {
-        "show_heading": true,
-        "text": "Collections Section",
-        "size": "h2",
-        "show_description": false,
-        "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
         "collections": [
           "frontpage"
         ],
