@@ -110,10 +110,12 @@
       "settings": {
         "background": "#ffffff",
         "color": "",
+        "media_position": "right",
+        "media_type": "image",
+        "aspect_ratio": "1/1",
         "object_fit": "cover",
         "object_position": "center",
-        "aspect_ratio": "1/1",
-        "image_position": "right"
+        "code": ""
       }
     },
     "text_GjxAeE": {
@@ -128,49 +130,72 @@
         "color": "#ffffff"
       }
     },
-    "image_with_video_NCkDCh": {
-      "type": "video-with-text",
+    "image_with_text_wwgjfP": {
+      "type": "image-with-text",
       "blocks": {
-        "heading_JbRWKC": {
+        "heading_h4Nfpw": {
           "type": "heading",
           "settings": {
             "text": "Video/Text Section",
             "size": "h2"
-          }
+          },
+          "blocks": {}
         },
-        "text_VhigEQ": {
-          "type": "text",
+        "richtext_AtYBbc": {
+          "type": "richtext",
           "settings": {
-            "text": "<p>You can display a video using this section. Like the image/text section above the asset can be positioned to the left or the right.</p>"
-          }
+            "text": "<p>You can display a video using this section.</p>"
+          },
+          "blocks": {}
         },
-        "buttons_jzKH3h": {
+        "buttons_gWaTA4": {
           "type": "buttons",
           "settings": {
-            "button_label": "Optional button?",
-            "button_link": "#"
-          }
+            "button1_enable": true,
+            "button1_label": "Primary button",
+            "button1_link": "#",
+            "button1_style": "",
+            "button2_enable": false,
+            "button2_label": "Secondary button",
+            "button2_link": "#",
+            "button2_style": "button-white"
+          },
+          "blocks": {}
+        },
+        "section-title": {
+          "type": "heading",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "text": "Headline",
+            "size": "h2"
+          },
+          "blocks": {}
+        },
+        "section-description": {
+          "type": "richtext",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "text": "<p>Asperiores voluptatem rerum fuga assumenda similique voluptatem sapiente qui non voluptatibus.</p>"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "heading_JbRWKC",
-        "text_VhigEQ",
-        "buttons_jzKH3h"
+        "heading_h4Nfpw",
+        "richtext_AtYBbc",
+        "buttons_gWaTA4"
       ],
       "settings": {
-        "show_heading": false,
-        "text": "Headline",
-        "size": "h2",
-        "show_description": false,
-        "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
-        "background": "#f5f5f5",
+        "background": "#F5F5F5",
         "color": "",
-        "video": "",
-        "object_fit": "contain",
+        "media_position": "left",
+        "media_type": "video",
+        "aspect_ratio": "1/1",
+        "object_fit": "cover",
         "object_position": "center",
-        "aspect_ratio": "4/3",
-        "video_width": 1020,
-        "video_position": "left"
+        "code": ""
       }
     },
     "product_grid_9e9FqV": {
@@ -425,7 +450,7 @@
     "image_banner_6NDtLC",
     "image_with_text_pjRwPQ",
     "text_GjxAeE",
-    "image_with_video_NCkDCh",
+    "image_with_text_wwgjfP",
     "product_grid_9e9FqV",
     "button_row_NkV6Bn",
     "collection_grid_7w6HWG",

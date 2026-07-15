@@ -1,0 +1,32 @@
+{% doc %}
+Renders video tag HTML.
+
+@param {object} video - Video object (would be a section/block setting).
+@param {object} image - Image used for the poster.
+@param {string} object_fit - CSS "cover" or "contain" value.
+@param {string} object_position - CSS "top" or "bottom" value.
+@param {string} aspect_ratio - CSS aspect ratio value.
+
+@example
+{% render 'video',
+  video: section.settings.video,
+  image: section.settings.image,
+  object_fit: section.settings.object_fit,
+  object_position: section.settings.object_position,
+  aspect_ratio: section.settings.aspect_ratio
+%}
+{% enddoc %}
+
+{%- assign poster = image | image_url: width: 1024 -%}
+{%- capture style -%}
+object-fit:{{ object_fit }};object-position: {{ object_position }}; aspect-ratio: {{ aspect_ratio }};
+{%- endcapture -%}
+{{ video | video_tag:
+  autoplay: false,
+  controls: true,
+  loop: true,
+  muted: true,
+  poster: poster,
+  width: '100%',
+  style: style
+}}

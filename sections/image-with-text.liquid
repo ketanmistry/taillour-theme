@@ -1,7 +1,7 @@
 {%- assign image_width = 1024 -%}
 
 {%- style -%}
-.image-text-left .image-text-asset {
+.media-text-left .media-text-asset {
   order: -1;
 }
 {{ section.id | prepend: '#' }}.section-wrap:before {
@@ -15,12 +15,51 @@
     {% content_for 'block', type: "heading", id: "section-title" %}
     {% content_for 'block', type: 'richtext', id: 'section-description' %}
 
-    <div class="grid-2 middle image-text-{{ section.settings.image_position }}">
-      <div class="image-text-content">
+    <div class="grid-2 middle media-text-{{ section.settings.media_position }}">
+      <div class="media-text-content">
         {% content_for 'blocks' %}
       </div>
 
-      <div class="image-text-asset">
+      <div class="media-text-asset">
+        {% case section.settings.media_type %}
+        {% when "image" %}
+          {% if section.settings.image == blank %}
+            {{ 'collection-4' | placeholder_svg_tag: "placeholder" }}
+          {% else %}
+            {% capture image_sizes %}
+            width:100%; height:100%; object-fit: {{ section.settings.object_fit }}; object-position: {{ section.settings.object_position }}; aspect-ratio: {{ section.settings.aspect_ratio }}
+            {% endcapture %}
+            {% assign image = section.settings.image %}
+            <img src="{{ image | image_url: width: image_width }}"
+              width="{{ image_width }}"
+              height="{{ image_width | divided_by: image.aspect_ratio | ceil }}"
+              alt="{{ image.alt }}"
+              style="{{- image_sizes -}}"
+              loading="lazy">
+          {% endif %}
+
+        {% when "video" %}
+          {% if section.settings.video == blank %}
+            {{ 'collection-4' | placeholder_svg_tag: "placeholder" }}
+          {% else %}
+            {% render "video",
+              video: section.settings.video,
+              image: section.settings.image,
+              object_fit: section.settings.object_fit,
+              object_position: section.settings.object_position,
+              aspect_ratio: section.settings.aspect_ratio
+            %}
+          {% endif %}
+
+        {% when "code" %}
+          <div>
+            {{ section.settings.code }}
+          </div>
+
+      {% endcase %}
+    </div>
+
+        {% comment %}
         <div>
           {% if section.settings.image == blank %}
             {{ 'collection-4' | placeholder_svg_tag: "placeholder" }}
@@ -37,6 +76,7 @@
               loading="lazy">
           {% endif %}
         </div>
+        {% endcomment %}
       </div>
     </div>
   </div>
@@ -44,11 +84,11 @@
 
 {% schema %}
 {
-  "name": "Image & Text",
+  "name": "Media with Text",
   "tag": "section",
-  "class": "image-text-section",
+  "class": "media-text-section",
   "disabled_on": {
-    "groups": ["header"]
+    "groups": ["*"]
   },
   "settings": [
     {
@@ -68,54 +108,13 @@
     },
     {
       "type": "header",
-      "content": "Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image"
+      "content": "Media"
     },
     {
       "type": "select",
-      "id": "object_fit",
-      "label": "Fit",
-      "options": [
-        {
-          "value": "contain",
-          "label": "Contain"
-        },
-        {
-          "value": "cover",
-          "label": "Cover"
-        },
-        {
-          "value": "fill",
-          "label": "Fill"
-        },
-        {
-          "value": "none",
-          "label": "None"
-        }
-      ],
-      "default": "contain"
-    },
-    {
-      "type": "select",
-      "id": "object_position",
+      "id": "media_position",
       "label": "Position",
       "options": [
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "top",
-          "label": "Top"
-        },
-        {
-          "value": "bottom",
-          "label": "Bottom"
-        },
         {
           "value": "left",
           "label": "Left"
@@ -125,9 +124,30 @@
           "label": "Right"
         }
       ],
-      "default": "center"
+      "default": "right"
     },
     {
+      "type": "select",
+      "id": "media_type",
+      "label": "Type",
+      "options": [
+        {
+          "value": "image",
+          "label": "Image"
+        },
+        {
+          "value": "video",
+          "label": "Video"
+        },
+        {
+          "value": "code",
+          "label": "Code"
+        }
+      ],
+      "default": "image"
+    },
+    {
+      "visible_if": "{{ section.settings.media_type != 'code' }}",
       "type": "select",
       "id": "aspect_ratio",
       "label": "Aspect Ratio",
@@ -156,10 +176,66 @@
       "default": "1/1"
     },
     {
+      "visible_if": "{{ section.settings.media_type == 'video' }}",
+      "type": "video",
+      "id": "video",
+      "label": "Video",
+      "info": "Shopify-hosted video."
+    },
+    {
+      "visible_if": "{{ section.settings.media_type == 'video' }}",
+      "type": "paragraph",
+      "content": "Image will be set as the video's poster. For best results, use an image with the same aspect ratio as the video."
+    },
+    {
+      "visible_if": "{{ section.settings.media_type != 'code' }}",
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "visible_if": "{{ section.settings.media_type != 'code' }}",
       "type": "select",
-      "id": "image_position",
-      "label": "Image Position",
+      "id": "object_fit",
+      "label": "Fit",
       "options": [
+        {
+          "value": "contain",
+          "label": "Contain"
+        },
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "fill",
+          "label": "Fill"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ],
+      "default": "contain"
+    },
+    {
+      "visible_if": "{{ section.settings.media_type != 'code' }}",
+      "type": "select",
+      "id": "object_position",
+      "label": "Position",
+      "options": [
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
         {
           "value": "left",
           "label": "Left"
@@ -169,7 +245,14 @@
           "label": "Right"
         }
       ],
-      "default": "right"
+      "default": "center"
+    },
+    {
+      "visible_if": "{{ section.settings.media_type == 'code' }}",
+      "type": "liquid",
+      "id": "code",
+      "label": "HTML/Liquid",
+      "info": "HTML code to be displayed."
     }
   ],
   "blocks": [
@@ -180,7 +263,7 @@
   ],
   "presets": [
     {
-      "name": "Image & Text",
+      "name": "Media with Text",
       "blocks": [
         {
           "type": "heading"
