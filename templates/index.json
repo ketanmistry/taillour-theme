@@ -236,7 +236,6 @@
               "name": "Image",
               "settings": {
                 "image": "{{ closest.product.featured_image }}",
-                "show_image": true,
                 "object_fit": "cover",
                 "object_position": "center",
                 "aspect_ratio": "1/1"
@@ -285,10 +284,24 @@
     },
     "button_row_NkV6Bn": {
       "type": "button-row",
-      "settings": {
-        "text": "Go Shopping",
-        "link": "shopify://collections"
-      }
+      "blocks": {
+        "button-group": {
+          "type": "buttons",
+          "static": true,
+          "settings": {
+            "button1_enable": true,
+            "button1_label": "Go Shopping",
+            "button1_link": "shopify://collections",
+            "button1_style": "",
+            "button2_enable": false,
+            "button2_label": "Button label",
+            "button2_link": "",
+            "button2_style": "button-white"
+          },
+          "blocks": {}
+        }
+      },
+      "settings": {}
     },
     "collection_grid_7w6HWG": {
       "type": "collection-grid",
@@ -323,7 +336,6 @@
               "name": "Image",
               "settings": {
                 "image": "{{ closest.collection.image }}",
-                "show_image": true,
                 "object_fit": "cover",
                 "object_position": "center",
                 "aspect_ratio": "1/1"
@@ -366,7 +378,6 @@
               "type": "image",
               "name": "Image",
               "settings": {
-                "show_image": true,
                 "object_fit": "cover",
                 "object_position": "center",
                 "aspect_ratio": "4/3"
@@ -422,7 +433,6 @@
               "type": "image",
               "name": "Image",
               "settings": {
-                "show_image": true,
                 "object_fit": "cover",
                 "object_position": "center",
                 "aspect_ratio": "4/3"
@@ -478,7 +488,6 @@
               "type": "image",
               "name": "Image",
               "settings": {
-                "show_image": true,
                 "object_fit": "cover",
                 "object_position": "center",
                 "aspect_ratio": "4/3"
@@ -676,14 +685,9 @@
         "formfield_checkbox_XM6JMt"
       ],
       "settings": {
-        "show_heading": true,
-        "heading": "Contact Form Section",
-        "size": "h2",
-        "show_description": true,
-        "text": "<p>This is the contact form section where you can add whatever fields you need via the customiser.</p>",
-        "button_label": "Submit",
         "background": "#ffffff",
         "color": "",
+        "button_label": "Submit",
         "thank_you_page": ""
       }
     },
