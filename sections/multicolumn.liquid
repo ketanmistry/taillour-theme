@@ -28,15 +28,16 @@ assign columns = section.blocks.size
 
 {% schema %}
 {
-  "name": "Columns/Richtext",
+  "name": "Columns",
   "tag": "section",
   "class": "columns-section",
   "disabled_on": {
-    "groups": ["header"]
+    "groups": ["*"]
   },
   "presets": [
     {
-      "name": "Columns/Richtext",
+      "name": "Columns",
+      "category": "Text",
       "blocks": [
         {
           "type": "_content_card"
