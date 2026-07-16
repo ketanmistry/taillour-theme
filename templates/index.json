@@ -125,9 +125,21 @@
     },
     "text_GjxAeE": {
       "type": "text",
+      "blocks": {
+        "richtext_YkwrL6": {
+          "type": "richtext",
+          "name": "Text",
+          "settings": {
+            "text": "<p>By keeping things simple, you can build your theme quickly and efficiently without having to dive through convoluted code.</p><p>This is another nice section. 🙂 </p>"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "richtext_YkwrL6"
+      ],
       "settings": {
         "max_width": 768,
-        "text": "<p>By keeping things simple, you can build your theme quickly and efficiently without having to dive through convoluted code.</p><p>This is another nice section. 🙂 </p>",
         "font_size": 1.3,
         "line_height": 2,
         "alignment": "center",
