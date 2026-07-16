@@ -29,11 +29,9 @@
 
     {% paginate search.results by section.settings.limit %}
       <div class="products-grid">
-        {% liquid
-        for product in search.results
-          render 'product-card', product: product
-        endfor
-        %}
+        {% for product in search.results %}
+          {% content_for "block", type: "_product_card", id: "product-card", closest.product: product %}
+        {% endfor %}
       </div>
 
       <div class="section">
