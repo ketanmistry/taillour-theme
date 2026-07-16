@@ -1,0 +1,22 @@
+<div class="code-block" {{ block.shopify_attributes }}>
+  {{ block.settings.html }}
+</div>
+
+{% schema %}
+  {
+    "name": "Code",
+    "presets": [
+      {
+        "name": "Code"
+      }
+    ],
+    "settings": [
+      {
+        "type": "liquid",
+        "id": "html",
+        "label": "HTML/Liquid",
+        "info": "You can add HTML, CSS and limited Liquid markup."
+      }
+    ]
+  }
+{% endschema %}

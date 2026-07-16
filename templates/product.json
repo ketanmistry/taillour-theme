@@ -12,90 +12,104 @@
     "product": {
       "type": "main-product",
       "blocks": {
-        "title_kGVXCN": {
-          "type": "title",
+        "heading_GhxyYt": {
+          "type": "heading",
+          "name": "Heading",
           "settings": {
-            "title": "{{ product.title }}"
-          }
+            "text": "{{ closest.product.title }}",
+            "size": "h2"
+          },
+          "blocks": {}
         },
-        "sku_waYyYi": {
-          "type": "sku",
+        "product_detail_sku_nb6pXB": {
+          "type": "_product_detail_sku",
+          "name": "SKU",
           "settings": {
             "label": "SKU:"
-          }
+          },
+          "blocks": {}
         },
-        "text_VgqAwb": {
-          "type": "text",
+        "richtext_mCXGwH": {
+          "type": "richtext",
+          "name": "Text",
           "settings": {
-            "content": "{{ product.description }}"
-          }
+            "text": "{{ closest.product.description }}"
+          },
+          "blocks": {}
         },
-        "rule_rd4jRV": {
+        "rule_a3UCbM": {
           "type": "rule",
-          "settings": {}
+          "name": "Divider",
+          "settings": {},
+          "blocks": {}
         },
-        "cart_QcHnC3": {
-          "type": "cart",
+        "product_detail_cart_njFtpp": {
+          "type": "_product_detail_cart",
+          "name": "Cart",
           "settings": {
             "button_label": "Add to cart",
             "show_quantity": true,
             "show_accelerated_checkout_buttons": true
-          }
+          },
+          "blocks": {}
         },
-        "rule_VKccTF": {
+        "rule_77VaVc": {
           "type": "rule",
-          "settings": {}
+          "name": "Divider",
+          "settings": {},
+          "blocks": {}
         },
-        "product_wtgCmw": {
-          "type": "product",
+        "product_detail_purchase_together_VWBqCz": {
+          "type": "_product_detail_purchase_together",
+          "name": "Purchase Together",
           "settings": {
             "heading": "Frequently purchased together",
             "total_label": "Total Price:",
             "limit": "2",
             "thumbnail_size": 150
-          }
+          },
+          "blocks": {}
         },
-        "text_NTqjMB": {
-          "type": "text",
+        "richtext_akELEe": {
+          "type": "richtext",
+          "name": "Text",
           "settings": {
-            "content": "<p><strong>Need the price further up? You can add as much information as you need here, and reorganise each part of the product details section via the customiser.</strong></p>"
-          }
+            "text": "<p><strong>Need the price further up? You can add as much information as you need here, and reorganise each part of the product details section via the customiser.</strong></p><p>Copyright by respective movie studios. Intended for personal use only and strictly forbidden to reproduce as printed posters.</p>"
+          },
+          "blocks": {}
         },
-        "text_pLP6Me": {
-          "type": "text",
-          "settings": {
-            "content": "<p>Copyright by respective movie studios. Intended for personal use only and strictly forbidden to reproduce as printed posters.</p>"
-          }
-        },
-        "detail_gzcnpK": {
-          "type": "detail",
+        "faq_PaRMyx": {
+          "type": "faq",
+          "name": "FAQ",
           "settings": {
             "title": "Some more information",
             "content": "<p>These are details/summary tabs and you can add as many as you need via the customiser. There are no restrictions with Taillour - if you don't need them, you can remove them entirely from the section template.</p>",
             "open": true
-          }
+          },
+          "blocks": {}
         },
-        "detail_NhMUn6": {
-          "type": "detail",
+        "faq_gwgE49": {
+          "type": "faq",
+          "name": "FAQ",
           "settings": {
             "title": "Tabs can be set to open or closed by default",
             "content": "<p>Any tab can be set to be open or closed as default, so important information is always displayed.</p>",
             "open": false
-          }
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "title_kGVXCN",
-        "sku_waYyYi",
-        "text_VgqAwb",
-        "rule_rd4jRV",
-        "cart_QcHnC3",
-        "rule_VKccTF",
-        "product_wtgCmw",
-        "text_NTqjMB",
-        "text_pLP6Me",
-        "detail_gzcnpK",
-        "detail_NhMUn6"
+        "heading_GhxyYt",
+        "product_detail_sku_nb6pXB",
+        "richtext_mCXGwH",
+        "rule_a3UCbM",
+        "product_detail_cart_njFtpp",
+        "rule_77VaVc",
+        "product_detail_purchase_together_VWBqCz",
+        "richtext_akELEe",
+        "faq_PaRMyx",
+        "faq_gwgE49"
       ],
       "settings": {}
     },
