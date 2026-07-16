@@ -102,37 +102,63 @@
     "faqs_M7fRxe": {
       "type": "faqs",
       "blocks": {
-        "text_M6ENnC": {
-          "type": "text",
+        "faq_466NeJ": {
+          "type": "faq",
+          "name": "FAQ",
           "settings": {
             "title": "Show more information as FAQs",
             "content": "<p>The FAQs section can be added anywhere within the store, and you can add as many as you need.</p>",
             "open": true
-          }
+          },
+          "blocks": {}
         },
-        "text_DYzPwt": {
-          "type": "text",
+        "faq_cK4DDF": {
+          "type": "faq",
+          "name": "FAQ",
           "settings": {
             "title": "About the \"Recently Viewed\" section below",
-            "content": "<p>The recently viewed section below remembers the products the customer browsed on your store. It's a feature that our many of our clients requested and which customer's found useful. So, we've added it into Taillour too. 🙂 </p>",
+            "content": "<p>The recently viewed section below remembers the products the customer browsed on your store. It's a feature that our many of our clients requested and which customer's found useful. So, we've added it into Taillour too. 🙂</p>",
             "open": true
-          }
+          },
+          "blocks": {}
         },
-        "text_ABWMfy": {
-          "type": "text",
+        "faq_XbtTaf": {
+          "type": "faq",
+          "name": "FAQ",
           "settings": {
             "title": "About the \"You may also like...\" section below",
-            "content": "<p>This is the default product recommendations integration provided by Shopify. Integrated so you don't have to. 🙂 </p>",
+            "content": "<p>This is the default product recommendations integration provided by Shopify. Integrated so you don't have to. 🙂</p>",
             "open": false
-          }
+          },
+          "blocks": {}
+        },
+        "section-heading": {
+          "type": "heading",
+          "static": true,
+          "settings": {
+            "text": "Frequently Asked Questions",
+            "size": "h2"
+          },
+          "blocks": {}
+        },
+        "section-description": {
+          "type": "richtext",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "text": "<p>Asperiores voluptatem rerum fuga assumenda similique voluptatem sapiente qui non voluptatibus.</p>"
+          },
+          "blocks": {}
         }
       },
-      "block_order": ["text_M6ENnC", "text_DYzPwt", "text_ABWMfy"],
+      "block_order": [
+        "faq_466NeJ",
+        "faq_cK4DDF",
+        "faq_XbtTaf"
+      ],
       "settings": {
         "background": "#ffffff",
-        "color": "",
-        "heading": "Frequently Asked Questions",
-        "size": "h2"
+        "color": ""
       }
     },
     "product_recommendations_jRYYgX": {
@@ -158,5 +184,10 @@
       }
     }
   },
-  "order": ["product", "faqs_M7fRxe", "product_recommendations_jRYYgX", "recently_viewed_yG6Mdn"]
+  "order": [
+    "product",
+    "faqs_M7fRxe",
+    "product_recommendations_jRYYgX",
+    "recently_viewed_yG6Mdn"
+  ]
 }

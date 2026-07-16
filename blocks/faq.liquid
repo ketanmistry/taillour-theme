@@ -1,0 +1,38 @@
+<details{% if block.settings.open == true %} open{%- endif %} {{ block.shopify_attributes }}>
+  <summary>{{ block.settings.title }}</summary>
+  <div class="rte">
+    {{ block.settings.content }}
+  </div>
+</details>
+
+{% schema %}
+  {
+    "name": "FAQ",
+    "tag": null,
+    "presets": [
+      {
+        "name": "FAQ"
+      }
+    ],
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Vitae aut laudantium perspiciatis repellendus?"
+      },
+      {
+        "type": "richtext",
+        "id": "content",
+        "label": "Content",
+        "default": "<p>Et vel id. Eos numquam sequi placeat et quasi corrupti assumenda. Officia numquam rerum. Excepturi velit tempora. Officiis illo distinctio quisquam minus. Enim iusto adipisci iure impedit. Accusamus doloribus soluta omnis fuga qui eius et.<\/p>"
+      },
+      {
+        "type": "checkbox",
+        "id": "open",
+        "label": "Open by default",
+        "default": false
+      }
+    ]
+  }
+{% endschema %}
