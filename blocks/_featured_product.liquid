@@ -1,0 +1,148 @@
+{%- unless block.settings.image == blank -%}
+  {%- if block.settings.image_presentation.focal_point.x != 50 and block.settings.image.presentation.focal_point.y != 50 and block.settings.show_hotspot == true -%}
+    {% capture hotspot %}
+      <div class="hotspot-wrapper" style="width: 100%;" data-device="desktop">
+        <span class="hotspot-marker" data-style="dark" data-container="element"></span>
+      </div>
+    {% endcapture %}
+  {%- endif -%}
+{%- endunless -%}
+
+<div class="featured-product-block swiper-slide" {{ block.shopify_attributes }}>
+  <div class="featured-product-block-content">
+    {{ hotspot }}
+    <div class="featured-product-block-content-image">
+      {% if block.settings.image != blank %}
+        <img src="{{ block.settings.image | image_url: width: 1024, height: 768 }}"
+          width="1024"
+          height="768"
+          class="hotspot-image"
+          style="display: block; width:100%;height: 100%;aspect-ratio: {{ block.settings.aspect_ratio }};object-fit: {{ block.settings.object_fit }}; object-position: {% if hotspot != blank %}left top{% else %}{{ block.settings.object_position }}{% endif %};"
+          data-aspect-ratio="{{ block.settings.image.aspect_ratio }}"
+          data-object-position="{{ block.settings.object_position }}"
+          data-x="{{ block.settings.image.presentation.focal_point.x | round }}"
+          data-y="{{ block.settings.image.presentation.focal_point.y | round }}"
+          alt="{{ block.settings.image.alt }}">
+      {% else %}
+        <span class="image-placeholder" style="aspect-ratio: {{ block.settings.aspect_ratio }};"></span>
+      {% endif %}
+    </div>
+  </div>
+  <div class="featured-product-block-item">
+    {% content_for "block", id: "featured_product", type: "_product_card", closest.product: block.settings.product %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product",
+  "tag": null,
+  "presets": [
+    {
+      "name": "Product"
+    }
+  ],
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio",
+      "label": "Aspect ratio",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Auto"
+        },
+        {
+          "value": "1/1",
+          "label": "1:1 (Square)"
+        },
+        {
+          "value": "2/3",
+          "label": "2:3 (Portrait)"
+        },
+        {
+          "value": "4/5",
+          "label": "4:5 (Portrait)"
+        },
+        {
+          "value": "4/3",
+          "label": "4:3 (Landscape)"
+        },
+        {
+          "value": "16/9",
+          "label": "16:9 (Landscape)"
+        }
+      ],
+      "default": "4/3"
+    },
+    {
+      "type": "select",
+      "id": "object_fit",
+      "label": "Fit",
+      "options": [
+        {
+          "value": "contain",
+          "label": "Contain"
+        },
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "fill",
+          "label": "Fill"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "object_position",
+      "label": "Position",
+      "options": [
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_hotspot",
+      "label": "Show hotspot",
+      "info": "Displays hotspot on image if focal point is set."
+    }
+  ]
+}
+{% endschema %}

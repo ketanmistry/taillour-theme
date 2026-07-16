@@ -1,0 +1,75 @@
+{% stylesheet %}
+#{{ section.id }} .section {
+  --swiper-theme-color: black;
+  --swiper-pagination-bottom: 1rem;
+}
+.featured-products-section .featured-product-block {
+  display: flex;
+  background-color: #f7f7f7;
+}
+.featured-product-block-content {}
+.featured-product-block-item {
+  display: flex;
+  align-items: center;
+}
+.featured-product-block-item .product-card {
+  width: 100%;
+  width: 400px;
+  margin: 3.5rem;
+}
+@media screen and (max-width: 500px) {
+  .featured-products-section .featured-product-block {
+    flex-direction: column;
+  }
+  .featured-product-block-item .product-card {
+    width: 100%;
+    margin: 0;
+  }
+}
+{% endstylesheet %}
+
+<div id="{{ section.id }}" class="section-wrap">
+  <div class="section">
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        {% content_for "blocks" %}
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+</div>
+
+<script>
+new Swiper('#{{ section.id }} .swiper', {
+  slidesPerView: 1,
+  pagination: {
+    el: '.swiper-pagination'
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev'
+  }
+});
+</script>
+
+{% schema %}
+  {
+    "name": "Featured Product",
+    "class": "featured-products-section",
+    "disabled_on": {
+      "groups": ["*"]
+    },
+    "presets": [
+      {
+        "name": "Featured Product",
+        "category": "Products"
+      }
+    ],
+    "settings": [],
+    "blocks": [
+      { "type": "_featured_product" }
+    ]
+  }
+{% endschema %}
