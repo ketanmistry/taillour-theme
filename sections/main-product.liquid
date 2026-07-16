@@ -44,16 +44,10 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
     </section>
 
     <section id="product-details">
-
       {% comment %}
-      Variant selector.
+      Product details and variant selector.
       {% endcomment %}
-      <div>
-        {% form "product", product %}
-          {% content_for 'blocks' %}
-        {% endform %}
-      </div>
-
+      {% content_for 'blocks' %}
     </section>
   </div>
 </div>

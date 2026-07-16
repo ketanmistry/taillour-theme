@@ -1,11 +1,13 @@
 {% assign current_variant = product.selected_or_first_available_variant %}
 
 <div id="product-cart" {{ block.shopify_attributes }}>
-  {%- render 'product-cart',
-    form: form,
-    block: block,
-    current_variant: current_variant
-  -%}
+  {% form "product", product %}
+    {%- render 'product-cart',
+      form: form,
+      block: block,
+      current_variant: current_variant
+    -%}
+  {% endform %}
 </div>
 
 {% schema %}
