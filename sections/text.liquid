@@ -21,8 +21,8 @@
 </style>
 
 <div id="{{ section.id }}" class="section-wrap">
-  <div class="section {{ section.settings.alignment }} rte">
-    {{ section.settings.text }}
+  <div class="section {{ section.settings.alignment }}">
+    {% content_for 'blocks' %}
   </div>
 </div>
 
@@ -49,12 +49,6 @@
       "id": "max_width",
       "label": "Max width (px)",
       "info": "Leave blank for full width."
-    },
-    {
-      "type": "richtext",
-      "id": "text",
-      "label": "Text",
-      "default": "<p>Unde inventore illo nulla ipsum architecto laborum tempora sit recusandae. Qui quidem dicta commodi est rerum corporis reprehenderit voluptatum est. Amet velit doloremque praesentium quos non consequatur sunt cumque. Temporibus eaque in rerum. Et nam quod ut aut dolor. Velit soluta corrupti et consequatur possimus dignissimos.</p>",
     },
     {
       "type": "range",
@@ -105,6 +99,11 @@
       "id": "color",
       "label": "Text Colour"
     }
+  ],
+  "blocks": [
+    { "type": "heading" },
+    { "type": "richtext" },
+    { "type": "buttons" }
   ]
 }
 {% endschema %}
