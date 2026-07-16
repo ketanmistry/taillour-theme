@@ -71,8 +71,18 @@
 .cart-items-footer__total {
   align-items: baseline;
 }
-.cart-items-footer .button {
+.cart-items-footer .button:not([onclick]) {
   min-width: 250px;
+}
+.cart-discount-tag {
+  font-family: monospace;
+  font-size: 0.825rem;
+  background-color: #ebebeb;
+  padding-block: 4px;
+  padding-inline: 4px;
+  margin-inline: 5px;
+  border-radius: 4px;
+  vertical-align: baseline;
 }
 
 /* !! Spend more bar */
@@ -85,15 +95,4 @@
 .spend-more-content p {
   margin: 0;
   text-align: center;
-}
-
-/* !! Gift wrap option */
-.gift-wrap-option {
-  border-top: 1px dashed rgba(0, 0, 0, 0.15);
-  margin-top: 0.75rem;
-  padding-top: 0.5rem;
-}
-select.js--gift-wrap-type {
-  width: auto;
-  padding: 0.5rem 2rem 0.5rem 0.5rem;
 }

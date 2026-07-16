@@ -52,6 +52,28 @@ const emptyCartHtml = `{{ empty_cart }}`;
             <div class="cart-items-footer__note">
               {{ section.settings.checkout_note }}
             </div>
+
+            {% if cart.total_discount > 0 %}
+              <div>
+                <span>Discount
+                {% for discount in cart.discount_applications %}
+                    <span class="cart-discount-tag">{{ discount.title }}</span>
+                {% endfor %}
+                </span>
+                <strong>{{ cart.total_discount | money }}</strong>
+              </div>
+            {% endif %}
+
+            {%- unless cart.total_discount > 0 -%}
+              <div class="flex" style="max-width:300px;">
+                <input type="text"
+                  name="discount"
+                  style="padding-block: 0.625rem;"
+                  placeholder="Discount code">
+                <button type="button" class="button" onclick="applyDiscount();">Apply</button>
+              </div>
+            {%- endunless -%}
+
             <div>
               <button type="submit" name="checkout" class="button">
                 {{ section.settings.checkout_btn_label }}

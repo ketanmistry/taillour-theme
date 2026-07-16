@@ -58,3 +58,24 @@ function updateLineItemQty(el) {
 function qtyStepperHandler(el) {
   setTimeout(updateLineItemQty, 300, el);
 }
+
+/*
+ * APPLY DISCOUNT.
+ */
+function applyDiscount() {
+  let discount = document.querySelector('[name="discount"]').value;
+  if (discount == "") {
+    return;
+  }
+  event.target.disabled = true;
+
+  fetch(`/discount/${discount}`).then((response) => {
+    if (response.ok) {
+      fetch(window.Shopify.routes.root + "cart.js")
+        .then((response) => response.json())
+        .then((cart) => {
+          window.location.reload();
+        });
+    }
+  });
+}
