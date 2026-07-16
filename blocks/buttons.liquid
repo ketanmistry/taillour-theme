@@ -1,13 +1,17 @@
 <p class="buttons-block button-group" {{ block.shopify_attributes }}>
   {%- if block.settings.button1_enable -%}
     <a class="button {{ block.settings.button1_style }}"
-      href="{{ block.settings.button1_link | default: '#' }}">
+      href="{{ block.settings.button1_link | default: '#' }}"
+      {% if block.settings.button1_open_in_new_window == true %}target="_blank"{% endif %}
+      {% if block.settings.button1_nofollow == true %}rel="nofollow"{% endif %}>
       {{ block.settings.button1_label }}
     </a>
   {%- endif -%}
   {% if block.settings.button2_enable %}
     <a class="button {{ block.settings.button2_style }}"
-      href="{{ block.settings.button2_link | default: '#' }}">
+      href="{{ block.settings.button2_link | default: '#' }}"
+      {% if block.settings.button2_open_in_new_window == true %}target="_blank"{% endif %}
+      {% if block.settings.button2_nofollow == true %}rel="nofollow"{% endif %}>
       {{ block.settings.button2_label }}
     </a>
   {%- endif -%}
@@ -26,7 +30,7 @@
       "type": "checkbox",
       "id": "button1_enable",
       "default": true,
-      "label": "Show Button"
+      "label": "Show button"
     },
     {
       "visible_if": "{{ block.settings.button1_enable == true }}",
@@ -58,6 +62,21 @@
       ],
       "default": ""
     },
+    {
+      "visible_if": "{{ block.settings.button1_enable == true }}",
+      "type": "checkbox",
+      "id": "button1_open_in_new_window",
+      "label": "Open in new window",
+      "default": false
+    },
+    {
+      "visible_if": "{{ block.settings.button1_enable == true }}",
+      "type": "checkbox",
+      "id": "button1_nofollow",
+      "label": "No follow",
+      "default": false
+    },
+
     {
       "type": "header",
       "content": "Secondary Button"
@@ -97,6 +116,20 @@
         }
       ],
       "default": "button-white"
+    },
+    {
+      "visible_if": "{{ block.settings.button2_enable == true }}",
+      "type": "checkbox",
+      "id": "button2_open_in_new_window",
+      "label": "Open in new window",
+      "default": false
+    },
+    {
+      "visible_if": "{{ block.settings.button2_enable == true }}",
+      "type": "checkbox",
+      "id": "button2_nofollow",
+      "label": "No follow",
+      "default": false
     }
   ],
   "presets": [
