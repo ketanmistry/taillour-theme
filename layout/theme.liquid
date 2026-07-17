@@ -5,21 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {%- unless settings.favicon == blank -%}
     <link rel="shortcut icon" type="image/png" href="{{ settings.favicon | image_url: width: 512, height: 512 }}">
-  {%- endunless -%}
+  {%- endunless %}
 
-  <title>{{ page_title }}
+  {%- capture the_page_title -%}
+    {{ page_title }}
     {% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}
     {% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}
     {% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
-  </title>
+  {%- endcapture %}
+  <title>{{- the_page_title | strip -}}</title>
 
-  {% if page_description %}
+  {% if page_description -%}
   <meta name="description" content="{{ page_description | escape }}">
-  {% endif %}
+  {%- endif %}
 
   {% render 'noindex' %}
-
-  <link rel="canonical" href="{{ canonical_url }}">
+  {% render "canonicals" %}
 
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
   <link rel="stylesheet" href="{{ 'mobile.css' | asset_url }}" media="(max-width: 768px)">

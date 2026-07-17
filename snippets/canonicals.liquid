@@ -1,0 +1,27 @@
+{% comment %}
+Canonicals using setting (in "general") in theme customisation.
+This loops through the text list and checks for a canonical.
+Each canonical should be on a new line in the format
+"path_from_without_domain -> url_to".
+{% endcomment %}
+{%- assign my_canonical_url = false -%}
+{%- if settings.canonicals_list != blank -%}
+  {%- assign canonicals = settings.canonicals_list | newline_to_br | split: '<br />' -%}
+  {%- for canonical in canonicals -%}
+    {%- liquid
+    assign canonical_parts = canonical | split: '->'
+    assign canonical_from = canonical_parts | first | strip
+    assign canonical_to = canonical_parts | last | strip
+    -%}
+    {%- if canonical_from == page.url or canonical_from == article.url or canonical_from == product.url -%}
+      {%- capture my_canonical_url -%}<link rel="canonical" href="{{ canonical_to }}">{%- endcapture -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- if my_canonical_url == false -%}
+  {%- capture my_canonical_url -%}<link rel="canonical" href="{{ canonical_url }}">{%- endcapture -%}
+{%- endif -%}
+
+{{- my_canonical_url -}}
