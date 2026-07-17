@@ -1,3 +1,8 @@
+{%- liquid
+assign image_width = 768
+assign image_height = image_width | divided_by: product.featured_image.aspect_ratio | ceil
+-%}
+
 {% style %}
 {{ section.id | prepend: '#' }}.section-wrap:before {
   background-color:{{ section.settings.background | default: '#ffffff' }}
@@ -15,11 +20,30 @@
           {{- section.settings.heading -}}
         </{{ section.settings.size -}}>
         <div class="products-grid">
-          {% liquid
-          for item in recommendations.products
-            render 'product-card', product: item
-          endfor
-          %}
+          {% for item in recommendations.products %}
+            <a class="product-card" href="{{ item.url }}">
+              <div>
+                {% if item.featured_image == blank %}
+                  {{ 'product-1' | placeholder_svg_tag: "placeholder" }}
+                {% else %}
+                <img src="{{- item.featured_image.src | image_url: width: image_width -}}"
+                  width="{{- image_width -}}"
+                  height="{{- image_height -}}"
+                  alt="{{- item.featured_image.alt | escape | strip_html | strip_newlines -}}"
+                  loading="lazy">
+                  {% endif %}
+              </div>
+              <div>
+                <h3>{{ item.title }}</h3>
+                <p>
+                  {% if item.compare_at_price > item.price %}
+                    <span class="strike">{{ item.compare_at_price | money }}</span>
+                  {% endif %}
+                  {{ item.price | money }}
+                </p>
+              </div>
+            </a>
+          {% endfor %}
         </div>
       {%- endif -%}
     </div>
@@ -71,11 +95,12 @@ loadProductRecommendationsIntoSection();
   "class": "product-recommendations-section",
   "limit": 1,
   "disabled_on": {
-    "groups": ["header"]
+    "groups": ["*"]
   },
   "presets": [
     {
-      "name": "Product Recommendations"
+      "name": "Product Recommendations",
+      "category": "Products"
     }
   ],
   "settings": [

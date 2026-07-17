@@ -7,17 +7,8 @@
 <div id="{{ section.id }}" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
   <div class="section">
     <div class="center">
-      {%- if section.settings.show_heading == true -%}
-        <{{- section.settings.size }}>
-          {{ section.settings.heading }}
-        </{{- section.settings.size -}}>
-      {%- endif -%}
-
-      {%- if section.settings.show_description == true -%}
-        <div class="rte">
-          {{ section.settings.text }}
-        </div>
-      {%- endif -%}
+      {% content_for 'block', type: 'heading', id: 'section-heading' %}
+      {% content_for 'block', type: 'richtext', id: 'section-description' %}
 
       {% form 'contact', class: 'form contact-form center align-left' %}
         {% if form.posted_successfully? %}
@@ -38,71 +29,7 @@
           </div>
         {% endif %}
 
-        {%- for block in section.blocks -%}
-
-          {% capture label %}
-
-          <label for="{%- if block.type == "email" -%}contact_email{%- else -%}{{ block.settings.name | handleize | prepend: 'contact_' }}{%- endif -%}"
-            {% if block.settings.required == true or block.type == "email" %}class="required"{%- endif -%}>
-            {{ block.settings.title }}
-          </label>
-          {% endcapture %}
-
-            {%- case block.type -%}
-              {%- when 'text' -%}
-                <div class="form-row">
-                  {{ label }}
-                  <input type="text"
-                    id="{{ block.settings.name | handleize | prepend: 'contact_' }}"
-                    name="contact[{{- block.settings.name -}}]"
-                    placeholder="{{ block.settings.placeholder }}"
-                    {% unless block.settings.maxlength == blank %}maxlength="{{ block.settings.maxlength }}"{% endunless %}
-                    {% if block.settings.required == true %}required{% endif %}>
-                </div>
-
-              {%- when 'textarea' -%}
-                <div class="form-row">
-                  {{ label }}
-                  <textarea name="contact[{{- block.settings.name -}}]"
-                    id="{{ block.settings.name | handleize | prepend: 'contact_' }}"
-                    placeholder="{{ block.settings.placeholder }}"
-                    {% unless block.settings.maxlength == blank %}maxlength="{{ block.settings.maxlength }}"{% endunless %}
-                    rows="{{ block.settings.rows | default: 5 }}"
-                    {% if block.settings.required == true %}required{% endif %}></textarea>
-                </div>
-
-              {%- when 'email' -%}
-                <div class="form-row">
-                  {{ label }}
-                  <input type="email"
-                    id="contact_email"
-                    name="contact[email]"
-                    placeholder="{{ block.settings.placeholder }}"
-                    {% unless block.settings.maxlength == blank %}maxlength="{{ block.settings.maxlength }}"{% endunless %}
-                    required>
-                </div>
-
-              {%- when 'paragraph' -%}
-                {{ block.settings.text }}
-
-              {%- when 'checkbox' -%}
-                <div class="form-row">
-                  <label class="flex middle align-left" for="{{ block.settings.name | handleize | prepend: 'contact_' }}">
-                    <input type="checkbox"
-                    id="{{ block.settings.name | handleize | prepend: 'contact_' }}"
-                    name="contact[{{- block.settings.name -}}]"
-                    {% if block.settings.required == true %}required{% endif %}>
-                    {{ block.settings.title }}
-                  </label>
-                </div>
-
-              {%- when "hidden" -%}
-                <input type="hidden"
-                  name="contact[{{ block.settings.title }}]"
-                  value="{{ block.settings.value }}">
-
-            {%- endcase -%}
-        {% endfor %}
+        {% content_for 'blocks' %}
 
         <div class="form-row">
           <button type="submit" value="submit">
@@ -122,17 +49,21 @@
   "tag": "section",
   "class": "contact-form-section",
   "disabled_on": {
-    "groups": ["header"]
+    "groups": ["*"]
   },
   "presets": [
     {
       "name": "Contact Form",
+      "category": "Forms",
       "blocks": [
         {
-          "type": "email"
+          "type": "formfield_email",
+          "settings": {
+            "name": "email"
+          }
         },
         {
-          "type": "textarea",
+          "type": "formfield_textarea",
           "settings": {
             "name": "body"
           }
@@ -141,239 +72,19 @@
     }
   ],
   "blocks": [
-    {
-      "type": "text",
-      "name": "Text Field",
-      "settings": [
-        {
-          "type": "inline_richtext",
-          "id": "title",
-          "label": "Label",
-          "default": "Label",
-          "info": "Display a label for the field."
-        },
-        {
-          "type": "text",
-          "id": "name",
-          "label": "Input Name",
-          "default": "Name",
-          "info": "This is the name of the field."
-        },
-        {
-          "type": "number",
-          "id": "maxlength",
-          "label": "Max Length",
-          "default": 128,
-          "info": "Leave blank to have no max length."
-        },
-        {
-          "type": "checkbox",
-          "id": "required",
-          "label": "Required",
-          "default": false
-        },
-        {
-          "type": "text",
-          "id": "placeholder",
-          "label": "Placeholder",
-          "info": "Add additional instructions with a placeholder."
-        }
-      ]
-    },
-    {
-      "type": "textarea",
-      "name": "Textarea",
-      "settings": [
-        {
-          "type": "inline_richtext",
-          "id": "title",
-          "label": "Label",
-          "default": "Label",
-          "info": "Display a label for the field."
-        },
-        {
-          "type": "text",
-          "id": "name",
-          "label": "Input Name",
-          "default": "body",
-          "info": "This is the name of the field. Default is 'body'."
-        },
-        {
-          "type": "number",
-          "id": "maxlength",
-          "label": "Max Length",
-          "default": 128,
-          "info": "Leave blank to have no max length."
-        },
-        {
-          "type": "number",
-          "id": "rows",
-          "label": "Rows",
-          "default": 5
-        },
-        {
-          "type": "checkbox",
-          "id": "required",
-          "label": "Required",
-          "default": false
-        },
-        {
-          "type": "text",
-          "id": "placeholder",
-          "label": "Placeholder",
-          "info": "Add additional instructions with a placeholder."
-        }
-      ]
-    },
-    {
-      "type": "email",
-      "name": "Email Field",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "inline_richtext",
-          "id": "title",
-          "label": "Label",
-          "default": "Email",
-          "info": "Display a label for the field."
-        },
-        {
-          "type": "number",
-          "id": "maxlength",
-          "label": "Max Length",
-          "default": 128,
-          "info": "Leave blank to have no max length."
-        },
-        {
-          "type": "text",
-          "id": "placeholder",
-          "label": "Placeholder",
-          "info": "Add additional instructions with a placeholder.",
-          "default": "e.g. steve@example.com"
-        }
-      ]
-    },
-    {
-      "type": "checkbox",
-      "name": "Checkbox",
-      "settings": [
-        {
-          "type": "inline_richtext",
-          "id": "title",
-          "label": "Label",
-          "default": "Label",
-          "info": "Display a label for the field."
-        },
-        {
-          "type": "text",
-          "id": "name",
-          "label": "Input Name",
-          "default": "Name",
-          "info": "This is the name of the field."
-        },
-        {
-          "type": "checkbox",
-          "id": "required",
-          "label": "Required",
-          "default": false
-        },
-        {
-          "type": "text",
-          "id": "placeholder",
-          "label": "Placeholder",
-          "info": "Add additional instructions with a placeholder."
-        }
-      ]
-    },
-    {
-      "type": "hidden",
-      "name": "Hidden Field",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Input Name",
-          "default": "Name",
-          "info": "This is the name of the field."
-        },
-        {
-          "type": "text",
-          "id": "value",
-          "label": "Value",
-          "info": "This is the fixed value of the field."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "name": "Paragraph",
-      "settings": [
-        {
-          "type": "richtext",
-          "id": "text",
-          "label": "Text",
-          "default": "<p>Aut ratione sapiente repudiandae modi consequatur eos dolores consectetur dolorum.</p>"
-        }
-      ]
-    }
+    { "type": "formfield_text" },
+    { "type": "formfield_textarea" },
+    { "type": "formfield_email" },
+    { "type": "formfield_checkbox" },
+    { "type": "formfield_hidden" },
+    { "type": "formfield_phone" },
+    { "type": "formfield_select" },
+    { "type": "richtext"}
   ],
   "settings": [
     {
       "type": "header",
-      "content": "Section Settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_heading",
-      "label": "Show heading",
-      "default": true
-    },
-    {
-      "visible_if": "{{ section.settings.show_heading == true }}",
-      "type": "inline_richtext",
-      "id": "heading",
-      "label": "Text",
-      "default": "Contact us",
-    },
-    {
-      "visible_if": "{{ section.settings.show_heading == true }}",
-      "type": "select",
-      "id": "size",
-      "label": "Size",
-      "options": [
-        {
-          "value": "h1",
-          "label": "H1"
-        },
-        {
-          "value": "h2",
-          "label": "H2"
-        },
-        {
-          "value": "h3",
-          "label": "H3"
-        }
-      ],
-      "default": "h2"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_description",
-      "label": "Show description",
-      "default": true
-    },
-    {
-      "visible_if": "{{ section.settings.show_description == true }}",
-      "type": "richtext",
-      "id": "text",
-      "label": "Text",
-      "default": "<p>Complete the form below to send us a message.</p>"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "Button Label",
-      "default": "Submit"
+      "content": "Styles"
     },
     {
       "type": "color",
@@ -385,6 +96,16 @@
       "type": "color",
       "id": "color",
       "label": "Text Colour"
+    },
+    {
+      "type": "header",
+      "content": "Form Settings"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Submit"
     },
     {
       "type": "url",

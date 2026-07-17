@@ -1,7 +1,7 @@
-{% liquid
-assign image_width = 400
+{%- liquid
+assign image_width = 768
 assign image_height = image_width | divided_by: collection.featured_image.aspect_ratio | ceil
-%}
+-%}
 <a class="collection-card" href="{{ collection.url }}">
   <div>
     {% if collection.featured_image == blank %}

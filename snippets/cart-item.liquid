@@ -1,40 +1,4 @@
-{% comment %}
-BEGIN GIFT WRAP
-If this item is assigned with the "gift wrap" tag,
-display the gift wrapping option.
-{% endcomment %}
-{% assign gift_wrap_checkbox = "" %}
-{% if item.variant.available %}
-  {% unless gift_wrap == blank %}
-    {% if item.product.tags contains "gift wrap" or item.product.tags contains "Gift Wrap" %}
-      {% assign gift_wrap_checked = '' %}
-      {% if gift_wrap_items contains item.key %}
-        {% assign gift_wrap_checked = ' checked' %}
-      {% endif %}
-      {% capture gift_wrap_checkbox %}
-        <div class="gift-wrap-option">
-          <label class="flex align-left middle">
-            <input class="js--gift-wrap"
-              type="checkbox"
-              name="{{ item.product_id }}"
-              data-item-title="{{ item.title }}"
-              value="{{ item.key }}"
-              {{ gift_wrap_checked }}
-              onclick="runGiftWrap()">
-            <span>
-              Gift wrap item for {{ gift_wrap.price | money }}
-            </span>
-          </label>
-        </div>
-      {% endcapture %}
-    {% endif %}
-  {% endunless %}
-{% endif %}
-{% comment %}
-END GIFT WRAP
-{% endcomment %}
-
-<div class="cart-item js--cart-item">
+<div class="cart-item" data-js="cart-item">
   <div>
     <div class="flex align-left">
       <div class="cart-item__image">
@@ -74,7 +38,6 @@ END GIFT WRAP
             </ul>
           </div>
         {% endunless %}
-        {{ gift_wrap_checkbox }}
       </div>
     </div>
   </div>
@@ -114,6 +77,6 @@ END GIFT WRAP
     </div>
   </div>
   <div>
-    <strong class="js--cart-item-total">{{ item.line_price | money }}</strong>
+    <strong data-js="item-total">{{ item.line_price | money }}</strong>
   </div>
 </div>

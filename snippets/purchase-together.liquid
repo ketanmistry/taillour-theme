@@ -236,6 +236,13 @@ function checkPurchaseTogetherItems() {
 function purchaseTogetherCart() {
   let products = purchaseTogether.querySelectorAll('.js--purchase-item:checked:not(:disabled)');
   let items = [];
+  let btn = event.target;
+  let btnLabel = btn.innerHTML.trim();
+  btn.innerHTML = `
+    <svg style="margin:0 auto;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style="shape-rendering: auto; display: block; background: none;" width="16" height="16" xmlns:xlink="http://www.w3.org/1999/xlink"><g><circle stroke-dasharray="188.49555921538757 64.83185307179586" r="40" stroke-width="15" stroke="#ffffff" fill="none" cy="50" cx="50">
+      <animateTransform keyTimes="0;1" values="0 50 50;360 50 50" dur="1s" repeatCount="indefinite" type="rotate" attributeName="transform"></animateTransform>
+    </circle><g></g></g></svg>`;
+  btn.disabled = true;
 
   if (products.length > 0) {
     products.forEach(function(el){
@@ -246,19 +253,29 @@ function purchaseTogetherCart() {
     });
 
     // Add items to the cart
-    fetch('/cart/add.js', {
+    fetch(window.Shopify.routes.root + 'cart/add.js', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        items: items
+        items: items,
+        sections: ["cart-drawer"],
       })
-    }).then(response => response.json())
-    .then(data => {
-        window.location.href = "{{ routes.cart_url }}";
+    }).then((response) => response.json())
+    .then((cart) => {
+      if (document.getElementById("shopify-section-cart-drawer")) {
+        document.getElementById("shopify-section-cart-drawer").outerHTML = cart.sections["cart-drawer"];
+      }
+      cartDrawer.showModal();
+      btn.innerHTML = btnLabel;
+      btn.disabled = false;
+      fetch(window.Shopify.routes.root + "cart.js")
+        .then((response) => response.json())
+        .then((cart) => {
+          _updateCartItemCount(cart.item_count);
+        });
     });
-
   }
 }
 </script>

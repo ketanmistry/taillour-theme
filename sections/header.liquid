@@ -22,12 +22,15 @@
       <ul class="flex">
         <li data-device="desktop"><a href="{{ routes.account_url }}">Account</a></li>
         <li>
-          {% if section.settings.enable_cart_popup == true and request.path != "/cart" %}
-            {% render 'cart-popup', section:section %}
+          {% if request.path != "/cart" %}
+            <button type="button"
+              class="cart-drawer-button"
+              onclick="cartDrawer.showModal()">
+              Cart (<span data-js="cart-counter">{{ cart.item_count }}</span>)
+            </button>
           {% else %}
-            <a href="{{ routes.cart_url }}">
-              Cart
-              (<span class="js--cart-counter">{{ cart.item_count }}</span>)
+            <a href="{{ routes.cart_url }}" class="cart-drawer-button">
+              Cart (<span data-js="cart-counter">{{ cart.item_count }}</span>)
             </a>
           {% endif %}
         </li>
@@ -43,93 +46,6 @@
 {% schema %}
 {
   "name": "Header",
-  "settings": [
-    {
-      "type": "header",
-      "content": "Cart Summary Popup"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_cart_popup",
-      "label": "Enable cart popup",
-      "info": "Displays cart summary when clicking the cart button.",
-      "default": true
-    },
-    {
-      "visible_if": "{{ section.settings.enable_cart_popup == true }}",
-      "type": "text",
-      "id": "cp_heading",
-      "label": "Heading",
-      "default": "Your cart summary"
-    },
-    {
-      "visible_if": "{{ section.settings.enable_cart_popup == true }}",
-      "type": "checkbox",
-      "id": "cp_show_cart_items",
-      "label": "Show list of items",
-      "default": true
-    },
-    {
-      "visible_if": "{{ section.settings.enable_cart_popup == true }}",
-      "type": "checkbox",
-      "id": "cp_show_cart_total",
-      "label": "Show cart total",
-      "default": true
-    },
-    {
-      "visible_if": "{{ section.settings.enable_cart_popup == true }}",
-      "type": "range",
-      "id": "cp_duration",
-      "label": "Duration",
-      "info": "Number of seconds the popup should stay open after adding an item to the cart.",
-      "min": 6,
-      "max": 20,
-      "unit": "s",
-      "step": 1,
-      "default": 8
-    },
-    {
-      "visible_if": "{{ section.settings.enable_cart_popup == true }}",
-      "type": "number",
-      "id": "cp_thumbnail_size",
-      "label": "Thumbnail size",
-      "default": 50
-    },
-    {
-      "visible_if": "{{ section.settings.enable_cart_popup == true }}",
-      "type": "checkbox",
-      "id": "cp_show_additional_info",
-      "label": "Show additional information",
-      "default": false,
-    },
-    {
-      "visible_if": "{{ section.settings.cp_show_additional_info == true and section.settings.enable_cart_popup == true }}",
-      "type": "richtext",
-      "id": "cp_additional_info",
-      "label": "Additional information"
-    },
-    {
-      "visible_if": "{{ section.settings.enable_cart_popup == true }}",
-      "type": "text",
-      "id": "cp_button_label",
-      "label": "Cart button label",
-      "default": "View Cart",
-    },
-    {
-      "visible_if": "{{ section.settings.enable_cart_popup == true }}",
-      "type": "text",
-      "id": "cp_checkout_label",
-      "label": "Checkout button label",
-      "default": "Checkout now",
-    },
-    {
-      "visible_if": "{{ section.settings.enable_cart_popup == true }}",
-      "type": "text",
-      "id": "cp_notification",
-      "label": "Notification text",
-      "info": "Text displayed in the popup when an item is added to the cart.",
-      "default": "Item added to your cart."
-    }
-  ]
+  "settings": []
 }
 {% endschema %}

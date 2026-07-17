@@ -15,12 +15,89 @@
     },
     "collections": {
       "type": "main-collection-sub",
+      "blocks": {
+        "collection-card": {
+          "type": "_collection_card",
+          "static": true,
+          "settings": {
+            "link": "{{ closest.collection.url }}"
+          },
+          "blocks": {
+            "image_4wWCHB": {
+              "type": "image",
+              "name": "Image",
+              "settings": {
+                "image": "{{ closest.collection.image }}",
+                "object_fit": "cover",
+                "object_position": "center",
+                "aspect_ratio": "1/1"
+              },
+              "blocks": {}
+            },
+            "heading_UkNDhG": {
+              "type": "heading",
+              "name": "Heading",
+              "settings": {
+                "text": "{{ closest.collection.title }}",
+                "size": "h3"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_4wWCHB",
+            "heading_UkNDhG"
+          ]
+        }
+      },
       "settings": {
         "collections_per_row": 4
       }
     },
     "products": {
       "type": "main-collection-products",
+      "blocks": {
+        "product-card": {
+          "type": "_product_card",
+          "static": true,
+          "settings": {
+            "link": "{{ closest.product.url }}"
+          },
+          "blocks": {
+            "image_hQdrrc": {
+              "type": "image",
+              "name": "Image",
+              "settings": {
+                "image": "{{ closest.product.featured_image }}",
+                "object_fit": "cover",
+                "object_position": "center",
+                "aspect_ratio": "1/1"
+              },
+              "blocks": {}
+            },
+            "heading_3TC6ix": {
+              "type": "heading",
+              "name": "Heading",
+              "settings": {
+                "text": "{{ closest.product.title }}",
+                "size": "h3"
+              },
+              "blocks": {}
+            },
+            "product_card_price_9fdBrx": {
+              "type": "_product_card_price",
+              "name": "Price",
+              "settings": {},
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_hQdrrc",
+            "heading_3TC6ix",
+            "product_card_price_9fdBrx"
+          ]
+        }
+      },
       "settings": {
         "limit": 9,
         "products_per_row": 3

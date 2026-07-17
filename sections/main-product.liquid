@@ -44,71 +44,10 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
     </section>
 
     <section id="product-details">
-
       {% comment %}
-      Variant selector.
+      Product details and variant selector.
       {% endcomment %}
-      <div>
-        {% form "product", product %}
-          {%- for block in section.blocks -%}
-            {% case block.type %}
-              {%- when '@app' -%}
-                {% render block %}
-
-              {%- when "cart" -%}
-                <div id="product-cart">
-                  {%- render 'product-cart',
-                    form: form,
-                    block: block,
-                    current_variant: current_variant
-                  -%}
-                </div>
-
-              {%- when 'title' -%}
-                <h1>
-                  {{- block.settings.title -}}
-                </h1>
-
-              {%- when "sku" -%}
-                <p class="small-text">
-                  {{ block.settings.label }}
-                  <span class="js--variant-sku">{{ current_variant.sku }}</span>
-                </p>
-
-              {%- when 'text' -%}
-                <div class="rte">
-                  {{ block.settings.content }}
-                </div>
-
-              {%- when 'rule' -%}
-                <hr>
-
-              {%- when 'detail' -%}
-                <details{% if block.settings.open == true %} open{%- endif -%}>
-                  <summary>
-                    <span>{{ block.settings.title }}</span>
-                  </summary>
-                  <div class="rte">
-                    {{ block.settings.content }}
-                  </div>
-                </details>
-
-              {%- when 'liquid' -%}
-                <div class="raw-html-content">
-                  {{ block.settings.html }}
-                </div>
-
-              {%- when 'product' %}
-                {% render 'purchase-together',
-                  block: block,
-                  current_variant: current_variant
-                %}
-
-            {%- endcase -%}
-          {%- endfor -%}
-        {% endform %}
-      </div>
-
+      {% content_for 'blocks' %}
     </section>
   </div>
 </div>
@@ -209,157 +148,15 @@ function goToImage(index, container=false) {
   "name": "Product Details",
   "settings": [],
   "blocks": [
-    {
-      "type":"@app"
-    },
-    {
-      "type": "title",
-      "name": "Title",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Text",
-          "default": "{{ product.title }}"
-        }
-      ]
-    },
-    {
-      "type": "sku",
-      "name": "SKU",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "text",
-          "id": "label",
-          "label": "Label",
-          "default": "SKU:"
-        }
-      ]
-    },
-    {
-      "type": "cart",
-      "name": "Cart",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "text",
-          "id": "button_label",
-          "label": "Button Label",
-          "default": "Add to cart"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_quantity",
-          "label": "Show quantity field",
-          "default": true
-        },
-        {
-          "type": "checkbox",
-          "id": "show_accelerated_checkout_buttons",
-          "label": "Show accelerated checkout buttons",
-          "default": true
-        }
-      ]
-    },
-    {
-      "type": "text",
-      "name": "Text",
-      "settings": [
-        {
-          "type": "richtext",
-          "id": "content",
-          "label": "Content"
-        }
-      ]
-    },
-    {
-      "type": "rule",
-      "name": "Horizontal rule",
-      "settings": []
-    },
-    {
-      "type": "detail",
-      "name": "Expandable content",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title"
-        },
-        {
-          "type": "richtext",
-          "id": "content",
-          "label": "Content"
-        },
-        {
-          "type": "checkbox",
-          "id": "open",
-          "label": "Open by default",
-          "default": false
-        }
-      ]
-    },
-    {
-      "type": "liquid",
-      "name": "Custom Liquid",
-      "settings": [
-        {
-          "type": "liquid",
-          "id": "html",
-          "label": "HTML/Liquid",
-          "info": "You can add HTML, CSS and limited Liquid markup."
-        }
-      ]
-    },
-    {
-      "type": "product",
-      "name": "Purchase together",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "header",
-          "content": "Setting up this feature",
-          "info": "A product metafield definition with the namespace and key `taillour.purchase_together` should be created with the type `Product variant`. The metafield should allow a 'List of product variants'. [Create definition](/admin/settings/custom_data/product/metafields)."
-        },
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Heading",
-          "default": "Frequently purchased together"
-        },
-        {
-          "type": "inline_richtext",
-          "id": "total_label",
-          "label": "Total price label",
-          "default": "Total Price:"
-        },
-        {
-          "type": "select",
-          "id": "limit",
-          "label": "Limit",
-          "options": [
-            {
-              "value": "1",
-              "label": "1"
-            },
-            {
-              "value": "2",
-              "label": "2"
-            }
-          ],
-          "default": "2",
-          "info": "Set the number of products to display."
-        },
-        {
-          "type": "number",
-          "id": "thumbnail_size",
-          "label": "Thumbnail size",
-          "default": 150
-        }
-      ]
-    }
+    { "type":"@app" },
+    { "type": "heading" },
+    { "type": "richtext" },
+    { "type": "_product_detail_sku" },
+    { "type": "rule" },
+    { "type": "faq" },
+    { "type": "code" },
+    { "type": "_product_detail_purchase_together" },
+    { "type": "_product_detail_cart" }
   ]
 }
 {% endschema %}

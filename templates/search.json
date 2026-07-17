@@ -1,7 +1,62 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "search": {
-      "type": "main-search"
+      "type": "main-search",
+      "blocks": {
+        "product-card": {
+          "type": "_product_card",
+          "static": true,
+          "settings": {
+            "link": "{{ closest.product.url }}"
+          },
+          "blocks": {
+            "image_zcCVCN": {
+              "type": "image",
+              "name": "Image",
+              "settings": {
+                "image": "{{ closest.product.featured_image }}",
+                "object_fit": "cover",
+                "object_position": "center",
+                "aspect_ratio": "1/1"
+              },
+              "blocks": {}
+            },
+            "heading_mXiDgb": {
+              "type": "heading",
+              "name": "Heading",
+              "settings": {
+                "text": "{{ closest.product.title }}",
+                "size": "h3"
+              },
+              "blocks": {}
+            },
+            "product_card_price_qY74gB": {
+              "type": "_product_card_price",
+              "name": "Price",
+              "settings": {},
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_zcCVCN",
+            "heading_mXiDgb",
+            "product_card_price_qY74gB"
+          ]
+        }
+      },
+      "settings": {
+        "limit": 24,
+        "products_per_row": 4
+      }
     }
   },
   "order": [

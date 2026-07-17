@@ -1,0 +1,19 @@
+<p class="price-block" {{ block.shopify_attributes }}>
+  {{- closest.product.price | money -}}
+  {% if closest.product.compare_at_price > closest.product.price %}
+    <s>{{ closest.product.compare_at_price | money }}</s>
+  {% endif %}
+</p>
+
+{% schema %}
+{
+  "name": "Price",
+  "tag": null,
+  "settings": [],
+  "presets": [
+    {
+      "name": "Price"
+    }
+  ]
+}
+{% endschema %}

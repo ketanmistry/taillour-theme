@@ -17,24 +17,29 @@
           "settings": {
             "text": "Hello there!",
             "size": "h1"
-          }
+          },
+          "blocks": {}
         },
         "text_yz7Gyj": {
-          "type": "text",
+          "type": "richtext",
           "settings": {
-            "text": "Welcome to the demo store for the Taillour theme. This is the hero/image banner section where you can add a heading, text, CTA and image."
-          }
+            "text": "<p>Welcome to the demo store for the Taillour theme. This is the hero/image banner section where you can add a heading, text, CTA and image.</p>"
+          },
+          "blocks": {}
         },
         "buttons_zUiW9p": {
           "type": "buttons",
           "settings": {
+            "button1_enable": true,
             "button1_label": "Browse Products",
             "button1_link": "shopify://collections/classics",
-            "button1_enable": true,
+            "button1_style": "",
+            "button2_enable": false,
             "button2_label": "Button label",
             "button2_link": "",
-            "button2_enable": false
-          }
+            "button2_style": "button-white"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
@@ -51,27 +56,55 @@
       }
     },
     "image_with_text_pjRwPQ": {
-      "type": "image-with-text",
+      "type": "media-with-text",
       "blocks": {
         "heading_aRADHH": {
           "type": "heading",
           "settings": {
             "text": "Image/Text Section",
             "size": "h2"
-          }
+          },
+          "blocks": {}
         },
         "text_amNwtU": {
-          "type": "text",
+          "type": "richtext",
           "settings": {
             "text": "<p>Taillour comes with a few pre-built sections to make building your clients Shopify store a little easier. This is one of them.</p>"
-          }
+          },
+          "blocks": {}
         },
         "buttons_hEXxe6": {
           "type": "buttons",
           "settings": {
-            "button_label": "Continue",
-            "button_link": "#"
-          }
+            "button1_enable": true,
+            "button1_label": "Primary button",
+            "button1_link": "#",
+            "button1_style": "",
+            "button2_enable": true,
+            "button2_label": "Secondary button",
+            "button2_link": "#",
+            "button2_style": "button-white"
+          },
+          "blocks": {}
+        },
+        "section-title": {
+          "type": "heading",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "text": "Headline",
+            "size": "h2"
+          },
+          "blocks": {}
+        },
+        "section-description": {
+          "type": "richtext",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "text": "<p>Asperiores voluptatem rerum fuga assumenda similique voluptatem sapiente qui non voluptatibus.</p>"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
@@ -80,24 +113,33 @@
         "buttons_hEXxe6"
       ],
       "settings": {
-        "show_heading": false,
-        "text": "Headline",
-        "size": "h2",
-        "show_description": false,
-        "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
         "background": "#ffffff",
         "color": "",
+        "media_position": "right",
+        "media_type": "image",
+        "aspect_ratio": "1/1",
         "object_fit": "cover",
         "object_position": "center",
-        "aspect_ratio": "1/1",
-        "image_position": "right"
+        "code": ""
       }
     },
     "text_GjxAeE": {
       "type": "text",
+      "blocks": {
+        "richtext_YkwrL6": {
+          "type": "richtext",
+          "name": "Text",
+          "settings": {
+            "text": "<p>By keeping things simple, you can build your theme quickly and efficiently without having to dive through convoluted code.</p><p>This is another nice section. 🙂 </p>"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "richtext_YkwrL6"
+      ],
       "settings": {
         "max_width": 768,
-        "text": "<p>By keeping things simple, you can build your theme quickly and efficiently without having to dive through convoluted code.</p><p>This is another nice section. 🙂 </p>",
         "font_size": 1.3,
         "line_height": 2,
         "alignment": "center",
@@ -105,59 +147,146 @@
         "color": "#ffffff"
       }
     },
-    "image_with_video_NCkDCh": {
-      "type": "video-with-text",
+    "image_with_text_wwgjfP": {
+      "type": "media-with-text",
       "blocks": {
-        "heading_JbRWKC": {
+        "heading_h4Nfpw": {
           "type": "heading",
           "settings": {
             "text": "Video/Text Section",
             "size": "h2"
-          }
+          },
+          "blocks": {}
         },
-        "text_VhigEQ": {
-          "type": "text",
+        "richtext_AtYBbc": {
+          "type": "richtext",
           "settings": {
-            "text": "<p>You can display a video using this section. Like the image/text section above the asset can be positioned to the left or the right.</p>"
-          }
+            "text": "<p>You can display a video using this section.</p>"
+          },
+          "blocks": {}
         },
-        "buttons_jzKH3h": {
+        "buttons_gWaTA4": {
           "type": "buttons",
           "settings": {
-            "button_label": "Optional button?",
-            "button_link": "#"
-          }
+            "button1_enable": true,
+            "button1_label": "Primary button",
+            "button1_link": "#",
+            "button1_style": "",
+            "button2_enable": false,
+            "button2_label": "Secondary button",
+            "button2_link": "#",
+            "button2_style": "button-white"
+          },
+          "blocks": {}
+        },
+        "section-title": {
+          "type": "heading",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "text": "Headline",
+            "size": "h2"
+          },
+          "blocks": {}
+        },
+        "section-description": {
+          "type": "richtext",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "text": "<p>Asperiores voluptatem rerum fuga assumenda similique voluptatem sapiente qui non voluptatibus.</p>"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "heading_JbRWKC",
-        "text_VhigEQ",
-        "buttons_jzKH3h"
+        "heading_h4Nfpw",
+        "richtext_AtYBbc",
+        "buttons_gWaTA4"
       ],
       "settings": {
-        "show_heading": false,
-        "text": "Headline",
-        "size": "h2",
-        "show_description": false,
-        "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
         "background": "#f5f5f5",
         "color": "",
-        "video": "",
-        "object_fit": "contain",
+        "media_position": "left",
+        "media_type": "video",
+        "aspect_ratio": "1/1",
+        "object_fit": "cover",
         "object_position": "center",
-        "aspect_ratio": "4/3",
-        "video_width": 1020,
-        "video_position": "left"
+        "code": ""
       }
     },
     "product_grid_9e9FqV": {
       "type": "product-grid",
+      "blocks": {
+        "section-heading": {
+          "type": "heading",
+          "static": true,
+          "settings": {
+            "text": "Products Section",
+            "size": "h2"
+          },
+          "blocks": {}
+        },
+        "section-description": {
+          "type": "richtext",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "text": "<p>Asperiores voluptatem rerum fuga assumenda similique voluptatem sapiente qui non voluptatibus.</p>"
+          },
+          "blocks": {}
+        },
+        "product-card": {
+          "type": "_product_card",
+          "static": true,
+          "settings": {
+            "link": "{{ closest.product.url }}"
+          },
+          "blocks": {
+            "image_4W9ML4": {
+              "type": "image",
+              "name": "Image",
+              "settings": {
+                "image": "{{ closest.product.featured_image }}",
+                "object_fit": "cover",
+                "object_position": "center",
+                "aspect_ratio": "1/1"
+              },
+              "blocks": {}
+            },
+            "heading_7mAGab": {
+              "type": "heading",
+              "name": "Heading",
+              "settings": {
+                "text": "{{ closest.product.title }}",
+                "size": "h3"
+              },
+              "blocks": {}
+            },
+            "richtext_iFn6YF": {
+              "type": "richtext",
+              "name": "Text",
+              "settings": {
+                "text": ""
+              },
+              "blocks": {}
+            },
+            "product_card_price_F9QVyX": {
+              "type": "_product_card_price",
+              "name": "Price",
+              "settings": {},
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_4W9ML4",
+            "heading_7mAGab",
+            "richtext_iFn6YF",
+            "product_card_price_F9QVyX"
+          ]
+        }
+      },
       "settings": {
-        "show_heading": true,
-        "text": "Products Section",
-        "size": "h2",
-        "show_description": false,
-        "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
         "collection": "frontpage",
         "limit": 8,
         "products_per_row": 4,
@@ -167,19 +296,80 @@
     },
     "button_row_NkV6Bn": {
       "type": "button-row",
-      "settings": {
-        "text": "Go Shopping",
-        "link": "shopify://collections"
-      }
+      "blocks": {
+        "button-group": {
+          "type": "buttons",
+          "static": true,
+          "settings": {
+            "button1_enable": true,
+            "button1_label": "Go Shopping",
+            "button1_link": "shopify://collections",
+            "button1_style": "",
+            "button2_enable": false,
+            "button2_label": "Button label",
+            "button2_link": "",
+            "button2_style": "button-white"
+          },
+          "blocks": {}
+        }
+      },
+      "settings": {}
     },
     "collection_grid_7w6HWG": {
       "type": "collection-grid",
+      "blocks": {
+        "section-heading": {
+          "type": "heading",
+          "static": true,
+          "settings": {
+            "text": "Collections Section",
+            "size": "h2"
+          },
+          "blocks": {}
+        },
+        "section-description": {
+          "type": "richtext",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "text": "<p>Asperiores voluptatem rerum fuga assumenda similique voluptatem sapiente qui non voluptatibus.</p>"
+          },
+          "blocks": {}
+        },
+        "collection-card": {
+          "type": "_collection_card",
+          "static": true,
+          "settings": {
+            "link": "{{ closest.collection.url }}"
+          },
+          "blocks": {
+            "image_brpa34": {
+              "type": "image",
+              "name": "Image",
+              "settings": {
+                "image": "{{ closest.collection.image }}",
+                "object_fit": "cover",
+                "object_position": "center",
+                "aspect_ratio": "1/1"
+              },
+              "blocks": {}
+            },
+            "richtext_6y9DaF": {
+              "type": "richtext",
+              "name": "Text",
+              "settings": {
+                "text": "<h3>{{ closest.collection.title }}</h3>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_brpa34",
+            "richtext_6y9DaF"
+          ]
+        }
+      },
       "settings": {
-        "show_heading": true,
-        "text": "Collections Section",
-        "size": "h2",
-        "show_description": false,
-        "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
         "collections": [
           "frontpage"
         ],
@@ -191,63 +381,197 @@
     "multicolumn_VbBRUF": {
       "type": "multicolumn",
       "blocks": {
-        "column_zYFacD": {
-          "type": "column",
-          "settings": {
-            "show_image": true,
-            "object_fit": "cover",
-            "object_position": "center",
-            "aspect_ratio": "4/3",
-            "text": "Columns Section",
-            "size": "h3",
-            "content": "<p>This section allows you to add 1 to 4 columns of text, each can have an optional image, heading and button.</p><p>The layout adjusts accordingly, but you can refactor as required depending on your project.</p>",
-            "show_button": true,
-            "button_label": "Button label",
-            "button_link": "#"
-          }
+        "content_card_LCHEQg": {
+          "type": "_content_card",
+          "name": "Card",
+          "settings": {},
+          "blocks": {
+            "image_kzdhek": {
+              "type": "image",
+              "name": "Image",
+              "settings": {
+                "object_fit": "cover",
+                "object_position": "center",
+                "aspect_ratio": "4/3"
+              },
+              "blocks": {}
+            },
+            "heading_TjeH9i": {
+              "type": "heading",
+              "name": "Heading",
+              "settings": {
+                "text": "Columns Section",
+                "size": "h3"
+              },
+              "blocks": {}
+            },
+            "richtext_kEmxPG": {
+              "type": "richtext",
+              "name": "Text",
+              "settings": {
+                "text": "<p>This section allows you to add 1 to 4 columns of text, each can have an optional image, heading and button.</p><p>The layout adjusts accordingly, but you can refactor as required depending on your project.</p>"
+              },
+              "blocks": {}
+            },
+            "buttons_JyxT8P": {
+              "type": "buttons",
+              "name": "Buttons",
+              "settings": {
+                "button1_enable": true,
+                "button1_label": "Button label",
+                "button1_link": "",
+                "button1_style": "",
+                "button2_enable": false,
+                "button2_label": "Button label",
+                "button2_link": "",
+                "button2_style": "button-white"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_kzdhek",
+            "heading_TjeH9i",
+            "richtext_kEmxPG",
+            "buttons_JyxT8P"
+          ]
         },
-        "column_CNfgmM": {
-          "type": "column",
-          "settings": {
-            "show_image": true,
-            "object_fit": "cover",
-            "object_position": "center",
-            "aspect_ratio": "4/3",
-            "text": "Customisable",
-            "size": "h3",
-            "content": "<p>Like all the sections of the Taillour theme, you have complete control over everything. There's no nested components or complicated javascript - just basic HTML/CSS and Liquid is all you need.</p>",
-            "show_button": true,
-            "button_label": "",
-            "button_link": ""
-          }
+        "content_card_Qm6kBc": {
+          "type": "_content_card",
+          "name": "Card",
+          "settings": {},
+          "blocks": {
+            "image_JPCFiD": {
+              "type": "image",
+              "name": "Image",
+              "settings": {
+                "object_fit": "cover",
+                "object_position": "center",
+                "aspect_ratio": "4/3"
+              },
+              "blocks": {}
+            },
+            "heading_rWQeVw": {
+              "type": "heading",
+              "name": "Heading",
+              "settings": {
+                "text": "Customisable",
+                "size": "h3"
+              },
+              "blocks": {}
+            },
+            "richtext_zbYNXR": {
+              "type": "richtext",
+              "name": "Text",
+              "settings": {
+                "text": "<p>Like all the sections of the Taillour theme, you have complete control over everything. There's no nested components or complicated javascript - just basic HTML/CSS and Liquid is all you need.</p>"
+              },
+              "blocks": {}
+            },
+            "buttons_7h99La": {
+              "type": "buttons",
+              "name": "Buttons",
+              "settings": {
+                "button1_enable": true,
+                "button1_label": "Button label",
+                "button1_link": "",
+                "button1_style": "",
+                "button2_enable": false,
+                "button2_label": "Button label",
+                "button2_link": "",
+                "button2_style": "button-white"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_JPCFiD",
+            "heading_rWQeVw",
+            "richtext_zbYNXR",
+            "buttons_7h99La"
+          ]
         },
-        "column_kbECRk": {
-          "type": "column",
+        "content_card_h9ixbp": {
+          "type": "_content_card",
+          "name": "Card",
+          "settings": {},
+          "blocks": {
+            "image_PTQhN4": {
+              "type": "image",
+              "name": "Image",
+              "settings": {
+                "object_fit": "cover",
+                "object_position": "center",
+                "aspect_ratio": "4/3"
+              },
+              "blocks": {}
+            },
+            "heading_di7VMw": {
+              "type": "heading",
+              "name": "Heading",
+              "settings": {
+                "text": "Headline",
+                "size": "h3"
+              },
+              "blocks": {}
+            },
+            "richtext_7wTkyp": {
+              "type": "richtext",
+              "name": "Text",
+              "settings": {
+                "text": "<p>Molestiae et repudiandae et voluptatem temporibus deleniti nemo dolor et. Aut et ipsa ab quas tempora eum voluptas nihil cumque. Totam nemo nobis quia et dolores. Officia in vitae exercitationem dolor iste ut possimus.</p>"
+              },
+              "blocks": {}
+            },
+            "buttons_qFE6mJ": {
+              "type": "buttons",
+              "name": "Buttons",
+              "settings": {
+                "button1_enable": true,
+                "button1_label": "Button label",
+                "button1_link": "",
+                "button1_style": "",
+                "button2_enable": false,
+                "button2_label": "Button label",
+                "button2_link": "",
+                "button2_style": "button-white"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_PTQhN4",
+            "heading_di7VMw",
+            "richtext_7wTkyp",
+            "buttons_qFE6mJ"
+          ]
+        },
+        "section-heading": {
+          "type": "heading",
+          "disabled": true,
+          "static": true,
           "settings": {
-            "show_image": true,
-            "object_fit": "cover",
-            "object_position": "center",
-            "aspect_ratio": "4/3",
             "text": "Headline",
-            "size": "h3",
-            "content": "<p>Molestiae et repudiandae et voluptatem temporibus deleniti nemo dolor et. Aut et ipsa ab quas tempora eum voluptas nihil cumque. Totam nemo nobis quia et dolores. Officia in vitae exercitationem dolor iste ut possimus. </p>",
-            "show_button": true,
-            "button_label": "",
-            "button_link": ""
-          }
+            "size": "h2"
+          },
+          "blocks": {}
+        },
+        "section-description": {
+          "type": "richtext",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "text": "<p>Asperiores voluptatem rerum fuga assumenda similique voluptatem sapiente qui non voluptatibus.</p>"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "column_zYFacD",
-        "column_CNfgmM",
-        "column_kbECRk"
+        "content_card_LCHEQg",
+        "content_card_Qm6kBc",
+        "content_card_h9ixbp"
       ],
       "settings": {
-        "show_heading": false,
-        "text": "Headline",
-        "size": "h2",
-        "show_description": false,
-        "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
         "background": "#ffffff",
         "color": "",
         "swipe_on_mobile": true
@@ -268,130 +592,169 @@
     "contact_form_EAWmhp": {
       "type": "contact-form",
       "blocks": {
-        "text_LU8zqn": {
-          "type": "text",
+        "formfield_text_jNgQEX": {
+          "type": "formfield_text",
+          "name": "Text Field",
           "settings": {
-            "title": "First Name",
-            "name": "First Name",
+            "title": "Name",
+            "name": "Name",
             "maxlength": 128,
-            "required": false,
+            "required": true,
             "placeholder": ""
-          }
+          },
+          "blocks": {}
         },
-        "text_CgHJ6n": {
-          "type": "text",
-          "settings": {
-            "title": "Last Name",
-            "name": "Last Name",
-            "maxlength": 128,
-            "required": false,
-            "placeholder": ""
-          }
-        },
-        "email_JcEXPP": {
-          "type": "email",
+        "formfield_email_iP8wcC": {
+          "type": "formfield_email",
+          "name": "Email Field",
           "settings": {
             "title": "Email",
+            "name": "email",
             "maxlength": 128,
-            "placeholder": ""
-          }
+            "placeholder": "e.g. steve@example.com"
+          },
+          "blocks": {}
         },
-        "textarea_XmypF6": {
-          "type": "textarea",
+        "formfield_textarea_wxHyYr": {
+          "type": "formfield_textarea",
+          "name": "Textarea",
           "settings": {
             "title": "Message",
-            "name": "Body",
+            "name": "body",
             "maxlength": 128,
             "rows": 5,
             "required": true,
             "placeholder": ""
-          }
+          },
+          "blocks": {}
         },
-        "paragraph_3RCxUm": {
-          "type": "paragraph",
+        "richtext_RdGjdj": {
+          "type": "richtext",
+          "name": "Text",
           "settings": {
             "text": "<p><strong>How did you hear about us?<br/></strong>Tick all that apply.</p>"
-          }
+          },
+          "blocks": {}
         },
-        "checkbox_ceachf": {
-          "type": "checkbox",
+        "formfield_checkbox_nFEhk9": {
+          "type": "formfield_checkbox",
+          "name": "Checkbox Field",
           "settings": {
             "title": "Google",
             "name": "Google",
             "required": false,
             "placeholder": ""
-          }
+          },
+          "blocks": {}
         },
-        "checkbox_HGGwkP": {
-          "type": "checkbox",
+        "formfield_checkbox_6neJzE": {
+          "type": "formfield_checkbox",
+          "name": "Checkbox Field",
           "settings": {
             "title": "Facebook",
             "name": "Facebook",
             "required": false,
             "placeholder": ""
-          }
+          },
+          "blocks": {}
         },
-        "checkbox_wHnRgw": {
-          "type": "checkbox",
+        "formfield_checkbox_XM6JMt": {
+          "type": "formfield_checkbox",
+          "name": "Checkbox Field",
           "settings": {
             "title": "TV",
             "name": "TV",
             "required": false,
             "placeholder": ""
-          }
+          },
+          "blocks": {}
+        },
+        "section-heading": {
+          "type": "heading",
+          "static": true,
+          "settings": {
+            "text": "Contact Form Section",
+            "size": "h2"
+          },
+          "blocks": {}
+        },
+        "section-description": {
+          "type": "richtext",
+          "static": true,
+          "settings": {
+            "text": "<p>This is the contact form section where you can add whatever fields you need via the customiser.</p>"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "text_LU8zqn",
-        "text_CgHJ6n",
-        "email_JcEXPP",
-        "textarea_XmypF6",
-        "paragraph_3RCxUm",
-        "checkbox_ceachf",
-        "checkbox_HGGwkP",
-        "checkbox_wHnRgw"
+        "formfield_text_jNgQEX",
+        "formfield_email_iP8wcC",
+        "formfield_textarea_wxHyYr",
+        "richtext_RdGjdj",
+        "formfield_checkbox_nFEhk9",
+        "formfield_checkbox_6neJzE",
+        "formfield_checkbox_XM6JMt"
       ],
       "settings": {
-        "heading": "Contact Form Section",
-        "size": "h2",
-        "text": "<p>This is the contact form section where you can add whatever fields you need via the customiser.</p>",
-        "button_label": "Submit",
         "background": "#ffffff",
-        "color": ""
+        "color": "",
+        "button_label": "Submit",
+        "thank_you_page": ""
       }
     },
-    "raw_html_with_text_XjAjHG": {
-      "type": "raw-html-with-text",
+    "media_with_text_4kXxGj": {
+      "type": "media-with-text",
       "blocks": {
-        "heading_rcNraU": {
+        "heading_k4FTNB": {
           "type": "heading",
           "settings": {
             "text": "Custom Liquid with Text Section",
             "size": "h2"
-          }
+          },
+          "blocks": {}
         },
-        "text_8JAgq6": {
-          "type": "text",
+        "richtext_KWH3yw": {
+          "type": "richtext",
           "settings": {
             "text": "<p>A custom liquid with text section – great for embedding a Google map with showroom address/contact details. The text section can placed on the left or right.</p>"
-          }
+          },
+          "blocks": {}
+        },
+        "section-title": {
+          "type": "heading",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "text": "Headline",
+            "size": "h2"
+          },
+          "blocks": {}
+        },
+        "section-description": {
+          "type": "richtext",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "text": "<p>Asperiores voluptatem rerum fuga assumenda similique voluptatem sapiente qui non voluptatibus.</p>"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "heading_rcNraU",
-        "text_8JAgq6"
+        "heading_k4FTNB",
+        "richtext_KWH3yw"
       ],
-      "name": "Custom Liquid & Text",
+      "name": "Media with Text",
       "settings": {
-        "show_heading": false,
-        "text": "Headline",
-        "size": "h2",
-        "show_description": false,
-        "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>",
-        "html": "<iframe width=\"100%\" height=\"440px\" frameborder=\"0\" style=\"border:0\" src=\"https://www.google.com/maps/embed/v1/place?key=AIzaSyB2NIWI3Tv9iDPrlnowr_0ZqZWoAQydKJU&q=Cairns%20Esplanade%20Lagoon%2C%20Esplanade%2C%20Cairns%20City%20QLD%2C%20Australia&maptype=roadmap\" allowfullscreen></iframe>",
-        "html_position": "right",
         "background": "#f5f5f5",
-        "color": ""
+        "color": "",
+        "media_position": "right",
+        "media_type": "code",
+        "aspect_ratio": "1/1",
+        "object_fit": "contain",
+        "object_position": "center",
+        "code": "<iframe width=\"100%\" height=\"440px\" frameborder=\"0\" style=\"border:0\" src=\"https://www.google.com/maps/embed/v1/place?key=AIzaSyB2NIWI3Tv9iDPrlnowr_0ZqZWoAQydKJU&q=Cairns%20Esplanade%20Lagoon%2C%20Esplanade%2C%20Cairns%20City%20QLD%2C%20Australia&maptype=roadmap\" allowfullscreen></iframe>"
       }
     }
   },
@@ -399,13 +762,13 @@
     "image_banner_6NDtLC",
     "image_with_text_pjRwPQ",
     "text_GjxAeE",
-    "image_with_video_NCkDCh",
+    "image_with_text_wwgjfP",
     "product_grid_9e9FqV",
     "button_row_NkV6Bn",
     "collection_grid_7w6HWG",
     "multicolumn_VbBRUF",
     "newsletter_form_JJALbH",
     "contact_form_EAWmhp",
-    "raw_html_with_text_XjAjHG"
+    "media_with_text_4kXxGj"
   ]
 }

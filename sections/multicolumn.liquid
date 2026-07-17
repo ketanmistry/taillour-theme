@@ -1,5 +1,4 @@
 {% liquid
-assign image_width = 600
 assign columns = section.blocks.size
 %}
 
@@ -17,84 +16,31 @@ assign columns = section.blocks.size
 {% endstyle %}
 
 <div id="{{ section.id }}" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
-  {%- if section.settings.show_heading == true or section.settings.show_description == true -%}
-    <div class="section">
-      {%- if section.settings.show_heading == true -%}
-        <{{ section.settings.size }}>
-          {{ section.settings.text }}
-        </{{ section.settings.size }}>
-      {%- endif -%}
-
-      {%- if section.settings.show_description == true -%}
-        <div class="rte">
-          {{ section.settings.description }}
-        </div>
-      {%- endif -%}
-    </div>
-  {%- endif -%}
+  <div class="section">
+    {% content_for 'block', type: 'heading', id: 'section-heading' %}
+    {% content_for 'block', type: 'richtext', id: 'section-description' %}
+  </div>
 
   <div class="section column-section{% if section.settings.swipe_on_mobile == true %} scrolly{% endif %}">
-    {% for block in section.blocks %}
-      {% assign image_height = image_width | divided_by: block.settings.image.aspect_ratio | ceil %}
-      <div>
-        {% if block.settings.show_image == true %}
-          {% if block.settings.image == blank %}
-            {{ 'collection-1' | placeholder_svg_tag: "placeholder" }}
-          {% else %}
-            {%- capture image_sizes -%}
-            width:100%; height:100%; object-fit: {{ block.settings.object_fit }}; object-position: {{ block.settings.object_position }}; aspect-ratio: {{ block.settings.aspect_ratio }};
-            {%- endcapture -%}
-            <div>
-              <img src="{{ block.settings.image | image_url: width: image_width }}"
-                width="{{ image_width }}"
-                height="{{ image_height }}"
-                style="{{- image_sizes | strip -}}"
-                alt="{{- block.settings.image.alt -}}"
-                loading="lazy">
-            </div>
-          {% endif %}
-        {% endif %}
-
-        {% unless block.settings.text == blank %}
-          <{{- block.settings.size }}>
-            {{- block.settings.text -}}
-          </{{- block.settings.size -}}>
-        {% endunless %}
-
-        {% unless block.settings.content == blank %}
-          <div class="rte">
-            {{- block.settings.content -}}
-          </div>
-        {% endunless %}
-
-        {% if block.settings.show_button == true %}
-          <div>
-            <p>
-              <a class="button" href="{{ block.settings.button_link | default: '#' }}">
-                {{ block.settings.button_label | default: "Button Label" }}
-              </a>
-            </p>
-          </div>
-        {% endif %}
-      </div>
-    {% endfor %}
+    {% content_for "blocks" %}
   </div>
 </div>
 
 {% schema %}
 {
-  "name": "Columns/Richtext",
+  "name": "Columns",
   "tag": "section",
   "class": "columns-section",
   "disabled_on": {
-    "groups": ["header"]
+    "groups": ["*"]
   },
   "presets": [
     {
-      "name": "Columns/Richtext",
+      "name": "Columns",
+      "category": "Text",
       "blocks": [
         {
-          "type": "column"
+          "type": "_content_card"
         }
       ]
     }
@@ -111,53 +57,6 @@ assign columns = section.blocks.size
     {
       "type": "header",
       "content": "Section Settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_heading",
-      "label": "Show heading",
-      "default": false
-    },
-    {
-      "visible_if": "{{ section.settings.show_heading == true }}",
-      "type": "inline_richtext",
-      "id": "text",
-      "label": "Heading",
-      "default": "Headline",
-    },
-    {
-      "visible_if": "{{ section.settings.show_heading == true }}",
-      "type": "select",
-      "id": "size",
-      "label": "Heading Size",
-      "options": [
-        {
-          "value": "h1",
-          "label": "H1"
-        },
-        {
-          "value": "h2",
-          "label": "H2"
-        },
-        {
-          "value": "h3",
-          "label": "H3"
-        }
-      ],
-      "default": "h2"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_description",
-      "label": "Show description",
-      "default": false
-    },
-    {
-      "visible_if": "{{ section.settings.show_description == true }}",
-      "type": "richtext",
-      "id": "description",
-      "label": "Description",
-      "default": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>"
     },
     {
       "type": "color",
@@ -179,160 +78,7 @@ assign columns = section.blocks.size
     }
   ],
   "blocks": [
-    {
-      "type": "column",
-      "name": "Column",
-      "limit": 4,
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_image",
-          "label": "Show image",
-          "default": true
-        },
-        {
-          "visible_if": "{{ block.settings.show_image == true }}",
-          "type": "select",
-          "id": "object_fit",
-          "label": "Fit",
-          "options": [
-            {
-              "value": "contain",
-              "label": "Contain"
-            },
-            {
-              "value": "cover",
-              "label": "Cover"
-            },
-            {
-              "value": "fill",
-              "label": "Fill"
-            },
-            {
-              "value": "none",
-              "label": "None"
-            }
-          ],
-          "default": "cover"
-        },
-        {
-          "visible_if": "{{ block.settings.show_image == true }}",
-          "type": "select",
-          "id": "object_position",
-          "label": "Position",
-          "options": [
-            {
-              "value": "center",
-              "label": "Center"
-            },
-            {
-              "value": "top",
-              "label": "Top"
-            },
-            {
-              "value": "bottom",
-              "label": "Bottom"
-            },
-            {
-              "value": "left",
-              "label": "Left"
-            },
-            {
-              "value": "right",
-              "label": "Right"
-            }
-          ],
-          "default": "center"
-        },
-        {
-          "visible_if": "{{ block.settings.show_image == true }}",
-          "type": "select",
-          "id": "aspect_ratio",
-          "label": "Aspect Ratio",
-          "options": [
-            {
-              "value": "1/1",
-              "label": "1:1 (Square)"
-            },
-            {
-              "value": "2/3",
-              "label": "2:3 (Portrait)"
-            },
-            {
-              "value": "4/5",
-              "label": "4:5 (Portrait)"
-            },
-            {
-              "value": "4/3",
-              "label": "4:3 (Landscape)"
-            },
-            {
-              "value": "16/9",
-              "label": "16:9 (Landscape)"
-            }
-          ],
-          "default": "4/3"
-        },
-        {
-          "type": "inline_richtext",
-          "id": "text",
-          "label": "Text",
-          "default": "Headline",
-          "info": "Leave blank to hide."
-        },
-        {
-          "type": "select",
-          "id": "size",
-          "label": "Size",
-          "options": [
-            {
-              "value": "h1",
-              "label": "H1"
-            },
-            {
-              "value": "h2",
-              "label": "H2"
-            },
-            {
-              "value": "h3",
-              "label": "H3"
-            }
-          ],
-          "default": "h3"
-        },
-        {
-          "type": "richtext",
-          "id": "content",
-          "label": "Content",
-          "default": "<p>Molestiae et repudiandae et voluptatem temporibus deleniti nemo dolor et. Aut et ipsa ab quas tempora eum voluptas nihil cumque. Totam nemo nobis quia et dolores. Officia in vitae exercitationem dolor iste ut possimus. Assumenda aut architecto dolores suscipit. Velit voluptatem perferendis nesciunt iste non facilis.</p>",
-          "info": "Leave blank to hide."
-        },
-        {
-          "type": "checkbox",
-          "id": "show_button",
-          "label": "Show button",
-          "default": true
-        },
-        {
-          "visible_if": "{{ block.settings.show_button == true }}",
-          "type": "text",
-          "id": "button_label",
-          "default": "Button label",
-          "label": "Button Label"
-        },
-        {
-          "visible_if": "{{ block.settings.show_button == true }}",
-          "type": "url",
-          "id": "button_link",
-          "label": "Button Link"
-        }
-      ]
-    }
+    { "type": "_content_card" }
   ]
 }
 {% endschema %}

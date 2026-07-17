@@ -8,7 +8,7 @@ is yours! :)
   --max-width: 1230px;
   --black: #000000;
   --white: #ffffff;
-  --cream: #FFF6D1;
+  --cream: #fff6d1;
   --font-stack: system-ui, sans-serif;
   --font-size: 1.125rem;
   --regular: 400;
@@ -60,6 +60,9 @@ button,
 summary {
   cursor: pointer;
 }
+button {
+  background-color: inherit;
+}
 button:disabled {
   background-color: #777;
 }
@@ -72,10 +75,12 @@ p a {
   padding-right: 0.125rem;
 }
 
-a {
+a,
+button.cart-drawer-button {
   color: inherit;
   text-decoration: underline;
   text-decoration-thickness: 2px;
+  font-size: inherit;
 }
 
 .bold {
@@ -109,7 +114,7 @@ footer img {
   padding: 0;
 }
 .section-wrap:before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   right: 0;
@@ -167,7 +172,6 @@ body .hide {
 .placeholder {
   background-color: #f7f7f7;
 }
-
 
 /* !! Mobile/desktop switch */
 @media (min-width: 769px) {
@@ -688,13 +692,13 @@ nav li.nav-parent-list-item summary {
   display: flex;
   align-items: center;
   white-space: nowrap;
-  text-decoration: underline
+  text-decoration: underline;
 }
 nav li.nav-parent-list-item summary {
   padding-right: 0.5rem;
 }
 nav li.nav-parent-list-item summary:after {
-  content: '';
+  content: "";
   display: inline-block;
   width: 20px;
   height: 20px;
@@ -795,7 +799,7 @@ footer p a {
 }
 
 /* !! Dialogs/Modals */
-dialog {
+dialog:not(#cartDrawer) {
   position: fixed;
   z-index: 100;
   background-color: var(--black);
@@ -808,7 +812,7 @@ dialog {
   padding: 1rem;
   margin: auto;
 }
-dialog p {
+dialog:not(#cartDrawer) p {
   line-height: 1.35;
   margin-bottom: 1rem;
 }

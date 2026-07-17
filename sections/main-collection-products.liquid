@@ -30,17 +30,15 @@
       {% render 'collection-filters' %}
     </aside>
 
-    {% paginate collection.products by section.settings.limit %}
+    {% paginate collection.products by section.settings.limit, window_size: 10 %}
     <div>
       <div class="section">
         <p>{{ collection.products_count }} products</p>
 
         <div class="products-grid">
-          {% liquid
-          for product in collection.products
-            render 'product-card', product: product
-          endfor
-          %}
+          {% for product in collection.products %}
+            {% content_for "block", type: "_product_card", id: "product-card", closest.product: product %}
+          {% endfor %}
         </div>
       </div>
 
@@ -67,13 +65,10 @@
       "content": "Display current collection's products."
     },
     {
-      "type": "range",
+      "type": "number",
       "id": "limit",
       "label": "Limit",
       "info": "Limit the number of products displayed per page.",
-      "min": 4,
-      "max": 50,
-      "step": 1,
       "default": 24
     },
     {

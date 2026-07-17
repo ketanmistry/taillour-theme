@@ -32,27 +32,7 @@
   <div class="section">
     <div class="promotion-content">
       <div class="rte">
-        {%- for block in section.blocks -%}
-          {%- case block.type -%}
-            {%- when 'heading' -%}
-              <{{- block.settings.size }}>{{ block.settings.text }}</{{- block.settings.size -}}>
-            {%- when 'text' -%}
-              <p>{{ block.settings.text }}</p>
-            {%- when 'buttons' -%}
-              <div>
-                {%- if block.settings.button1_enable -%}
-                  <a class="button" href="{{ block.settings.button1_link | default: '#' }}">
-                    {{ block.settings.button1_label }}
-                  </a>
-                {%- endif -%}
-                {% if block.settings.button2_enable %}
-                  <a class="button" href="{{ block.settings.button2_link | default: '#' }}">
-                    {{ block.settings.button2_label }}
-                  </a>
-                {%- endif -%}
-              </div>
-          {%- endcase -%}
-        {%- endfor -%}
+        {% content_for 'blocks' %}
       </div>
     </div>
   </div>
@@ -64,7 +44,7 @@
   "tag": "section",
   "class": "promotions-section",
   "disabled_on": {
-    "groups": ["header"]
+    "groups": ["*"]
   },
   "settings": [
     {
@@ -158,103 +138,20 @@
     }
   ],
   "blocks": [
-    {
-      "type": "heading",
-      "name": "Heading",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "inline_richtext",
-          "id": "text",
-          "label": "Text",
-          "default": "Headline",
-        },
-        {
-          "type": "select",
-          "id": "size",
-          "label": "Size",
-          "options": [
-            {
-              "value": "h1",
-              "label": "H1"
-            },
-            {
-              "value": "h2",
-              "label": "H2"
-            },
-            {
-              "value": "h3",
-              "label": "H3"
-            }
-          ],
-          "default": "h1"
-        }
-      ]
-    },
-    {
-      "type": "text",
-      "name": "Text",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "inline_richtext",
-          "id": "text",
-          "default": "Asperiores voluptatem rerum fuga assumenda similique voluptatem sapiente qui non voluptatibus.",
-          "label": "Text"
-        }
-      ]
-    },
-    {
-      "type": "buttons",
-      "name": "Buttons",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "text",
-          "id": "button1_label",
-          "default": "Button label",
-          "label": "Button 1 Label "
-        },
-        {
-          "type": "url",
-          "id": "button1_link",
-          "label": "Button 1 Link"
-        },
-        {
-          "type": "checkbox",
-          "id": "button1_enable",
-          "default": true,
-          "label": "Show Button 1?"
-        },
-        {
-          "type": "text",
-          "id": "button2_label",
-          "default": "Button label",
-          "label": "Button 2 Label"
-        },
-        {
-          "type": "url",
-          "id": "button2_link",
-          "label": "Button 2 Link"
-        },
-        {
-          "type": "checkbox",
-          "id": "button2_enable",
-          "default": false,
-          "label": "Show Button 2?"
-        }
-      ]
-    }
+    { "type": "heading" },
+    { "type": "richtext" },
+    { "type": "buttons" }
   ],
   "presets": [
     {
       "name": "Promotions",
+      "category": "Banners",
       "blocks": [
         {
           "type": "heading"
         },
         {
-          "type": "text"
+          "type": "richtext"
         },
         {
           "type": "buttons"

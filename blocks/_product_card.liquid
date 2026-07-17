@@ -1,0 +1,31 @@
+<a class="product-card" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+  {% content_for "blocks" %}
+</a>
+
+{% schema %}
+{
+  "name": "Product",
+  "tag": null,
+  "settings": [
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link",
+      "default": "{{ closest.product.url }}"
+    }
+  ],
+  "blocks": [
+    { "type": "heading" },
+    { "type": "richtext" },
+    { "type": "image" },
+    { "type": "_product_card_price" },
+    { "type": "buttons" }
+  ],
+  "presets": [
+    {
+      "name": "Product",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

@@ -5,26 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {%- unless settings.favicon == blank -%}
     <link rel="shortcut icon" type="image/png" href="{{ settings.favicon | image_url: width: 512, height: 512 }}">
-  {%- endunless -%}
+  {%- endunless %}
 
-  <title>{{ page_title }}
+  {%- capture the_page_title -%}
+    {{ page_title }}
     {% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}
     {% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}
     {% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
-  </title>
+  {%- endcapture %}
+  <title>{{- the_page_title | strip -}}</title>
 
-  {% if page_description %}
+  {% if page_description -%}
   <meta name="description" content="{{ page_description | escape }}">
-  {% endif %}
+  {%- endif %}
 
-  {%- if request.path contains "/pages/thank-you" -%}
-  <meta name="robots" content="noindex">
-  {%- endif -%}
-
-  <link rel="canonical" href="{{ canonical_url }}">
+  {% render 'noindex' %}
+  {% render "canonicals" %}
 
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
   <link rel="stylesheet" href="{{ 'mobile.css' | asset_url }}" media="(max-width: 768px)">
+  {% if request.path == "/cart" -%}
+  <link rel="stylesheet" href="{{ 'cart.css' | asset_url }}">
+  <script src="{{ 'cart.js' | asset_url }}" defer></script>
+  {%- endif %}
   <script src="{{ 'theme.js' | asset_url }}"></script>
   <script src="{{ 'predictive-search.js' | asset_url }}" defer></script>
 
@@ -48,6 +51,7 @@
   </a>
 
   {% sections 'header-group' %}
+  {% section 'cart-drawer' %}
 
   {% liquid
   unless template == "index" or template == "cart" or template == "blog"

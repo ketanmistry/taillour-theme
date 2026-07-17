@@ -1,0 +1,23 @@
+<div class="content-card" {{ block.shopify_attributes }}>
+  {% content_for "blocks" %}
+</div>
+
+{% schema %}
+{
+  "name": "Card",
+  "tag": null,
+  "settings": [],
+  "blocks": [
+    { "type": "heading" },
+    { "type": "richtext" },
+    { "type": "image" },
+    { "type": "buttons" }
+  ],
+  "presets": [
+    {
+      "name": "Card",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

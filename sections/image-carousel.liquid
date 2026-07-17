@@ -76,7 +76,7 @@ const swiper = new Swiper('{{ section.id | prepend: "#" }}', {
   "tag": "section",
   "class": "image-carousel-section",
   "disabled_on": {
-    "groups": ["header"]
+    "groups": ["*"]
   },
   "settings": [
     {
@@ -228,6 +228,7 @@ const swiper = new Swiper('{{ section.id | prepend: "#" }}', {
   "presets": [
     {
       "name": "Image Carousel (Full)",
+      "category": "Banners",
       "blocks": [
         {
           "type": "image"

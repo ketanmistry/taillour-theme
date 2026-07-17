@@ -1,0 +1,24 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+<p class="small-text" {{ block.shopify_attributes }}>
+  {{ block.settings.label }}
+  <span class="js--variant-sku">{{ current_variant.sku }}</span>
+</p>
+
+{% schema %}
+  {
+    "name": "SKU",
+    "presets": [
+      {
+        "name": "SKU"
+      }
+    ],
+    "settings": [
+      {
+        "type": "text",
+        "id": "label",
+        "label": "Label",
+        "default": "SKU:"
+      }
+    ]
+  }
+{% endschema %}

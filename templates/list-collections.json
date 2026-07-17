@@ -11,6 +11,42 @@
   "sections": {
     "list": {
       "type": "main-list-collections",
+      "blocks": {
+        "collection-card": {
+          "type": "_collection_card",
+          "static": true,
+          "settings": {
+            "link": "{{ closest.collection.url }}"
+          },
+          "blocks": {
+            "image_Ph8kV8": {
+              "type": "image",
+              "name": "Image",
+              "settings": {
+                "image": "{{ closest.collection.image }}",
+                "show_image": true,
+                "object_fit": "cover",
+                "object_position": "center",
+                "aspect_ratio": "4/3"
+              },
+              "blocks": {}
+            },
+            "heading_kFmTdX": {
+              "type": "heading",
+              "name": "Heading",
+              "settings": {
+                "text": "{{ closest.collection.title }}",
+                "size": "h3"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_Ph8kV8",
+            "heading_kFmTdX"
+          ]
+        }
+      },
       "settings": {
         "title": "Collections",
         "content": "<p>This is the \"list-collections\" template which has settings for title, content and how many collections to display per row.</p><p>You can update as required depending on your design.</p>",

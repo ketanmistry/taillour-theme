@@ -1,0 +1,27 @@
+{%- capture robots_tag -%}<meta name="robots" content="noindex">{%- endcapture -%}
+
+{%- liquid
+# Exclude urls in the noindexes array above.
+assign noindex_matches = settings.robots_matches | newline_to_br | split: '<br />'
+for match in noindex_matches
+  assign robot_url = match | strip
+  if robot_url == request.path
+    echo robots_tag
+    break
+  endif
+endfor
+
+# Exclude any pages with handle beginning with "faqs-".
+assign noindex_beginswith = settings.robots_beginswith | newline_to_br | split: '<br />'
+for beginsWith in noindex_beginswith
+  assign parts = beginsWith | remove_first: '/' | split: '/'
+  assign page_type_plural = parts | first
+  assign page_type_size = page_type_plural | size | minus: 1
+  assign page_type = page_type_plural | slice: 0, page_type_size | strip
+  assign string = parts | last | strip
+  assign check_array = handle | split: string
+  if template.name == page_type and check_array[0] == blank
+    echo robots_tag
+  endif
+endfor
+%}

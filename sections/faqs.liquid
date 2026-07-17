@@ -7,25 +7,12 @@
 <div id="{{ section.id }}" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
   <div class="section">
     <div class="center">
-      <{{- section.settings.size }}>
-        {{ section.settings.heading }}
-      </{{- section.settings.size -}}>
-      {%- if section.settings.show_description == true -%}
-        <div class="rte">
-          {{ section.settings.description }}
-        </div>
-      {%- endif -%}
+      {% content_for 'block', type: 'heading', id: 'section-heading' %}
+      {% content_for 'block', type: 'richtext', id: 'section-description' %}
     </div>
   </div>
   <div class="section">
-    {% for block in section.blocks %}
-      <details{% if block.settings.open == true %} open{%- endif -%}>
-        <summary>{{ block.settings.title }}</summary>
-        <div class="rte">
-          {{ block.settings.content }}
-        </div>
-      </details>
-    {% endfor %}
+    {% content_for 'blocks' %}
   </div>
 </div>
 
@@ -36,14 +23,15 @@
   "tag": "section",
   "class": "faqs-section",
   "disabled_on": {
-    "groups": ["header"]
+    "groups": ["*"]
   },
   "presets": [
     {
       "name": "FAQs",
+      "category": "Text",
       "blocks": [
         {
-          "type": "text",
+          "type": "faq",
           "settings": {
             "title": "Vitae aut laudantium perspiciatis repellendus?",
             "content": "<p>Et vel id. Eos numquam sequi placeat et quasi corrupti assumenda. Officia numquam rerum. Excepturi velit tempora. Officiis illo distinctio quisquam minus. Enim iusto adipisci iure impedit. Accusamus doloribus soluta omnis fuga qui eius et.<\/p>"
@@ -67,72 +55,10 @@
       "type": "color",
       "id": "color",
       "label": "Text Colour"
-    },
-    {
-      "type": "inline_richtext",
-      "id": "heading",
-      "label": "Text",
-      "default": "Frequently Asked Questions",
-    },
-    {
-      "type": "select",
-      "id": "size",
-      "label": "Size",
-      "options": [
-        {
-          "value": "h1",
-          "label": "H1"
-        },
-        {
-          "value": "h2",
-          "label": "H2"
-        },
-        {
-          "value": "h3",
-          "label": "H3"
-        }
-      ],
-      "default": "h2"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_description",
-      "label": "Show description",
-      "default": false
-    },
-    {
-      "visible_if": "{{ section.settings.show_description == true }}",
-      "type": "richtext",
-      "id": "description",
-      "label": "Description",
-      "default": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>"
     }
   ],
   "blocks": [
-    {
-      "type": "text",
-      "name": "FAQ",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Vitae aut laudantium perspiciatis repellendus?"
-        },
-        {
-          "type": "richtext",
-          "id": "content",
-          "label": "Content",
-          "default": "<p>Et vel id. Eos numquam sequi placeat et quasi corrupti assumenda. Officia numquam rerum. Excepturi velit tempora. Officiis illo distinctio quisquam minus. Enim iusto adipisci iure impedit. Accusamus doloribus soluta omnis fuga qui eius et.<\/p>"
-        },
-        {
-          "type": "checkbox",
-          "id": "open",
-          "label": "Open by default",
-          "default": false
-        }
-      ]
-    }
+    { "type": "faq" }
   ]
 }
 {% endschema %}

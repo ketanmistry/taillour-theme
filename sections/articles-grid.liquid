@@ -9,26 +9,16 @@
 
 <div id="{{ section.id }}" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
   <div class="section">
-    {%- if section.settings.show_heading == true -%}
-      <{{ section.settings.size }}>
-        {{ section.settings.text }}
-      </{{ section.settings.size }}>
-    {%- endif -%}
-
-    {%- if section.settings.show_description == true -%}
-      <div class="rte">
-        {{ section.settings.description }}
-      </div>
-    {%- endif -%}
+    {% content_for 'block', type: 'heading', id: 'section-heading' %}
+    {% content_for 'block', type: 'richtext', id: 'section-description' %}
 
     {% assign blog_handle = section.settings.blog | default: "news" %}
 
     <div class="articles-grid">
-      {% liquid
-      for article in blogs[blog_handle].articles limit: section.settings.limit
+      {% for article in blogs[blog_handle].articles limit: section.settings.limit %}
         render 'article-card', article: article
-      endfor
-      %}
+        {% content_for 'block', type: "_content_card", id: "article-card", closest.article: article %}
+      {% endfor %}
     </div>
   </div>
 </div>
@@ -39,64 +29,18 @@
   "tag": "section",
   "class": "articles-section",
   "disabled_on": {
-    "groups": ["header"]
+    "groups": ["*"]
   },
   "presets": [
     {
-      "name": "Articles"
+      "name": "Articles",
+      "category": "Blog"
     }
   ],
   "settings": [
     {
       "type": "header",
       "content": "Section Settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_heading",
-      "label": "Show heading",
-      "default": true
-    },
-    {
-      "visible_if": "{{ section.settings.show_heading == true }}",
-      "type": "inline_richtext",
-      "id": "text",
-      "label": "Heading",
-      "default": "Headline",
-    },
-    {
-      "visible_if": "{{ section.settings.show_heading == true }}",
-      "type": "select",
-      "id": "size",
-      "label": "Heading Size",
-      "options": [
-        {
-          "value": "h1",
-          "label": "H1"
-        },
-        {
-          "value": "h2",
-          "label": "H2"
-        },
-        {
-          "value": "h3",
-          "label": "H3"
-        }
-      ],
-      "default": "h2"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_description",
-      "label": "Show description",
-      "default": false
-    },
-    {
-      "visible_if": "{{ section.settings.show_description == true }}",
-      "type": "richtext",
-      "id": "description",
-      "label": "Description",
-      "default": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias blanditiis libero ut laboriosam. Velit, architecto atque repellat sapiente hic eius eos consequuntur perspiciatis quos. Veritatis eveniet esse minima repellendus!</p>"
     },
     {
       "type": "blog",

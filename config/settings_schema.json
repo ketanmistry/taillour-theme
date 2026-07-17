@@ -2,7 +2,7 @@
   {
     "name": "theme_info",
     "theme_name": "Taillour Theme",
-    "theme_version": "1.0.11",
+    "theme_version": "1.1.0",
     "theme_author": "Ketan Mistry",
     "theme_documentation_url": "https://taillourtheme.com/",
     "theme_support_url": "https://taillourtheme.com/"
@@ -10,6 +10,12 @@
   {
     "name": "Brand",
     "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo",
+        "info": "Used in structured data."
+      },
       {
         "type": "image_picker",
         "id": "favicon",
@@ -24,7 +30,7 @@
         "type": "checkbox",
         "id": "newsletter_popup",
         "label": "Enable newsletter popup",
-        "default": true
+        "default": false
       },
       {
         "type": "range",
@@ -53,6 +59,39 @@
         "id": "newsletter_btn_label",
         "label": "Submit button label",
         "default": "Sign up"
+      }
+    ]
+  },
+  {
+    "name": "SEO",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Robots Metatag",
+        "info": "Applies noindex to pages."
+      },
+      {
+        "type": "textarea",
+        "id": "robots_matches",
+        "label": "Page handle matches:",
+        "info": "Enter each handle per line in the format '\/pages\/the-page-handle'.",
+        "default": "/pages/thank-you"
+      },
+      {
+        "type": "textarea",
+        "id": "robots_beginswith",
+        "label": "Page handle begins with:",
+        "info": "Enter each handle per line in the format '\/pages\/string-to-match'."
+      },
+      {
+        "type": "header",
+        "content": "Canonicals",
+        "info": "Add each canonical on a new line in the format `url_from_without_domain -> full_url_to` e.g. \/page\/handle -> https:\/\/DOMAIN\/page\/handle."
+      },
+      {
+        "type": "textarea",
+        "id": "canonicals_list",
+        "label": "Canonicals"
       }
     ]
   }

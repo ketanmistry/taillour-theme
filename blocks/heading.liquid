@@ -1,28 +1,15 @@
-<div class="section-wrap">
-  <div class="section unpadded center">
-    <{{- section.settings.size }} class="nomargin">
-      {{- section.settings.title -}}
-    </{{- section.settings.size -}}>
-  </div>
-</div>
+<{{- block.settings.size }} class="heading-block" {{ block.shopify_attributes }}>
+  {{- block.settings.text -}}
+</{{- block.settings.size -}}>
 
 {% schema %}
 {
   "name": "Heading",
-  "tag": "section",
-  "class": "heading-section",
-  "disabled_on": {
-    "groups": ["header"]
-  },
-  "presets": [
-    {
-      "name": "Heading"
-    }
-  ],
+  "tag": null,
   "settings": [
     {
       "type": "inline_richtext",
-      "id": "title",
+      "id": "text",
       "label": "Text",
       "default": "Headline",
     },
@@ -45,6 +32,11 @@
         }
       ],
       "default": "h2"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Heading"
     }
   ]
 }

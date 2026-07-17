@@ -1,0 +1,239 @@
+{% stylesheet %}
+#cartDrawer {
+  position: fixed;
+  background: none;
+  overflow: hidden;
+}
+#cartDrawer-content {
+  outline-offset: -4px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 400px;
+  height: 100dvh;
+  padding-inline: 1rem;
+  padding-block: 0 1rem;
+  background-color: var(--white);
+  z-index: 50;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#cartDrawer-content.waiting:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.75);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='xMidYMid' style='shape-rendering: auto; display: block; background: none;' width='100' height='100' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cg%3E%3Ccircle stroke-dasharray='188.49555921538757 64.83185307179586' r='40' stroke-width='15' stroke='black' fill='none' cy='50' cx='50'%3E%3CanimateTransform keyTimes='0;1' values='0 50 50;360 50 50' dur='1s' repeatCount='indefinite' type='rotate' attributeName='transform'%3E%3C/animateTransform%3E%3C/circle%3E%3Cg%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 40px auto;
+}
+#cartDrawer-content > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--default-gap);
+}
+
+/* Open cart summary backdrop */
+dialog#cartDrawer::backdrop {
+  background-color: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(5px);
+  --webkit-backdrop-filter: blur(5px);
+}
+
+#cartDrawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-size);
+}
+#cartDrawer-header button {
+  font-size: 24px;
+  color: var(--black);
+  background-color: transparent;
+}
+
+#cartDrawer-footer {
+  border-top: var(--border);
+  padding-top: var(--default-gap);
+}
+
+#cartDrawer-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.cartDrawer-item {
+  display: flex;
+  gap: var(--default-gap);
+}
+.cartDrawer-item ul {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0 var(--default-gap);
+}
+.cartDrawer-item li {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+}
+.cartDrawer-item_description {
+  flex: 1;
+}
+.cartDrawer-item_price {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#cartDrawer-actions {
+  display: flex;
+  gap: var(--default-gap);
+}
+#cartDrawer-actions .button {
+  flex: 1;
+}
+#cartDrawer-actions .button + .button {
+  margin-left: 0;
+}
+{% endstylesheet %}
+
+<dialog id="cartDrawer">
+  <div id="cartDrawer-content">
+    <div>
+      <div id="cartDrawer-header">
+        <h3>{{ section.settings.title }}</h3>
+        <button type="button"
+          onclick="cartDrawer.close();">
+          &times;
+        </button>
+      </div>
+      <div id="cartDrawer-items">
+        {%- if cart.item_count > 0 -%}
+          {%- liquid
+            assign thumbnail_size = section.settings.thumbnail_size | times: 2
+          -%}
+          {%- for item in cart.items -%}
+            <div class="cartDrawer-item">
+              <div class="cartDrawer-item_image">
+                <a href="{{ item.product.url }}">
+                  <img src="{{ item.image | image_url: width: thumbnail_size, height: thumbnail_size }}"
+                    width="{{ section.settings.thumbnail_size }}"
+                    height="{{ section.settings.thumbnail_size | plus: 10 }}"
+                    alt="{{ item.title }}.">
+                </a>
+              </div>
+              <div class="cartDrawer-item_description">
+                <h4>{{- item.product.title | link_to: item.url -}}</h4>
+                <ul class="small-text">
+                  {% for option in item.options_with_values %}
+                    <li>
+                      <strong>{{ option.name | append: ':' }}</strong>
+                      {{ option.value }}
+                    </li>
+                  {%- endfor -%}
+                  <li>
+                    <strong>Qty:</strong>
+                    {{ item.quantity }}
+                  </li>
+                </ul>
+              </div>
+              <div class="cartDrawer-item_price">
+                <strong>{{ item.price | money }}</strong>
+                <button type="button"
+                  class="button button-small button-white small-text"
+                  data-key="{{ item.key }}"
+                  value="0"
+                  onclick="updateCartLineItem(this);">
+                  Remove
+                </button>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          <div>
+            <div class="rte">
+              {{ section.settings.empty_cart_text }}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+    {%- unless cart.item_count == 0 -%}
+      <div id="cartDrawer-footer">
+        {%- if section.settings.show_additional_info == true -%}
+          <div class="small-text rte">
+            {{ section.settings.additional_info }}
+          </div>
+        {%- endif -%}
+        <div id="cartDrawer-total">
+          <strong>Total:</strong>
+          <strong>{{ cart.total_price | money }}</strong>
+        </div>
+        <div id="cartDrawer-actions">
+          <a class="button button-white" href="{{ routes.cart_url }}">
+            {{ section.settings.button_label }}
+          </a>
+          <a class="button" href="/checkout">{{ section.settings.checkout_label }}</a>
+        </div>
+      </div>
+    {% endunless %}
+  </div>
+</dialog>
+
+{% schema %}
+{
+  "name": "Cart Drawer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Your Cart"
+    },
+    {
+      "type": "number",
+      "id": "thumbnail_size",
+      "label": "Thumbnail size",
+      "default": 50
+    },
+    {
+      "type": "checkbox",
+      "id": "show_additional_info",
+      "label": "Show additional information",
+      "default": false,
+    },
+    {
+      "visible_if": "{{ section.settings.show_additional_info == true }}",
+      "type": "richtext",
+      "id": "additional_info",
+      "label": "Additional information"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Cart button label",
+      "default": "View Cart",
+    },
+    {
+      "type": "text",
+      "id": "checkout_label",
+      "label": "Checkout button label",
+      "default": "Checkout",
+    },
+    {
+      "type": "richtext",
+      "id": "empty_cart_text",
+      "label": "Empty cart text",
+      "default": "<h4>Your cart is empty.</h4><p>Vel deserunt quae dolore quo sunt ut sunt dicta voluptates quos autem in eaque nemo quas a non consectetur ratione aut reiciendis.</p>"
+    }
+  ]
+}
+{% endschema %}

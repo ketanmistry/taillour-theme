@@ -15,7 +15,7 @@
       "name": "{{ shop.name }}",
       "alternateName": "",
       "url": "{{ shop.url }}",
-      "logo": "",
+      "logo": "{%- unless settings.logo == blank -%}{{- settings.logo | image_url: width: 512 | prepend: shop.url -}}{%- endunless -%}",
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "",
@@ -23,11 +23,11 @@
         "contactOption": "TollFree",
         "areaServed": "GB",
         "availableLanguage": "English"
-      },
-      "sameAs": [
+      }
+      {%- comment %} "sameAs": [
           "https://www.facebook.com/Something/",
-          "https://twitter.com/Something"
-      ]
+          "https://x.com/Something"
+      ] {% endcomment -%}
     }
     </script>
 
@@ -113,7 +113,7 @@
       {%- if product.images.size > 0 %}
       "image": [
         {%- for image in product.images %}
-          "{{ image.src | img_url: 'master' }}"{% if forloop.index < product.images.size %},{% endif -%}
+          "{{ image.src | image_url: width: 1024 | prepend: shop.url }}"{% if forloop.index < product.images.size %},{% endif -%}
         {% endfor -%}
       ],
       {% endif -%}

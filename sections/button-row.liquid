@@ -1,36 +1,23 @@
 <div class="section">
   <div class="center">
-    <a class="button" href="{{ section.settings.link | default: '#' }}">
-      {{ section.settings.text }}
-    </a>
+    {% content_for 'block', type: 'buttons', id: 'button-group' %}
   </div>
 </div>
 
 {% schema %}
 {
-  "name": "Button",
+  "name": "Buttons",
   "tag": "section",
   "class": "button-section",
   "disabled_on": {
-    "groups": ["header"]
+    "groups": ["*"]
   },
   "presets": [
     {
-      "name": "Button"
+      "name": "Buttons",
+      "category": "Text"
     }
   ],
-  "settings": [
-    {
-      "type": "text",
-      "id": "text",
-      "label": "Button label",
-      "default": "Button"
-    },
-    {
-      "type": "url",
-      "id": "link",
-      "label": "Button link"
-    }
-  ]
+  "settings": []
 }
 {% endschema %}
