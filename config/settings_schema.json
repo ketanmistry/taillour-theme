@@ -12,6 +12,12 @@
     "settings": [
       {
         "type": "image_picker",
+        "id": "logo",
+        "label": "Logo",
+        "info": "Used in structured data."
+      },
+      {
+        "type": "image_picker",
         "id": "favicon",
         "label": "Favicon"
       }
