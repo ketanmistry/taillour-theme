@@ -30,7 +30,7 @@
       {% render 'collection-filters' %}
     </aside>
 
-    {% paginate collection.products by section.settings.limit %}
+    {% paginate collection.products by section.settings.limit, window_size: 10 %}
     <div>
       <div class="section">
         <p>{{ collection.products_count }} products</p>
