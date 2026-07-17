@@ -55,5 +55,38 @@
         "default": "Sign up"
       }
     ]
+  },
+  {
+    "name": "SEO",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Robots Metatag",
+        "info": "Applies noindex to pages."
+      },
+      {
+        "type": "textarea",
+        "id": "robots_matches",
+        "label": "Page handle matches:",
+        "info": "Enter each handle per line in the format '\/pages\/the-page-handle'.",
+        "default": "/pages/thank-you"
+      },
+      {
+        "type": "textarea",
+        "id": "robots_beginswith",
+        "label": "Page handle begins with:",
+        "info": "Enter each handle per line in the format '\/pages\/string-to-match'."
+      },
+      {
+        "type": "header",
+        "content": "Canonicals",
+        "info": "Add each canonical on a new line in the format `url_from_without_domain -> full_url_to` e.g. \/page\/handle -> https:\/\/DOMAIN\/page\/handle."
+      },
+      {
+        "type": "textarea",
+        "id": "canonicals_list",
+        "label": "Canonicals"
+      }
+    ]
   }
 ]
