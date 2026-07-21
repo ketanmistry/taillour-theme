@@ -15,41 +15,7 @@
     },
     "collections": {
       "type": "main-collection-sub",
-      "blocks": {
-        "collection-card": {
-          "type": "_collection_card",
-          "static": true,
-          "settings": {
-            "link": "{{ closest.collection.url }}"
-          },
-          "blocks": {
-            "image_4wWCHB": {
-              "type": "image",
-              "name": "Image",
-              "settings": {
-                "image": "{{ closest.collection.image }}",
-                "object_fit": "cover",
-                "object_position": "center",
-                "aspect_ratio": "1/1"
-              },
-              "blocks": {}
-            },
-            "heading_UkNDhG": {
-              "type": "heading",
-              "name": "Heading",
-              "settings": {
-                "text": "{{ closest.collection.title }}",
-                "size": "h3"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "image_4wWCHB",
-            "heading_UkNDhG"
-          ]
-        }
-      },
+      "blocks": {},
       "settings": {
         "collections_per_row": 4
       }
