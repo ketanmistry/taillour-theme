@@ -43,8 +43,9 @@ Every project is different, so you can build your client's store based on what i
 
 Taillour comes with common section templates and features that you can customise to your projects requirements, and some additional features.
 
+- Includes blocks theme architecture.
 - Display "Purchase together" options on product pages.
-- Options to offer gift wrap in the cart.
+- ~~Options to offer gift wrap in the cart.~~
 - A customisable "Recently viewed" section.
 - "Spend more for free delivery" cart message.
 - Accurate breadcrumbs based on linklist menus.
