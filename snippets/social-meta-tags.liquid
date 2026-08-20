@@ -13,7 +13,7 @@ assign social_twitter_link = ""
 {% elsif template contains 'product' %}
   <meta property="og:type" content="product">
   <meta property="og:title" content="{{ product.title | strip_html | escape }}">
-  {% for image in product.images reversed limit:3 %}
+  {% for image in product.images reversed limit: 3 %}
     <meta property="og:image" content="http:{{ image | image_url: width: 1024, height: 1024 }}">
     <meta property="og:image:secure_url" content="https:{{ image | image_url: width: 1024, height: 1024 }}">
   {% endfor %}
@@ -73,3 +73,13 @@ Twitter card
   <meta property="twitter:image" content="https:{{ article | image_url: width: 1024, height: 1024 }}">
   {% endif %}
 {% endif %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% for image in product.images reversed limit:3 %}"
+  to: "{% for image in product.images reversed limit: 3 %}"
+  position: 462..513
+{% endcomment %}
