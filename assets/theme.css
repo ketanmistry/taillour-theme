@@ -782,9 +782,11 @@ footer .container > div:not(:last-child) {
 .site-footer-menus {
   flex: 1;
   display: flex;
+  flex-wrap: wrap;
   gap: calc(var(--default-gap) * 2);
 }
 ul.footer-menu-block {
+  min-width: 200px;
   margin-bottom: var(--default-gap);
   flex: 1;
 }
