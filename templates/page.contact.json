@@ -9,12 +9,6 @@
  */
 {
   "sections": {
-    "page": {
-      "type": "main-page",
-      "settings": {
-        "max_width": 768
-      }
-    },
     "contact_form": {
       "type": "contact-form",
       "blocks": {
@@ -131,7 +125,6 @@
     }
   },
   "order": [
-    "page",
     "contact_form"
   ]
 }
