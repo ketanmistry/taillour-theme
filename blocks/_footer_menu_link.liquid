@@ -1,0 +1,46 @@
+<li class="footer-menu-link-block" {{ block.shopify_attributes }}>
+  <a href="{{- block.settings.url -}}"
+    {% if block.settings.open_in_new_window == true %}target="_blank"{% endif %}
+    {% if block.settings.nofollow == true %}rel="nofollow"{% endif %}>
+    {{- block.settings.title -}}
+  </a>
+</li>
+
+{% schema %}
+{
+  "name": "Link",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_in_new_window",
+      "label": "Open in new window",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "nofollow",
+      "label": "No follow",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Link",
+      "settings": {
+        "title": "Link title"
+      }
+    }
+  ]
+}
+{% endschema %}

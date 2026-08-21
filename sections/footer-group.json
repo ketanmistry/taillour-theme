@@ -1,14 +1,136 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "Footer",
   "type": "footer",
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "footer_menu_Xd8Jfr": {
+          "type": "_footer_menu",
+          "name": "Menu",
+          "settings": {},
+          "blocks": {
+            "footer_menu_heading_gNbxHg": {
+              "type": "_footer_menu_heading",
+              "name": "Heading",
+              "settings": {
+                "text": "Menu Heading"
+              },
+              "blocks": {}
+            },
+            "footer_menu_link_cp9rgx": {
+              "type": "_footer_menu_link",
+              "name": "Link",
+              "settings": {
+                "title": "Home",
+                "url": "/",
+                "open_in_new_window": false,
+                "nofollow": false
+              },
+              "blocks": {}
+            },
+            "footer_menu_link_rKHAaD": {
+              "type": "_footer_menu_link",
+              "name": "Link",
+              "settings": {
+                "title": "Search",
+                "url": "/search",
+                "open_in_new_window": false,
+                "nofollow": false
+              },
+              "blocks": {}
+            },
+            "footer_menu_text_DddTXg": {
+              "type": "_footer_menu_text",
+              "name": "Text",
+              "settings": {
+                "text": "More information and download options at links below."
+              },
+              "blocks": {}
+            },
+            "footer_menu_link_ViQMLq": {
+              "type": "_footer_menu_link",
+              "name": "Link",
+              "settings": {
+                "title": "Taillour Theme",
+                "url": "https://taillourtheme.com/",
+                "open_in_new_window": true,
+                "nofollow": false
+              },
+              "blocks": {}
+            },
+            "footer_menu_link_RjbnRC": {
+              "type": "_footer_menu_link",
+              "name": "Link",
+              "settings": {
+                "title": "Download on GitHub",
+                "url": "https://github.com/ketanmistry/taillour-theme",
+                "open_in_new_window": true,
+                "nofollow": false
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "footer_menu_heading_gNbxHg",
+            "footer_menu_link_cp9rgx",
+            "footer_menu_link_rKHAaD",
+            "footer_menu_text_DddTXg",
+            "footer_menu_link_ViQMLq",
+            "footer_menu_link_RjbnRC"
+          ]
+        },
+        "footer_menu_amxTYd": {
+          "type": "_footer_menu",
+          "name": "Menu",
+          "settings": {},
+          "blocks": {
+            "footer_menu_text_6yhXWw": {
+              "type": "_footer_menu_text",
+              "name": "Text",
+              "settings": {
+                "text": "Built by Ketan – An Ecommerce Consultant based in Australia. 30 years experience."
+              },
+              "blocks": {}
+            },
+            "footer_menu_link_eareA9": {
+              "type": "_footer_menu_link",
+              "name": "Link",
+              "settings": {
+                "title": "iamketan.design",
+                "url": "https://iamketan.design",
+                "open_in_new_window": true,
+                "nofollow": false
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "footer_menu_text_6yhXWw",
+            "footer_menu_link_eareA9"
+          ]
+        }
+      },
+      "block_order": [
+        "footer_menu_Xd8Jfr",
+        "footer_menu_amxTYd"
+      ],
       "settings": {}
     },
     "copyright": {
       "type": "copyright",
-      "settings": {}
+      "settings": {
+        "text": "Copyright&copy;{{ 'now' | date: '%Y' }}, {{ shop.name }}."
+      }
     }
   },
   "order": [

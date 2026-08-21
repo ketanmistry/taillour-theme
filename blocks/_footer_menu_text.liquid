@@ -1,0 +1,25 @@
+<li class="footer-menu-text-block" {{ block.shopify_attributes }}>
+  {{- block.settings.text -}}
+</li>
+
+{% schema %}
+{
+  "name": "Text",
+  "tag": null,
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text",
+      "settings": {
+        "text": "Lorem ipsum dolor sit, amet consectetur adipisicing elit."
+      }
+    }
+  ]
+}
+{% endschema %}
