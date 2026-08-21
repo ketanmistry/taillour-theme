@@ -1,0 +1,21 @@
+<ul class="footer-menu-block" {{ block.shopify_attributes }}>
+  {% content_for "blocks" %}
+</ul>
+
+{% schema %}
+{
+  "name": "Menu",
+  "tag": null,
+  "settings": [],
+  "blocks": [
+    { "type": "_footer_menu_heading" },
+    { "type": "_footer_menu_link" },
+    { "type": "_footer_menu_text" },
+  ],
+  "presets": [
+    {
+      "name": "Menu"
+    }
+  ]
+}
+{% endschema %}

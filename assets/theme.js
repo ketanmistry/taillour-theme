@@ -366,10 +366,27 @@ function handleAjaxAddToCart() {
         },
         body: JSON.stringify(productData),
       })
-        .then((response) => response.json())
+        .then(async (response) => {
+          let cart = await response.json();
+          if (!response.ok) {
+            cart.error = cart.description || cart.message || "Unable to add this item to your cart.";
+            btn.innerHTML = btnLabel;
+            btn.disabled = false;
+            if (!cart.sections || !cart.sections["cart-drawer"]) {
+              let sectionsResponse = await fetch(window.Shopify.routes.root + "?sections=cart-drawer");
+              cart.sections = await sectionsResponse.json();
+            }
+          }
+          return cart;
+        })
         .then((cart) => {
           if (document.getElementById("shopify-section-cart-drawer")) {
             document.getElementById("shopify-section-cart-drawer").outerHTML = cart.sections["cart-drawer"];
+          }
+          let cartError = document.getElementById("cartDrawer-error");
+          if (cartError) {
+            cartError.textContent = cart.error || "";
+            cartError.hidden = !cart.error;
           }
           cartDrawer.showModal();
           btn.innerHTML = btnLabel;
@@ -379,6 +396,17 @@ function handleAjaxAddToCart() {
             .then((cart) => {
               _updateCartItemCount(cart.item_count);
             });
+        })
+        .catch((error) => {
+          // console.error(error);
+          let cartError = document.getElementById("cartDrawer-error");
+          if (cartError) {
+            cartError.textContent = "Unable to add this item to your cart. Please try again.";
+            cartError.hidden = false;
+          }
+          cartDrawer.showModal();
+          btn.innerHTML = btnLabel;
+          btn.disabled = false;
         });
     });
   });

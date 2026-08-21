@@ -1,5 +1,9 @@
 {% liquid
-assign columns = section.blocks.size
+if section.blocks.size <= 4
+  assign columns = section.blocks.size
+else
+  assign columns = 4
+endif
 %}
 
 {% style %}

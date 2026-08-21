@@ -775,11 +775,28 @@ footer .container > div:not(:last-child) {
   padding-bottom: 1rem;
   margin-bottom: 1rem;
 }
-footer ul {
+.site-footer-layout {
   display: flex;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  text-align: center;
+  gap: clamp(2rem, 3vw, 100px);
+}
+.site-footer-menus {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--default-gap) * 2);
+}
+ul.footer-menu-block {
+  min-width: 200px;
+  margin-bottom: var(--default-gap);
+  flex: 1;
+}
+li.footer-menu-heading-block,
+li.footer-menu-link-block,
+li.footer-menu-text-block {
+  margin-bottom: 0.825rem;
+}
+.footer-menu-heading-block h4 {
+  text-transform: uppercase;
 }
 footer p a {
   background-color: transparent;

@@ -20,6 +20,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: var(--default-gap);
 }
 #cartDrawer-content.waiting:after {
   content: "";
@@ -34,11 +35,6 @@
   background-repeat: no-repeat;
   background-size: 40px auto;
 }
-#cartDrawer-content > div {
-  display: flex;
-  flex-direction: column;
-  gap: var(--default-gap);
-}
 
 /* Open cart summary backdrop */
 dialog#cartDrawer::backdrop {
@@ -52,6 +48,7 @@ dialog#cartDrawer::backdrop {
   align-items: center;
   justify-content: space-between;
   font-size: var(--font-size);
+  border-bottom: var(--border);
 }
 #cartDrawer-header button {
   font-size: 24px;
@@ -62,8 +59,20 @@ dialog#cartDrawer::backdrop {
 #cartDrawer-footer {
   border-top: var(--border);
   padding-top: var(--default-gap);
+  display: flex;
+  flex-direction: column;
+  gap: var(--default-gap);
 }
 
+#cartDrawer-error {
+  color: red;
+  margin-block: 1rem;
+}
+
+#cartDrawer-items-wrapper {
+  overflow-y: auto;
+  margin-block: 0 auto;
+}
 #cartDrawer-items {
   display: flex;
   flex-direction: column;
@@ -107,14 +116,15 @@ dialog#cartDrawer::backdrop {
 
 <dialog id="cartDrawer">
   <div id="cartDrawer-content">
-    <div>
-      <div id="cartDrawer-header">
-        <h3>{{ section.settings.title }}</h3>
-        <button type="button"
-          onclick="cartDrawer.close();">
-          &times;
-        </button>
-      </div>
+    <div id="cartDrawer-header">
+      <h3>{{ section.settings.title }}</h3>
+      <button type="button"
+        onclick="cartDrawer.close();">
+        &times;
+      </button>
+    </div>
+    <div id="cartDrawer-items-wrapper">
+      <p id="cartDrawer-error" role="alert" hidden></p>
       <div id="cartDrawer-items">
         {%- if cart.item_count > 0 -%}
           {%- liquid

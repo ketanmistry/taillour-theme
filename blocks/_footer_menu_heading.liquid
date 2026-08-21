@@ -1,0 +1,27 @@
+<li class="footer-menu-heading-block" {{ block.shopify_attributes }}>
+  <h4>
+    {{- block.settings.text -}}
+  </h4>
+</li>
+
+{% schema %}
+{
+  "name": "Heading",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Heading",
+      "settings": {
+        "text": "Heading"
+      }
+    }
+  ]
+}
+{% endschema %}

@@ -1,4 +1,4 @@
-{% stylesheet %}
+{% style %}
 #{{ section.id }} .section {
   --swiper-theme-color: black;
   --swiper-pagination-bottom: 1rem;
@@ -17,7 +17,7 @@
   width: 400px;
   margin: 3.5rem;
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 768px) {
   .featured-products-section .featured-product-block {
     flex-direction: column;
   }
@@ -26,7 +26,7 @@
     margin: 0;
   }
 }
-{% endstylesheet %}
+{% endstyle %}
 
 <div id="{{ section.id }}" class="section-wrap">
   <div class="section">

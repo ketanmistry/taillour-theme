@@ -1,24 +1,16 @@
-<ul>
-  {% assign menu_handle = section.settings.menu | default: "footer" %}
-  {% for link in linklists[menu_handle].links %}
-    <li>
-      <a href="{{ link.url }}">
-        {{ link.title }}
-      </a>
-    </li>
-  {% endfor %}
-</ul>
+<div class="site-footer-layout">
+  <div class="site-footer-menus">
+    {% content_for 'blocks' %}
+  </div>
+</div>
 
 {% schema %}
 {
   "name": "Links",
-  "settings": [
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Menu",
-      "default": "footer"
-    }
+  "settings": [],
+  "max_blocks": 3,
+  "blocks": [
+    {"type": "_footer_menu" }
   ]
 }
 {% endschema %}
