@@ -1,0 +1,24 @@
+<div class="product-card" {{ block.shopify_attributes }}>
+  {% content_for "blocks" %}
+</div>
+
+{% schema %}
+{
+  "name": "Product",
+  "tag": null,
+  "settings": [],
+  "blocks": [
+    { "type": "heading" },
+    { "type": "richtext" },
+    { "type": "image" },
+    { "type": "_product_card_price" },
+    { "type": "buttons" }
+  ],
+  "presets": [
+    {
+      "name": "Product",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

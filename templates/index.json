@@ -34,10 +34,14 @@
             "button1_label": "Browse Products",
             "button1_link": "shopify://collections/classics",
             "button1_style": "",
+            "button1_open_in_new_window": false,
+            "button1_nofollow": false,
             "button2_enable": false,
             "button2_label": "Button label",
             "button2_link": "",
-            "button2_style": "button-white"
+            "button2_style": "button-white",
+            "button2_open_in_new_window": false,
+            "button2_nofollow": false
           },
           "blocks": {}
         }
@@ -80,10 +84,14 @@
             "button1_label": "Primary button",
             "button1_link": "#",
             "button1_style": "",
+            "button1_open_in_new_window": false,
+            "button1_nofollow": false,
             "button2_enable": true,
             "button2_label": "Secondary button",
             "button2_link": "#",
-            "button2_style": "button-white"
+            "button2_style": "button-white",
+            "button2_open_in_new_window": false,
+            "button2_nofollow": false
           },
           "blocks": {}
         },
@@ -172,10 +180,14 @@
             "button1_label": "Primary button",
             "button1_link": "#",
             "button1_style": "",
+            "button1_open_in_new_window": false,
+            "button1_nofollow": false,
             "button2_enable": false,
             "button2_label": "Secondary button",
             "button2_link": "#",
-            "button2_style": "button-white"
+            "button2_style": "button-white",
+            "button2_open_in_new_window": false,
+            "button2_nofollow": false
           },
           "blocks": {}
         },
@@ -305,10 +317,14 @@
             "button1_label": "Go Shopping",
             "button1_link": "shopify://collections",
             "button1_style": "",
+            "button1_open_in_new_window": false,
+            "button1_nofollow": false,
             "button2_enable": false,
             "button2_label": "Button label",
             "button2_link": "",
-            "button2_style": "button-white"
+            "button2_style": "button-white",
+            "button2_open_in_new_window": false,
+            "button2_nofollow": false
           },
           "blocks": {}
         }
@@ -378,6 +394,91 @@
         "color": ""
       }
     },
+    "featured_product_kqQC7K": {
+      "type": "featured-product",
+      "blocks": {
+        "featured_product_YWVCKD": {
+          "type": "_featured_product",
+          "name": "Product",
+          "settings": {
+            "product": "the-lost-boys",
+            "image": "shopify://shop_images/tyson-moultrie-BQTHOGNHo08-unsplash.jpg",
+            "aspect_ratio": "1/1",
+            "object_fit": "cover",
+            "object_position": "center",
+            "show_hotspot": false
+          },
+          "blocks": {
+            "featured_product": {
+              "type": "_featured_product_card",
+              "static": true,
+              "settings": {},
+              "blocks": {
+                "image_xVH7bX": {
+                  "type": "image",
+                  "name": "Image",
+                  "settings": {
+                    "image": "{{ closest.product.featured_image }}",
+                    "object_fit": "cover",
+                    "object_position": "center",
+                    "aspect_ratio": "4/3"
+                  },
+                  "blocks": {}
+                },
+                "heading_QXJVzY": {
+                  "type": "heading",
+                  "name": "Heading",
+                  "settings": {
+                    "text": "{{ closest.product.title }}",
+                    "size": "h3"
+                  },
+                  "blocks": {}
+                },
+                "richtext_dFtBDD": {
+                  "type": "richtext",
+                  "name": "Text",
+                  "settings": {
+                    "text": "<p>This is a featured products section. Multiple products can be included as a slider.</p>"
+                  },
+                  "blocks": {}
+                },
+                "buttons_VzV3EG": {
+                  "type": "buttons",
+                  "name": "Buttons",
+                  "settings": {
+                    "button1_enable": true,
+                    "button1_label": "View Products",
+                    "button1_link": "shopify://collections/all",
+                    "button1_style": "",
+                    "button1_open_in_new_window": false,
+                    "button1_nofollow": false,
+                    "button2_enable": false,
+                    "button2_label": "Button label",
+                    "button2_link": "",
+                    "button2_style": "button-white",
+                    "button2_open_in_new_window": false,
+                    "button2_nofollow": false
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "image_xVH7bX",
+                "heading_QXJVzY",
+                "richtext_dFtBDD",
+                "buttons_VzV3EG"
+              ]
+            }
+          },
+          "block_order": []
+        }
+      },
+      "block_order": [
+        "featured_product_YWVCKD"
+      ],
+      "name": "Featured Product",
+      "settings": {}
+    },
     "multicolumn_VbBRUF": {
       "type": "multicolumn",
       "blocks": {
@@ -421,10 +522,14 @@
                 "button1_label": "Button label",
                 "button1_link": "",
                 "button1_style": "",
+                "button1_open_in_new_window": false,
+                "button1_nofollow": false,
                 "button2_enable": false,
                 "button2_label": "Button label",
                 "button2_link": "",
-                "button2_style": "button-white"
+                "button2_style": "button-white",
+                "button2_open_in_new_window": false,
+                "button2_nofollow": false
               },
               "blocks": {}
             }
@@ -476,10 +581,14 @@
                 "button1_label": "Button label",
                 "button1_link": "",
                 "button1_style": "",
+                "button1_open_in_new_window": false,
+                "button1_nofollow": false,
                 "button2_enable": false,
                 "button2_label": "Button label",
                 "button2_link": "",
-                "button2_style": "button-white"
+                "button2_style": "button-white",
+                "button2_open_in_new_window": false,
+                "button2_nofollow": false
               },
               "blocks": {}
             }
@@ -531,10 +640,14 @@
                 "button1_label": "Button label",
                 "button1_link": "",
                 "button1_style": "",
+                "button1_open_in_new_window": false,
+                "button1_nofollow": false,
                 "button2_enable": false,
                 "button2_label": "Button label",
                 "button2_link": "",
-                "button2_style": "button-white"
+                "button2_style": "button-white",
+                "button2_open_in_new_window": false,
+                "button2_nofollow": false
               },
               "blocks": {}
             }
@@ -766,6 +879,7 @@
     "product_grid_9e9FqV",
     "button_row_NkV6Bn",
     "collection_grid_7w6HWG",
+    "featured_product_kqQC7K",
     "multicolumn_VbBRUF",
     "newsletter_form_JJALbH",
     "contact_form_EAWmhp",
